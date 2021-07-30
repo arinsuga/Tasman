@@ -51,14 +51,10 @@ Route::group(['middleware'=>'lang'],function ()
     Route::resource('user', 'User\UserController');
     //Home
     Route::resource('home', 'Home\HomeController');
-    //productsubtype
-    Route::resource('productsubtype', 'Productsubtype\ProductsubtypeController');
-    //product
-    Route::resource('product', 'Product\ProductController');
-    //event
-    Route::resource('event', 'Event\EventController');
-    //news
-    Route::resource('news', 'News\NewsController');
+    //project
+    Route::resource('project', 'Project\ProjectController');
+    //activity
+    Route::resource('activity', 'Activity\ActivityController');
 
     //404 - Not Found
     Route::fallback(function () {

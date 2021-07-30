@@ -13,6 +13,8 @@ use Arins\Repositories\Productsubtype\ProductsubtypeRepository;
 use Arins\Repositories\Product\ProductRepository;
 use Arins\Repositories\Event\EventRepository;
 use Arins\Repositories\News\NewsRepository;
+use Arins\Repositories\Activitytype\ActivitytypeRepository;
+use Arins\Repositories\Activity\ActivityRepository;
 
 //Models
 use App\User;
@@ -133,6 +135,29 @@ class RepositoryServiceProvider extends ServiceProvider
             {
                 $model = new News();
                 $modelRepository = new NewsRepository($model);
+                return $modelRepository;
+            }
+        );
+
+
+        //Activity
+        $this->app->bind(
+            'Arins\Repositories\Activity\ActivityRepositoryInterface',
+            function()
+            {
+                $model = new Activity();
+                $modelRepository = new ActivityRepository($model);
+                return $modelRepository;
+            }
+        );
+
+        //Activitytype
+        $this->app->bind(
+            'Arins\Repositories\Activitytype\ActivitytypeRepositoryInterface',
+            function()
+            {
+                $model = new Activitytype();
+                $modelRepository = new ActivitytypeRepository($model);
                 return $modelRepository;
             }
         );

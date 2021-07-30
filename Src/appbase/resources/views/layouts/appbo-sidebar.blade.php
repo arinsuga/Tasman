@@ -17,33 +17,15 @@
       <a href="#" class="nav-link">
         <i class="nav-icon fas fa-tag"></i>
         <p>
-          Master Data
+          Input Data
           <i class="fas fa-angle-left right"></i>
         </p>
       </a>
       <ul class="nav nav-treeview">
         <li class="nav-item">
-          <a href="{{ route('productsubtype.index') }}" class="nav-link">
+          <a href="{{ route('Activity.index') }}" class="nav-link">
             <i class="far fa-circle nav-icon"></i>
-            <p>Product Sub Type</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('product.index') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Product</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('event.index') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Event</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('news.index') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>News</p>
+            <p>Activity</p>
           </a>
         </li>
       </ul>
