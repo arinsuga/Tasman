@@ -2,23 +2,61 @@
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| BO Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register web routes for your application. These
+| Here is where you can register BO routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
 */
 
-Route::prefix('bo')->group(function () {
+/** route group without prefix */
+Route::group(['middleware'=>'lang'],function ()
+{
+    
+    //Change Language
+    Route::get('changelang/{lang}', function($lang){
+
+        $setLang = 'en';
+        if ( ($lang == null) || ($lang == '') ) {
+            $setLang = 'en';
+        } elseif ($lang == 'en') {
+            $setLang = 'id';
+        } else {
+            $setLang = 'en';
+        }
+
+        \Session::put('lang',$setLang);
+
+        return redirect()->back();
+    })->name('change.lang');
+
+    //Home
+//    Route::resource('home', 'Home\HomeController');
+    Route::get('/', 'Home\HomeController@index')->name('home.index');
+    //activity
+    Route::resource('activity', 'Activity\ActivityController');
+
+    //404 - Not Found
+    Route::fallback(function () {
+
+        abort(404, 'Not Found.');
+        // return '<h1>Not Found</h1>';
+    });
+
+}); //end route group 'middleware'=>'lang'
+
+
+/** route prefix admin */
+Route::prefix('admin')->group(function () {
 
     Route::get('/', function () {
         
         //return view('bo.index');
-        return redirect()->route('home.index');
+        return '<H1>ADMIN PAGE</H1>';
 
-    })->name('bo');
+    })->name('admin');
 
     //All
     Route::resource('all', 'All\AllController');
@@ -49,6 +87,4 @@ Route::prefix('bo')->group(function () {
         // return '<h1>Not Found</h1>';
     });
 
-}); //end route prefix
-
-
+}); //end route prefix bo

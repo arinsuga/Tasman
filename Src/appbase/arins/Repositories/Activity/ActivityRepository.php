@@ -1,24 +1,24 @@
 <?php
 
-namespace Arins\Repositories\Productsubtype;
+namespace Arins\Repositories\Activity;
 
 use Arins\Repositories\BaseRepository;
-use Arins\Repositories\Productsubtype\ProductsubtypeRepositoryInterface;
+use Arins\Repositories\Activitytype\ActivitytypeRepositoryInterface;
 
-class ProductsubtypeRepository extends BaseRepository implements ProductsubtypeRepositoryInterface
+class ActivityRepository extends BaseRepository implements ActivityRepositoryInterface
 {
     //Override parent class [BaseRepository.all()]
     public function all()
     {
-        return $this->data::with('producttype')->get();;
+        return $this->data::with('activity')->get();;
     }
 
-    public function byProducttype($id, $take=null)
+    public function byActivitytype($id, $take=null)
     {
         if ($take == null) {
-            return $this->data::where('producttype_id', $id)->get();
+            return $this->data::where('activitytype_id', $id)->get();
         } else {
-            return $this->data::where('producttype_id', $id)
+            return $this->data::where('activitytype_id', $id)
             ->take($take)
             ->get();
         }

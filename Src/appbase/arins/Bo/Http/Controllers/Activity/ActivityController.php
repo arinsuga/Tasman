@@ -10,7 +10,7 @@ use Arins\Repositories\Activity\ActivityRepositoryInterface;
 use Arins\Facades\Response;
 use Arins\Facades\Filex;
 
-class ProductsubtypeController extends Controller
+class ActivityController extends Controller
 {
 
     protected $sViewRoot;

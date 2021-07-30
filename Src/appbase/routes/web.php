@@ -14,58 +14,46 @@
 Route::group(['middleware'=>'lang'],function ()
 {
     
-    //Change Language
-    Route::get('changelang/{lang}', function($lang){
+//Change Language
+Route::get('changelang/{lang}', function($lang){
 
+    $setLang = 'en';
+    if ( ($lang == null) || ($lang == '') ) {
         $setLang = 'en';
-        if ( ($lang == null) || ($lang == '') ) {
-            $setLang = 'en';
-        } elseif ($lang == 'en') {
-            $setLang = 'id';
-        } else {
-            $setLang = 'en';
-        }
+    } elseif ($lang == 'en') {
+        $setLang = 'id';
+    } else {
+        $setLang = 'en';
+    }
 
-        \Session::put('lang',$setLang);
+    \Session::put('lang',$setLang);
 
-        return redirect()->back();
-    })->name('change.lang');
+    return redirect()->back();
+})->name('change.lang');
 
-    Route::get('/', function () {
-        
-        //return view('bo.index');
-        return redirect()->route('home.index');
+    //your translation routes
+//Website routes
+Route::get('/notuse', 'WebsiteController@index')->name('website.index');
+Route::get('/about', 'WebsiteController@about')->name('website.about');
+Route::get('/about1', 'WebsiteController@about1')->name('website.about1');
+Route::get('/about2', 'WebsiteController@about2')->name('website.about2');
+Route::get('/about3', 'WebsiteController@about3')->name('website.about3');
 
-    })->name('bo');
+Route::get('/product', 'WebsiteController@product')->name('website.product');
+Route::get('/product-info/{id}', 'WebsiteController@productInfo')->name('website.productInfo');
+Route::get('/product-list/{producttype_id}/{productsubtype_id}', 'WebsiteController@productList')->name('website.productList');
 
-    //All
-    Route::resource('all', 'All\AllController');
-    //UserAuth
-    Route::get('AuthAdmin/login','AuthAdmin\UserController@showLoginForm')->name('AuthAdmin.login');
-    Route::post('AuthAdmin/login','AuthAdmin\UserController@login');
-    Route::post('AuthAdmin/logout','AuthAdmin\UserController@logout')->name('AuthAdmin.logout');
-    //UserAdmin
-    Route::get('UserAdmin/{UserAdmin}/delete','UserAdmin\UserController@delete')->name('UserAdmin.delete');
-    Route::resource('UserAdmin', 'UserAdmin\UserController');
-    //User
-    Route::resource('user', 'User\UserController');
-    //Home
-    Route::resource('home', 'Home\HomeController');
-    //project
-    Route::resource('project', 'Project\ProjectController');
-    //activity
-    Route::resource('activity', 'Activity\ActivityController');
+Route::get('/branch', 'WebsiteController@branch')->name('website.branch');
 
-    //404 - Not Found
-    Route::fallback(function () {
+Route::get('/event', 'WebsiteController@event')->name('website.event');
+Route::get('/news-list', 'WebsiteController@newsList')->name('website.newsList');
+Route::get('/news/{id}', 'WebsiteController@newsShow')->name('website.newsShow');
 
-        abort(404, 'Not Found.');
-        // return '<h1>Not Found</h1>';
-    });
+Route::get('/contact', 'WebsiteController@contact')->name('website.contact');
+Route::post('/contact', 'ContactFormController@store')->name('website.contact.store');
 
-
-
-}); //end 'middleware'=>'lang'
+Route::get('/shop', 'WebsiteController@shop')->name('website.shop');
+});
 
 
 //event

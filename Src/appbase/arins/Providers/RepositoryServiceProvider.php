@@ -25,6 +25,8 @@ use Arins\Models\Productsubtype;
 use Arins\Models\Product;
 use Arins\Models\Event;
 use Arins\Models\News;
+use Arins\Models\Activity;
+use Arins\Models\Activitytype;
 
 class RepositoryServiceProvider extends ServiceProvider
 {

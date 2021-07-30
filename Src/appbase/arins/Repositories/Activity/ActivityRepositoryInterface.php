@@ -1,11 +1,11 @@
 <?php
 
-namespace Arins\Repositories\Productsubtype;
+namespace Arins\Repositories\Activity;
 
 use Arins\Repositories\BaseRepositoryInterface;
 
 //Inherit interface to BaseRepositoryInterface
-interface ProductsubtypeRepositoryInterface extends BaseRepositoryInterface
+interface ActivityRepositoryInterface extends BaseRepositoryInterface
 {
-    function byProducttype($id, $take=null);
+    function byActivitytype($id, $take=null);
 }
