@@ -32,7 +32,7 @@ class ActivityController extends Controller
         $this->middleware('auth.admin');
         $this->middleware('is.admin');
 
-        $psViewRoot = 'bo.Activity';
+        $psViewRoot = 'bo.activity';
         $this->sViewRoot = $psViewRoot;
         $this->data = $parData;
         $this->dataActivitytype = $parActivitytype;
