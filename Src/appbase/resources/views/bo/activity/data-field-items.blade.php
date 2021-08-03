@@ -35,7 +35,7 @@ margin-left: auto; margin-right:auto;">
 
       <!-- text input:text -->
       <div class="form-group">
-        <label>Tipe Produk</label>
+        <label>Jenis Pekerjaan</label>
         @if ($fieldEnabled == true)
           <select name="activitytype_id" class="form-control">
                 @foreach ($activitytype as $key => $item)
@@ -50,17 +50,6 @@ margin-left: auto; margin-right:auto;">
         @endif
         <strong>{{ $errors->first('activitytype_id') }}</strong>
 
-      </div>
-
-      <!-- text input:text -->
-      <div class="form-group">
-        <label>Nama Produk</label>
-        @if ($fieldEnabled == true)
-          <input type="text" name="name" class="form-control" placeholder="" value="{{ $viewModel->data->name }}">
-        @else
-          <input disabled type="text" name="name" class="form-control" placeholder="" value="{{ $viewModel->data->name }}">
-        @endif
-        <strong>{{ $errors->first('name') }}</strong>
       </div>
 
       <!-- textarea -->

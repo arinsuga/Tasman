@@ -26,8 +26,8 @@ class ActivityController extends Controller
      * 
      * @return void
      */
-    public function __construct(ActivitytypeRepositoryInterface $parData,
-                                ActivityRepositoryInterface $parActivitytype)
+    public function __construct(ActivityRepositoryInterface $parData,
+                                ActivitytypeRepositoryInterface $parActivitytype)
     {
         $this->middleware('auth.admin');
         $this->middleware('is.admin');
@@ -39,7 +39,7 @@ class ActivityController extends Controller
         $this->validateFields = [
             //code array here...
             'activitytype_id' => 'required',
-            'name' => 'required',
+            'description' => 'required',
         ];
         
     }
@@ -56,6 +56,7 @@ class ActivityController extends Controller
     public function index()
     {
         $data = $this->data->allOrderByIdDesc();
+
         $viewModel = Response::viewModel();
         $viewModel->data = $data;
 

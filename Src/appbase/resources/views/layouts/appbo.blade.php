@@ -24,7 +24,7 @@
 <div class="wrapper">
 
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-static navbar-static-top navbar-danger navbar-light">
+  <nav class="main-header navbar navbar-expand navbar-static navbar-static-top navbar-warning navbar-light">
 
     <!-- Left navbar links -->
     <ul class="navbar-nav">
