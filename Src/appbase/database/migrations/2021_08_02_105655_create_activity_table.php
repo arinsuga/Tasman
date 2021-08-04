@@ -20,6 +20,8 @@ class CreateActivityTable extends Migration
             $table->string('name')->nullable();
             $table->text('description')->nullable();
             $table->string('image')->nullable();
+            $table->dateTime('startdt')->nullable();
+            $table->dateTime('enddt')->nullable();
 
             $table->timestamps();
         });

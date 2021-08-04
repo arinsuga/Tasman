@@ -2,8 +2,9 @@
     <thead>
         <tr>
             <th style="width: 5%;"></th>
-            <th style="width: 15%;">Tipe</th>
-            <th style="width: 60%;">Deskripsi</th>
+            <th style="width: 15%;">Jenis Pekerjaan</th>
+            <th style="width: 10%;">Waktu</th>
+            <th style="width: 50%;">Deskripsi</th>
         </tr>
     </thead>
     <tbody>
@@ -16,6 +17,10 @@
                     </div>
                 </td>
                 <td>{{ $item->activitytype->name }}</td>
+                <td>
+                    <div class="text-center">{{ \Arins\Facades\Formater::datetime($item->startdt) }}</div>
+                    <div class="text-center">{{ \Arins\Facades\Formater::datetime($item->enddt) }}</div>
+                </td>
                 <td>
                     <div class="truncate-multiline">{!! nl2br(e($item->description)) !!}</div>
                 </td>

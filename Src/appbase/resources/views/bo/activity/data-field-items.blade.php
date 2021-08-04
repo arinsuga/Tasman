@@ -52,6 +52,38 @@ margin-left: auto; margin-right:auto;">
 
       </div>
 
+      <div class="row">
+        <div class="col-sm-12 col-md-6">
+          <!-- text input:text -->
+          <div class="form-group">
+            <label>Mulai</label>
+            @if ($fieldEnabled == true)
+              <input type="text" id="startdt" name="startdt" class="form-control date" placeholder=""
+              value="{{ \Arins\Facades\Formater::datetime($viewModel->data->startdt) }}">
+            @else
+              <input disabled type="text" id="startdt" name="startdt" class="form-control" placeholder=""
+              value="{{ \Arins\Facades\Formater::datetime($viewModel->data->startdt) }}">
+            @endif
+            <strong>{{ $errors->first('startdt') }}</strong>
+          </div>
+        </div>
+
+        <div class="col-sm-12 col-md-6">
+          <!-- text input:text -->
+          <div class="form-group">
+            <label>Selesai</label>
+            @if ($fieldEnabled == true)
+              <input type="text" id="enddt" name="enddt" class="form-control date" placeholder=""
+              value="{{ \Arins\Facades\Formater::datetime($viewModel->data->enddt) }}">
+            @else
+              <input disabled type="text" id="enddt" name="enddt" class="form-control" placeholder=""
+              value="{{ \Arins\Facades\Formater::datetime($viewModel->data->enddt) }}">
+            @endif
+            <strong>{{ $errors->first('enddt') }}</strong>
+          </div>
+        </div>
+      </div>
+
       <!-- textarea -->
       <div class="form-group">
         <label>Deskripsi</label>

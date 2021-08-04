@@ -9,6 +9,8 @@ use Arins\Repositories\Activitytype\ActivitytypeRepositoryInterface;
 use Arins\Repositories\Activity\ActivityRepositoryInterface;
 use Arins\Facades\Response;
 use Arins\Facades\Filex;
+use Arins\Facades\Formater;
+use Arins\Facades\ConvertDate;
 
 class ActivityController extends Controller
 {
@@ -38,6 +40,8 @@ class ActivityController extends Controller
         $this->dataActivitytype = $parActivitytype;
         $this->validateFields = [
             //code array here...
+            'startdt' => 'required',
+            'enddt' => 'required',
             'activitytype_id' => 'required',
             'description' => 'required',
         ];
@@ -103,6 +107,8 @@ class ActivityController extends Controller
             'name' => null,
             'description' => null,
             'image' => null,
+            'startdt' => null,
+            'enddt' => null,
         ];
         $viewModel = Response::viewModel();
         $viewModel->data = json_decode(json_encode($data));
@@ -178,6 +184,8 @@ class ActivityController extends Controller
         {
             $data['image'] = $path;
         }
+        $data['startdt'] = ConvertDate::strDatetimeToDate($data['startdt']);
+        $data['enddt'] = ConvertDate::strDatetimeToDate($data['enddt']);
         
         $model->fill($data)->save();
 
@@ -205,6 +213,8 @@ class ActivityController extends Controller
         $toggleRemoveImage = $request->input('toggleRemoveImage');
 
         $data['image'] = Filex::uploadOrRemove($model->image, 'activities', $upload, 'public', $toggleRemoveImage);
+        $data['startdt'] = ConvertDate::strDatetimeToDate($data['startdt']);
+        $data['enddt'] = ConvertDate::strDatetimeToDate($data['enddt']);
 
         $model->fill($data)->save();
                 
