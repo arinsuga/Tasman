@@ -241,4 +241,47 @@ class ActivityController extends Controller
 
         return redirect()->route('activity.index');
    }
+
+    /**
+     * Method Name: reportDetail
+     * 
+     * http method: GET
+     * 
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function reportDetail()
+    {
+        return dd('reportDetail');
+        $data = $this->data->allOrderByIdDesc();
+
+        $viewModel = Response::viewModel();
+        $viewModel->data = $data;
+
+        return view($this->sViewRoot.'.report-detail',
+        ['viewModel' => $viewModel]);
+    }
+
+    /**
+     * Method Name: reportRecap
+     * 
+     * http method: GET
+     * 
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function reportRecap()
+    {
+        return dd('reportRecap');
+        $data = $this->data->allOrderByIdDesc();
+
+        $viewModel = Response::viewModel();
+        $viewModel->data = $data;
+
+        return view($this->sViewRoot.'.report-recap',
+        ['viewModel' => $viewModel]);
+    }
+
 }
