@@ -37,11 +37,13 @@ Route::group(['middleware'=>'lang'],function ()
     Route::get('/', 'Home\HomeController@index')->name('home.index');
 
     //activity
+    Route::resource('dashboard', 'Dashboard\DashboardController');
+    //activity
     Route::resource('activity', 'Activity\ActivityController');
     //activity report detail
-    Route::get('activity-report-detail', 'Activity\ActivityController@reportDetail')->name('activity.report.detail');
+    Route::get('report/detail', 'Report\ReportController@detail')->name('report.detail');
     //activity report recap
-    Route::get('activity-report-recap', 'Activity\ActivityController@reportRecap')->name('activity.report.recap');
+    Route::get('report/recap', 'Report\ReportController@recap')->name('report.recap');
 
     //404 - Not Found
     Route::fallback(function () {

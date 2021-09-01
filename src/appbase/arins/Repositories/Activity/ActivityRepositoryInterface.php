@@ -8,4 +8,5 @@ use Arins\Repositories\BaseRepositoryInterface;
 interface ActivityRepositoryInterface extends BaseRepositoryInterface
 {
     function byActivitytype($id, $take=null);
+    function countActivityByActivityType();
 }

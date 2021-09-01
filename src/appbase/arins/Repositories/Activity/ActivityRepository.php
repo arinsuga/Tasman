@@ -24,4 +24,10 @@ class ActivityRepository extends BaseRepository implements ActivityRepositoryInt
         }
     }
 
+    public function countActivityByActivityType() {
+
+        return 'hasil dari function countActivityByActivityType';
+
+    }
+
 }
