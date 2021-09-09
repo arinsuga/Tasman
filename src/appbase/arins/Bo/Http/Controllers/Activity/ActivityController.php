@@ -21,13 +21,6 @@ class ActivityController extends Controller
     protected $validateFields;
 
 
-    /**
-     * Create a new controller instance.
-     *
-     * Method Name: Constructor
-     * 
-     * @return void
-     */
     public function __construct(ActivityRepositoryInterface $parData,
                                 ActivitytypeRepositoryInterface $parActivitytype)
     {
@@ -48,15 +41,7 @@ class ActivityController extends Controller
         
     }
 
-    /**
-     * Method Name: index
-     * 
-     * http method: GET
-     * 
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    /** get */
     public function index()
     {
         $data = $this->data->allOrderByIdDesc();
@@ -68,16 +53,7 @@ class ActivityController extends Controller
         ['viewModel' => $viewModel]);
     }
 
-    /**
-     * Method Name: show
-     * 
-     * http method: GET
-     * 
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    /** get */
     public function show($id)
     {
         $data = $this->data->find($id);
@@ -90,15 +66,7 @@ class ActivityController extends Controller
         ['viewModel' => $viewModel, 'new' => false, 'fieldEnabled' => false]);
     }
 
-    /**
-     * Method Name: create
-     * 
-     * http method: GET
-     * 
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    /** get */
     public function create()
     {
 
@@ -119,16 +87,46 @@ class ActivityController extends Controller
         'activitytype' => $this->dataActivitytype->all()]);
     }
 
-    /**
-     * Method Name: edit
-     * 
-     * http method: GET
-     * 
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    /** post */
+    public function store(Request $request)
+    {
+        return redirect()->route('activity.create')
+        ->withInput();
+
+        //validate input value
+        $data = $request->validate($this->validateFields);
+
+        //get input value by fillable fields
+        $data = $request->only($this->data->getFillable());
+
+        //convert input value (date/number/email/etc)
+        $data['startdt'] = ConvertDate::strDatetimeToDate($data['startdt']);
+        $data['enddt'] = ConvertDate::strDatetimeToDate($data['enddt']);
+
+        //upload file (image/document) ==> if included
+        $path = '';
+        $upload = $request->file('upload');
+        if ($upload) {
+            $path = $upload->store('activities', 'public');
+        }
+        if ($path != '')
+        {
+            $data['image'] = $path;
+        }
+        
+        if ($this->data->create($data)) {
+            return redirect()->route('activity.index');
+        }
+        //delete image if fail to save
+        Filex::delete($path);
+
+        /** todo: goto error page atau masuk exception
+         * karena harusnya tidak gagal save karena suda melalui proses validasi
+         * jika tetap terjadi kesalahan maka ada kesalahan pada system */
+
+    }
+
+    /** get */
     public function edit($id)
     {
         $data = $this->data->find($id);
@@ -140,69 +138,14 @@ class ActivityController extends Controller
         'activitytype' => $this->dataActivitytype->all()]);
     }
 
-    /**
-     * Method Name: delete
-     * 
-     * http method: GET
-     * 
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    /** get */
     public function delete($id)
     {
 
         return view($this->sViewRoot.'.delete');
     }
 
-    /**
-     * Method Name: store
-     * 
-     * http method: POST
-     * 
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-        $data = $request->validate($this->validateFields);
-
-        $model = $this->data->getInstant();
-        $data = $request->only($model->getFillable());
-
-        $path = '';
-        $upload = $request->file('upload');
-        if ($upload) {
-            $path = $upload->store('activities', 'public');
-        }
-        
-        if ($path != '')
-        {
-            $data['image'] = $path;
-        }
-        $data['startdt'] = ConvertDate::strDatetimeToDate($data['startdt']);
-        $data['enddt'] = ConvertDate::strDatetimeToDate($data['enddt']);
-        
-        $model->fill($data)->save();
-
-        return redirect()->route('activity.index');
-    }
-
-    /**
-     * Method Name: udate
-     * 
-     * http method: POST
-     * 
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    /** post */
     public function update(Request $request, $id)
     {
         $data = $request->validate($this->validateFields);
@@ -221,36 +164,19 @@ class ActivityController extends Controller
         return redirect()->route('activity.index');
     }
 
-    /**
-     * Method Name: destroy
-     * 
-     * http method: POST
-     * 
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    /** post */
     public function destroy($id)
     {
         //
         $model = $this->data->find($id);
         $fileName = $model->image;
         $model->delete();
-        Filex::delete($fileName);
+        Filex::delete($fileName); 
 
         return redirect()->route('activity.index');
    }
 
-    /**
-     * Method Name: reportDetail
-     * 
-     * http method: GET
-     * 
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    /** get */
     public function reportDetail()
     {
         return dd('reportDetail');
@@ -263,15 +189,7 @@ class ActivityController extends Controller
         ['viewModel' => $viewModel]);
     }
 
-    /**
-     * Method Name: reportRecap
-     * 
-     * http method: GET
-     * 
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    /** get */
     public function reportRecap()
     {
         return dd('reportRecap');

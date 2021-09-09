@@ -59,7 +59,7 @@ margin-left: auto; margin-right:auto;">
             <label>Mulai</label>
             @if ($fieldEnabled == true)
               <input type="text" id="startdt" name="startdt" class="form-control date" placeholder=""
-              value="{{ \Arins\Facades\Formater::datetime($viewModel->data->startdt) }}">
+              value="{{ old('startdt') }}">
             @else
               <input disabled type="text" id="startdt" name="startdt" class="form-control" placeholder=""
               value="{{ \Arins\Facades\Formater::datetime($viewModel->data->startdt) }}">
