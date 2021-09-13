@@ -90,9 +90,6 @@ class ActivityController extends Controller
     /** post */
     public function store(Request $request)
     {
-        return redirect()->route('activity.create')
-        ->withInput();
-
         //validate input value
         $data = $request->validate($this->validateFields);
 
@@ -120,9 +117,9 @@ class ActivityController extends Controller
         //delete image if fail to save
         Filex::delete($path);
 
-        /** todo: goto error page atau masuk exception
-         * karena harusnya tidak gagal save karena suda melalui proses validasi
-         * jika tetap terjadi kesalahan maka ada kesalahan pada system */
+        /** jika tetap terjadi kesalahan maka ada kesalahan pada system */
+        return redirect()->route('activity.create')
+        ->withInput();
 
     }
 

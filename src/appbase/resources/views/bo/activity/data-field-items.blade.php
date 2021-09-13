@@ -39,7 +39,10 @@ margin-left: auto; margin-right:auto;">
         @if ($fieldEnabled == true)
           <select name="activitytype_id" class="form-control">
                 @foreach ($activitytype as $key => $item)
-                <option value="{{ $item->id }}" {{ ( $viewModel->data->activitytype_id == $item->id) ? 'selected' : '' }}>{{ $item->name }}</option>
+
+                  {{ ($item->id == old('activitytype_id') ? $selected = 'selected' : $selected = '') }}
+                  <option {{ $selected }} value="{{ $item->id }}" {{ ( $viewModel->data->activitytype_id == $item->id) ? 'selected' : '' }}>{{ $item->name }}</option>
+                  
                 @endforeach
             </select>
         @else
@@ -74,7 +77,7 @@ margin-left: auto; margin-right:auto;">
             <label>Selesai</label>
             @if ($fieldEnabled == true)
               <input type="text" id="enddt" name="enddt" class="form-control date" placeholder=""
-              value="{{ \Arins\Facades\Formater::datetime($viewModel->data->enddt) }}">
+              value="{{ old('enddt') }}">
             @else
               <input disabled type="text" id="enddt" name="enddt" class="form-control" placeholder=""
               value="{{ \Arins\Facades\Formater::datetime($viewModel->data->enddt) }}">
@@ -88,7 +91,7 @@ margin-left: auto; margin-right:auto;">
       <div class="form-group">
         <label>Deskripsi</label>
         @if ($fieldEnabled == true)
-          <textarea id="description" name="description" class="form-control" rows="3" placeholder="">{{ $viewModel->data->description }}</textarea>
+          <textarea id="description" name="description" class="form-control" rows="3" placeholder="">{{ old('description') }}</textarea>
         @else
           <textarea disabled name="description" class="form-control" rows="3" placeholder="">{{ $viewModel->data->description }}</textarea>
         @endif
