@@ -90,34 +90,34 @@ class ActivityController extends Controller
     /** post */
     public function store(Request $request)
     {
-        //validate input value
-        $data = $request->validate($this->validateFields);
-
         //get input value by fillable fields
         $data = $request->only($this->data->getFillable());
+        //upload file (image/document) ==> if included
+        $upload = $request->file('upload');
+        
+        //temporary file uploaded
+        $data['image'] = Filex::uploadTemp($upload);
+
+        //validate input value
+        $data = $request->validate($this->validateFields);
 
         //convert input value (date/number/email/etc)
         $data['startdt'] = ConvertDate::strDatetimeToDate($data['startdt']);
         $data['enddt'] = ConvertDate::strDatetimeToDate($data['enddt']);
 
         //upload file (image/document) ==> if included
-        $path = '';
-        $upload = $request->file('upload');
-        if ($upload) {
-            $path = $upload->store('activities', 'public');
-        }
-        if ($path != '')
-        {
-            $data['image'] = $path;
-        }
+        $data['image'] = Filex::uploadOrRemove('', 'activities', $upload, 'public', false);
         
+        //save data
         if ($this->data->create($data)) {
             return redirect()->route('activity.index');
         }
-        //delete image if fail to save
-        Filex::delete($path);
 
         /** jika tetap terjadi kesalahan maka ada kesalahan pada system */
+        //step 1: delete image if fail to save
+        Filex::delete($data['image']);
+
+        //step 2: Kembali ke halaman input
         return redirect()->route('activity.create')
         ->withInput();
 
@@ -133,13 +133,6 @@ class ActivityController extends Controller
         return view($this->sViewRoot.'.edit',
         ['viewModel' => $viewModel, 'new' => false, 'fieldEnabled' => true,
         'activitytype' => $this->dataActivitytype->all()]);
-    }
-
-    /** get */
-    public function delete($id)
-    {
-
-        return view($this->sViewRoot.'.delete');
     }
 
     /** post */
@@ -159,6 +152,13 @@ class ActivityController extends Controller
         $model->fill($data)->save();
                 
         return redirect()->route('activity.index');
+    }
+
+    /** get */
+    public function delete($id)
+    {
+
+        return view($this->sViewRoot.'.delete');
     }
 
     /** post */

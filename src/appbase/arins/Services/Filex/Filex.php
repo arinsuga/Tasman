@@ -76,30 +76,19 @@ class Filex implements FilexInterface
         return $path;
     }
 
-
-    // public function upload($fileName, $fileLocation, $fileObject, $diskDriver='public')
-    // {
-    //     $path = $fileName;
-    //     if ($fileObject) {
-    //         if ( ($fileName == '') || ($fileName == null) ) {
-    //             $path = Storage::disk($diskDriver)
-    //                     ->putFile($fileLocation, $fileObject);
-    //         }
-    //         else {
-    //             $path = Storage::disk($diskDriver)
-    //                     ->putFileAs(null, $fileObject, $fileName);
-    //         }
-    //     } else {
-    //         //$this->delete($fileName, $diskDriver);
-    //     }
-
-    //     return $path;
-    // }
-
+    /**
+     * ======================================================
+     * 4. upload file from storage
+     *    base on disk driver in config file filesystems.php
+     * ====================================================== */
+    public function uploadTemp($fileObject, $diskDriver='public')
+    {
+        return $this->upload(null, 'temp', $fileObject, $diskDriver);
+    }
 
     /**
      * ======================================================
-     * 4. upload atau hapus file from storage
+     * 5. upload atau hapus file from storage
      *    base on disk driver in config file filesystems.php
      * ====================================================== */
     public function uploadOrRemove($fileName, $fileLocation, $fileObject, $diskDriver, $remove)
