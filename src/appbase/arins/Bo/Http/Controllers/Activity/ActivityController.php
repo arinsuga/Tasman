@@ -91,15 +91,19 @@ class ActivityController extends Controller
     public function store(Request $request)
     {
         //get input value by fillable fields
-        $data = $request->only($this->data->getFillable());
-        //upload file (image/document) ==> if included
-        $upload = $request->file('upload');
-        
-        //temporary file uploaded
-        $data['image'] = Filex::uploadTemp($upload);
+        $data = $request->only($this->data->getFillable()); //get field input
+        $imageTemp = $request->input('imageTemp'); //temporary file uploaded
+        $upload = $request->file('upload'); //upload file (image/document) ==> if included
+
+        //create temporary uploaded image
+        $imageTemp = Filex::uploadTemp($upload);
+        $request->session()->flash('imageTemp', $imageTemp);
 
         //validate input value
         $data = $request->validate($this->validateFields);
+
+        //delete temporary uploaded image
+        Filex::delete($imageTemp);
 
         //convert input value (date/number/email/etc)
         $data['startdt'] = ConvertDate::strDatetimeToDate($data['startdt']);

@@ -6,11 +6,13 @@ margin-left: auto; margin-right:auto;">
       <div class="form-group">
         <input type="hidden" id="image" name="image" value="{{ $viewModel->data->image }}">
         <input type="hidden" id="toggleRemoveImage" name="toggleRemoveImage" value="false">
+        <input type="hidden" id="imageTemp" name="imageTemp" value="{{ session('imageTemp') }}">
+
         @if ($fieldEnabled == true)
           <label>Image</label>
           <div class="box full-width-sm">
               
-              <img id="imageViewer" src="{{ Arins\Facades\Filex::image($viewModel->data->image) }}" alt="">
+              <img id="imageViewer" src="{{ Arins\Facades\Filex::image(session('imageTemp')) }}" alt="">
 
               @if ($viewModel->data->image)
                 <span class="control control-widebox">
