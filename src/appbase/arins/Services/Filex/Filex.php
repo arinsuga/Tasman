@@ -101,4 +101,14 @@ class Filex implements FilexInterface
         }
     }
 
+    /**
+     * ======================================================
+     * 6. copy dan hapus file from storage temp to real path
+     *    base on disk driver in config file filesystems.php
+     * ====================================================== */
+    function copyAndRemove($fileName, $fileLocation, $fileObject, $diskDriver, $remove)
+    {
+        //code here
+    }
+
 }

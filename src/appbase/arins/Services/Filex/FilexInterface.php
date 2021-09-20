@@ -26,16 +26,23 @@ interface FilexInterface
 
     /**
      * ======================================================
-     * 3a. upload file from storage
-     *    base on disk driver in config file filesystems.php
+     * 4. upload file from storage
+     *   base on disk driver in config file filesystems.php
      * ====================================================== */
     function uploadTemp($fileObject, $diskDriver);
 
     /**
      * ======================================================
-     * 4. upload atau hapus file from storage
+     * 5. upload atau hapus file from storage
      *    base on disk driver in config file filesystems.php
      * ====================================================== */
     function uploadOrRemove($fileName, $fileLocation, $fileObject, $diskDriver, $remove);
+
+    /**
+     * ======================================================
+     * 6. copy dan hapus file from storage temp to real path
+     *    base on disk driver in config file filesystems.php
+     * ====================================================== */
+    function copyAndRemove($fileName, $fileLocation, $fileObject, $diskDriver, $remove);
     
 }

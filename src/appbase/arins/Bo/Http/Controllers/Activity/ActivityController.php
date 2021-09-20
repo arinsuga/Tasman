@@ -92,25 +92,33 @@ class ActivityController extends Controller
     {
         //get input value by fillable fields
         $data = $request->only($this->data->getFillable()); //get field input
-        $imageTemp = $request->input('imageTemp'); //temporary file uploaded
         $upload = $request->file('upload'); //upload file (image/document) ==> if included
+        $imageTemp = $request->input('imageTemp'); //temporary file uploaded
 
         //create temporary uploaded image
-        $imageTemp = Filex::uploadTemp($upload);
-        $request->session()->flash('imageTemp', $imageTemp);
+        if ($upload) {
+            $uploadTemp = Filex::uploadTemp($upload);
+            Filex::delete($imageTemp);
+        } else {
+            $uploadTemp = $request->input('imageTemp'); //temporary file uploaded
+        }
+        $request->session()->flash('imageTemp', $uploadTemp);
 
         //validate input value
         $data = $request->validate($this->validateFields);
-
-        //delete temporary uploaded image
-        Filex::delete($imageTemp);
 
         //convert input value (date/number/email/etc)
         $data['startdt'] = ConvertDate::strDatetimeToDate($data['startdt']);
         $data['enddt'] = ConvertDate::strDatetimeToDate($data['enddt']);
 
+
         //upload file (image/document) ==> if included
-        $data['image'] = Filex::uploadOrRemove('', 'activities', $upload, 'public', false);
+        //todelete: $data['image'] = Filex::uploadOrRemove('', 'activities', $upload, 'public', false);
+
+        //copy temporary uploaded image to real path
+        //$data['image'] = class method to copy temporary uploaded image to real path
+        //delete temporary uploaded image
+        Filex::delete($uploadTemp);
         
         //save data
         if ($this->data->create($data)) {
