@@ -6,7 +6,7 @@ margin-left: auto; margin-right:auto;">
       <div class="form-group">
         <input type="hidden" id="image" name="image" value="{{ $viewModel->data->image }}">
         <input type="hidden" id="toggleRemoveImage" name="toggleRemoveImage" value="false">
-        <input type="text" id="imageTemp" name="imageTemp" value="{{ session('imageTemp') }}">
+        <input type="hidden" id="imageTemp" name="imageTemp" value="{{ session('imageTemp') }}">
 
         @if ($fieldEnabled == true)
           <label>Image</label>

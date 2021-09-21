@@ -40,9 +40,9 @@ interface FilexInterface
 
     /**
      * ======================================================
-     * 6. copy dan hapus file from storage temp to real path
+     * 6. upload atau copy dan hapus file from storage temp to real path
      *    base on disk driver in config file filesystems.php
      * ====================================================== */
-    function copyAndRemove($fileName, $fileLocation, $fileObject, $diskDriver, $remove);
+    function uploadOrCopyAndRemove($fileName, $fileTempName, $fileLocation, $fileObject, $diskDriver, $remove);
     
 }

@@ -116,7 +116,7 @@ class ActivityController extends Controller
         //todelete: $data['image'] = Filex::uploadOrRemove('', 'activities', $upload, 'public', false);
 
         //copy temporary uploaded image to real path
-        //$data['image'] = class method to copy temporary uploaded image to real path
+        $data['image'] = Filex::uploadOrCopyAndRemove('', $uploadTemp, 'activities', $upload, 'public', false);
         //delete temporary uploaded image
         Filex::delete($uploadTemp);
         
