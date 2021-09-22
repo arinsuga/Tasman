@@ -17,8 +17,7 @@ class ActivityController extends Controller
 
     protected $sViewRoot;
     protected $data, $dataActivitytype;
-    protected $dataModel;
-    protected $validateFields;
+    protected $inputField, $validateFields;
 
 
     public function __construct(ActivityRepositoryInterface $parData,
@@ -37,6 +36,15 @@ class ActivityController extends Controller
             'enddt' => 'required',
             'activitytype_id' => 'required',
             'description' => 'required',
+        ];
+
+        $this->inputField = [
+            'activitytype_id' => null,
+            'name' => null,
+            'description' => null,
+            'image' => null,
+            'startdt' => null,
+            'enddt' => null,
         ];
         
     }
@@ -60,8 +68,6 @@ class ActivityController extends Controller
         $viewModel = Response::viewModel();
         $viewModel->data = $data;
 
-        //return dd($viewModel->data->producttype->name);
-
         return view($this->sViewRoot.'.show',
         ['viewModel' => $viewModel, 'new' => false, 'fieldEnabled' => false]);
     }
@@ -70,16 +76,8 @@ class ActivityController extends Controller
     public function create()
     {
 
-        $data = [
-            'activitytype_id' => null,
-            'name' => null,
-            'description' => null,
-            'image' => null,
-            'startdt' => null,
-            'enddt' => null,
-        ];
         $viewModel = Response::viewModel();
-        $viewModel->data = json_decode(json_encode($data));
+        $viewModel->data = json_decode(json_encode($this->inputField));
         $viewModel->data->date = now();
 
         return view($this->sViewRoot.'.create',

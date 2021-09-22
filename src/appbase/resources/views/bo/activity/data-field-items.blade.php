@@ -1,3 +1,4 @@
+@php (($fieldEnabled == true ? $disabled='' : $disabled='disabled'))
 <div class="card" style="margin-bottom: 20px; width: 50%;
 margin-left: auto; margin-right:auto;">
     <div class="card-body">
@@ -11,11 +12,14 @@ margin-left: auto; margin-right:auto;">
         @if ($fieldEnabled == true)
           <label>Image</label>
           <div class="box full-width-sm">
-              
-              <img id="imageViewer" src="{{ Arins\Facades\Filex::image(session('imageTemp')) }}" alt="">
+              @if (session('imageTemp'))
+                <img id="imageViewer" src="{{ Arins\Facades\Filex::image(session('imageTemp')) }}" alt="">
+              @else
+                <img id="imageViewer" src="{{ Arins\Facades\Filex::image($viewModel->data->image) }}" alt="">
+              @endif
 
               @if ($viewModel->data->image)
-                <span class="control control-widebox">
+                <span class="control control-widebox">  
                   <a onclick="event.preventDefault(); document.getElementById('upload').click();" href="#"><i class="fas fa-lg fa-edit"></i></a>
                   <a onclick="event.preventDefault(); removeImage('upload', 'imageViewer', 'toggleRemoveImage');" href="#"><i class="fas fa-lg fa-trash"></i></a>
                 </span>
@@ -62,13 +66,8 @@ margin-left: auto; margin-right:auto;">
           <!-- text input:text -->
           <div class="form-group">
             <label>Mulai</label>
-            @if ($fieldEnabled == true)
-              <input type="text" id="startdt" name="startdt" class="form-control date" placeholder=""
-              value="{{ old('startdt') }}">
-            @else
-              <input disabled type="text" id="startdt" name="startdt" class="form-control" placeholder=""
-              value="{{ \Arins\Facades\Formater::datetime($viewModel->data->startdt) }}">
-            @endif
+            <input {{ $disabled }} type="text" id="startdt" name="startdt" class="form-control date" placeholder=""
+              value="{{ ( old('startdt') ? old('startdt') : \Arins\Facades\Formater::datetime($viewModel->data->startdt) ) }}">
             <strong>{{ $errors->first('startdt') }}</strong>
           </div>
         </div>
@@ -77,13 +76,8 @@ margin-left: auto; margin-right:auto;">
           <!-- text input:text -->
           <div class="form-group">
             <label>Selesai</label>
-            @if ($fieldEnabled == true)
-              <input type="text" id="enddt" name="enddt" class="form-control date" placeholder=""
-              value="{{ old('enddt') }}">
-            @else
-              <input disabled type="text" id="enddt" name="enddt" class="form-control" placeholder=""
-              value="{{ \Arins\Facades\Formater::datetime($viewModel->data->enddt) }}">
-            @endif
+            <input {{ $disabled }} type="text" id="enddt" name="enddt" class="form-control date" placeholder=""
+              value="{{ ( old('enddt') ? old('enddt') : \Arins\Facades\Formater::datetime($viewModel->data->enddt) ) }}">
             <strong>{{ $errors->first('enddt') }}</strong>
           </div>
         </div>
@@ -92,11 +86,7 @@ margin-left: auto; margin-right:auto;">
       <!-- textarea -->
       <div class="form-group">
         <label>Deskripsi</label>
-        @if ($fieldEnabled == true)
-          <textarea id="description" name="description" class="form-control" rows="3" placeholder="">{{ old('description') }}</textarea>
-        @else
-          <textarea disabled name="description" class="form-control" rows="3" placeholder="">{{ $viewModel->data->description }}</textarea>
-        @endif
+        <textarea {{ $disabled }} id="description" name="description" class="form-control" rows="3" placeholder="">{{ ( old('description') ? old('description') : $viewModel->data->description ) }}</textarea>
         <strong>{{ $errors->first('description') }}</strong>
       </div>
     </div>
