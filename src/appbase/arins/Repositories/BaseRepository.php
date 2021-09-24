@@ -28,7 +28,7 @@ abstract class BaseRepository implements BaseRepositoryInterface
         return $this->data->getFillable();
     }
 
-    public function create($parData)
+    public function save($parData)
     {
         return $this->data->fill($parData)->save();
     }

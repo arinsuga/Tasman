@@ -46,8 +46,12 @@ margin-left: auto; margin-right:auto;">
           <select name="activitytype_id" class="form-control">
                 @foreach ($activitytype as $key => $item)
 
-                  {{ ($item->id == old('activitytype_id') ? $selected = 'selected' : $selected = '') }}
-                  <option {{ $selected }} value="{{ $item->id }}" {{ ( $viewModel->data->activitytype_id == $item->id) ? 'selected' : '' }}>{{ $item->name }}</option>
+                  @if ($errors->any())
+                    {{ ($item->id == old('activitytype_id') ? $selected = 'selected' : $selected = '') }}
+                  @else
+                    {{ ( $item->id == $viewModel->data->activitytype_id ) ? $selected = 'selected' : $selected = '' }}
+                  @endif
+                  <option {{ $selected }} value="{{ $item->id }}">{{ $item->name }}</option>
                   
                 @endforeach
             </select>
@@ -57,7 +61,7 @@ margin-left: auto; margin-right:auto;">
               <input disabled type="text" value="{{ $viewModel->data->activitytype->name }}" class="form-control">
           </div>
         @endif
-        <strong>{{ $errors->first('activitytype_id') }}</strong>
+        <p class="text-red">{{ $errors->first('activitytype_id') }}</p>
 
       </div>
 
@@ -67,8 +71,8 @@ margin-left: auto; margin-right:auto;">
           <div class="form-group">
             <label>Mulai</label>
             <input {{ $disabled }} type="text" id="startdt" name="startdt" class="form-control date" placeholder=""
-              value="{{ ( old('startdt') ? old('startdt') : \Arins\Facades\Formater::datetime($viewModel->data->startdt) ) }}">
-            <strong>{{ $errors->first('startdt') }}</strong>
+              value="{{ ( $errors->any() ? old('startdt') : \Arins\Facades\Formater::datetime($viewModel->data->startdt) ) }}">
+            <p class="text-red">{{ $errors->first('startdt') }}</p>
           </div>
         </div>
 
@@ -77,8 +81,8 @@ margin-left: auto; margin-right:auto;">
           <div class="form-group">
             <label>Selesai</label>
             <input {{ $disabled }} type="text" id="enddt" name="enddt" class="form-control date" placeholder=""
-              value="{{ ( old('enddt') ? old('enddt') : \Arins\Facades\Formater::datetime($viewModel->data->enddt) ) }}">
-            <strong>{{ $errors->first('enddt') }}</strong>
+              value="{{ ( $errors->any() ? old('enddt') : \Arins\Facades\Formater::datetime($viewModel->data->enddt) ) }}">
+            <p class="text-red">{{ $errors->first('enddt') }}</p>
           </div>
         </div>
       </div>
@@ -86,8 +90,8 @@ margin-left: auto; margin-right:auto;">
       <!-- textarea -->
       <div class="form-group">
         <label>Deskripsi</label>
-        <textarea {{ $disabled }} id="description" name="description" class="form-control" rows="3" placeholder="">{{ ( old('description') ? old('description') : $viewModel->data->description ) }}</textarea>
-        <strong>{{ $errors->first('description') }}</strong>
+        <textarea {{ $disabled }} id="description" name="description" class="form-control" rows="3" placeholder="">{{ ( $errors->any() ? old('description') : $viewModel->data->description ) }}</textarea>
+        <p class="text-red">{{ $errors->first('description') }}</p>
       </div>
     </div>
 </div>

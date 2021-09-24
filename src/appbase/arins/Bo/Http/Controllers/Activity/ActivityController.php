@@ -85,6 +85,18 @@ class ActivityController extends Controller
         'activitytype' => $this->dataActivitytype->all()]);
     }
 
+    /** get */
+    public function edit($id)
+    {
+        $data = $this->data->find($id);
+        $viewModel = Response::viewModel();
+        $viewModel->data = $data;
+
+        return view($this->sViewRoot.'.edit',
+        ['viewModel' => $viewModel, 'new' => false, 'fieldEnabled' => true,
+        'activitytype' => $this->dataActivitytype->all()]);
+    }
+
     /** post */
     public function store(Request $request)
     {
@@ -119,7 +131,7 @@ class ActivityController extends Controller
         Filex::delete($uploadTemp);
         
         //save data
-        if ($this->data->create($data)) {
+        if ($this->data->save($data)) {
             return redirect()->route('activity.index');
         }
 
@@ -133,22 +145,16 @@ class ActivityController extends Controller
 
     }
 
-    /** get */
-    public function edit($id)
-    {
-        $data = $this->data->find($id);
-        $viewModel = Response::viewModel();
-        $viewModel->data = $data;
-
-        return view($this->sViewRoot.'.edit',
-        ['viewModel' => $viewModel, 'new' => false, 'fieldEnabled' => true,
-        'activitytype' => $this->dataActivitytype->all()]);
-    }
-
     /** post */
     public function update(Request $request, $id)
     {
-        $data = $request->validate($this->validateFields);
+     
+        //get input value by fillable fields
+        // $data = $request->only($this->data->getFillable()); //get field input
+        // $upload = $request->file('upload'); //upload file (image/document) ==> if included
+        // $imageTemp = $request->input('imageTemp'); //temporary file uploaded
+
+///////////////////////////////////////////////////////////////////////////////////
 
         $model = $this->data->find($id);
         $data = $request->only($model->getFillable());
@@ -159,9 +165,20 @@ class ActivityController extends Controller
         $data['startdt'] = ConvertDate::strDatetimeToDate($data['startdt']);
         $data['enddt'] = ConvertDate::strDatetimeToDate($data['enddt']);
 
-        $model->fill($data)->save();
-                
-        return redirect()->route('activity.index');
+        $request->flash();
+        $request->validate($this->validateFields);
+
+        if ($this->data->save($data)) {
+            return redirect()->route('activity.index');
+        }
+
+        /** jika tetap terjadi kesalahan maka ada kesalahan pada system */
+        //step 1: delete image if fail to save
+        //cekfirst: Filex::delete($data['image']);
+
+        //step 2: Kembali ke halaman input
+        return redirect()->route('activity.edit')
+        ->withInput();
     }
 
     /** get */

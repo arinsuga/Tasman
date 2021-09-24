@@ -6,7 +6,7 @@ interface BaseRepositoryInterface
 {
     function all();
     function find($id);
-    function create($parData);
+    function save($parData);
     function getInstant();
 
     function allOrderByIdDesc();
