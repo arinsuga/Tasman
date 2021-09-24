@@ -81,9 +81,18 @@ class Filex implements FilexInterface
      * 4. upload file from storage
      *    base on disk driver in config file filesystems.php
      * ====================================================== */
-    public function uploadTemp($fileObject, $diskDriver='public')
+    public function uploadTemp($fileObject, $fileTempName, $diskDriver='public')
     {
-        return $this->upload(null, 'temp', $fileObject, $diskDriver);
+        $path = '';
+        //create temporary uploaded image
+        if ($fileObject) {
+            $path = $this->upload(null, 'temp', $fileObject, $diskDriver);
+            Filex::delete($fileTempName);
+        } else {
+            $path = $fileTempName;
+        } //end if
+
+        return $path;
     }
 
     /**

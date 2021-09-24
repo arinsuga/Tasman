@@ -104,31 +104,20 @@ class ActivityController extends Controller
         $data = $request->only($this->data->getFillable()); //get field input
         $upload = $request->file('upload'); //upload file (image/document) ==> if included
         $imageTemp = $request->input('imageTemp'); //temporary file uploaded
-
-        //create temporary uploaded image
-        if ($upload) {
-            $uploadTemp = Filex::uploadTemp($upload);
-            Filex::delete($imageTemp);
-        } else {
-            $uploadTemp = $request->input('imageTemp'); //temporary file uploaded
-        }
-        $request->session()->flash('imageTemp', $uploadTemp);
-
-        //validate input value
-        $data = $request->validate($this->validateFields);
-
-        //convert input value (date/number/email/etc)
+        
+        //convert input value (string/date/number/email/etc)
         $data['startdt'] = ConvertDate::strDatetimeToDate($data['startdt']);
         $data['enddt'] = ConvertDate::strDatetimeToDate($data['enddt']);
 
+        //create temporary uploaded image
+        $uploadTemp = Filex::uploadTemp($upload, $imageTemp);
+        $request->session()->flash('imageTemp', $uploadTemp);
 
-        //upload file (image/document) ==> if included
-        //todelete: $data['image'] = Filex::uploadOrRemove('', 'activities', $upload, 'public', false);
+        //validate input value
+        $request->validate($this->validateFields);
 
         //copy temporary uploaded image to real path
         $data['image'] = Filex::uploadOrCopyAndRemove('', $uploadTemp, 'activities', $upload, 'public', false);
-        //delete temporary uploaded image
-        Filex::delete($uploadTemp);
         
         //save data
         if ($this->data->save($data)) {
@@ -165,7 +154,6 @@ class ActivityController extends Controller
         $data['startdt'] = ConvertDate::strDatetimeToDate($data['startdt']);
         $data['enddt'] = ConvertDate::strDatetimeToDate($data['enddt']);
 
-        $request->flash();
         $request->validate($this->validateFields);
 
         if ($this->data->save($data)) {

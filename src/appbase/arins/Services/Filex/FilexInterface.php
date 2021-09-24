@@ -29,7 +29,7 @@ interface FilexInterface
      * 4. upload file from storage
      *   base on disk driver in config file filesystems.php
      * ====================================================== */
-    function uploadTemp($fileObject, $diskDriver);
+    function uploadTemp($fileObject, $fileTempName, $diskDriver);
 
     /**
      * ======================================================
