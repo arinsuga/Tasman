@@ -64,9 +64,9 @@ class ActivityController extends Controller
     /** get */
     public function show($id)
     {
-        $data = $this->data->find($id);
+        $this->data->find($id);
         $viewModel = Response::viewModel();
-        $viewModel->data = $data;
+        $viewModel->data = $this->data->getRecord();
 
         return view($this->sViewRoot.'.show',
         ['viewModel' => $viewModel, 'new' => false, 'fieldEnabled' => false]);

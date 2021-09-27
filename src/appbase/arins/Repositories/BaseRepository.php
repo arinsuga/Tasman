@@ -22,7 +22,11 @@ abstract class BaseRepository implements BaseRepositoryInterface
     {
 
         $this->record = $this->data->find($id);
-        return $this->record;
+        if ($this->record) {
+            return true;
+        }
+
+        return false;
     }
 
     public function getFillable()
