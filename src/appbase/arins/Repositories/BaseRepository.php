@@ -6,7 +6,7 @@ namespace Arins\Repositories;
 
 abstract class BaseRepository implements BaseRepositoryInterface
 {
-    protected $data;
+    protected $data, $record, $records;
 
     public function __construct($parData)
     {
@@ -20,7 +20,9 @@ abstract class BaseRepository implements BaseRepositoryInterface
 
     function find($id)
     {
-        return $this->data->find($id);
+
+        $this->record = $this->data->find($id);
+        return $this->record;
     }
 
     public function getFillable()
@@ -28,9 +30,14 @@ abstract class BaseRepository implements BaseRepositoryInterface
         return $this->data->getFillable();
     }
 
-    public function save($parData)
+    public function create($parData)
     {
         return $this->data->fill($parData)->save();
+    }
+
+    public function update($parData)
+    {
+        return $this->record->fill($parData)->save();
     }
 
     public function getInstant()

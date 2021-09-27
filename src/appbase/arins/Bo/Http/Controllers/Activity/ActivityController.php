@@ -120,7 +120,7 @@ class ActivityController extends Controller
         $data['image'] = Filex::uploadOrCopyAndRemove('', $uploadTemp, 'activities', $upload, 'public', false);
         
         //save data
-        if ($this->data->save($data)) {
+        if ($this->data->create($data)) {
             return redirect()->route('activity.index');
         }
 
@@ -146,7 +146,7 @@ class ActivityController extends Controller
 ///////////////////////////////////////////////////////////////////////////////////
 
         $model = $this->data->find($id);
-        $data = $request->only($model->getFillable());
+        $data = $request->only($this->data->getFillable());
         $upload = $request->file('upload');
         $toggleRemoveImage = $request->input('toggleRemoveImage');
 
@@ -156,7 +156,7 @@ class ActivityController extends Controller
 
         $request->validate($this->validateFields);
 
-        if ($this->data->save($data)) {
+        if ($this->data->update($data)) {
             return redirect()->route('activity.index');
         }
 
