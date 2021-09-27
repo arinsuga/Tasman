@@ -11,6 +11,7 @@ interface BaseRepositoryInterface
 
     function create($parData);
     function update($parData);
+    function delete();
 
     function allOrderByIdDesc();
     function allOrderByDateAndIdDesc();

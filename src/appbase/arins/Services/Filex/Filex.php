@@ -124,7 +124,7 @@ class Filex implements FilexInterface
 
             $path = $this->upload($fileName, $fileLocation, $fileObject, $diskDriver);
 
-        } else {
+        } elseif ($fileTempName) {
 
             $nPos = strpos($fileTempName, '/');
             $nPos = ($nPos != '' ? $nPos+1 : $nPos);

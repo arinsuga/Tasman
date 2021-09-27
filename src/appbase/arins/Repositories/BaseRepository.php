@@ -6,7 +6,7 @@ namespace Arins\Repositories;
 
 abstract class BaseRepository implements BaseRepositoryInterface
 {
-    protected $data, $record, $records;
+    protected $data, $record;
 
     public function __construct($parData)
     {
@@ -38,6 +38,11 @@ abstract class BaseRepository implements BaseRepositoryInterface
     public function update($parData)
     {
         return $this->record->fill($parData)->save();
+    }
+
+    public function delete()
+    {
+        return $this->record->delete();
     }
 
     public function getInstant()

@@ -182,7 +182,9 @@ class ActivityController extends Controller
         //
         $model = $this->data->find($id);
         $fileName = $model->image;
-        $model->delete();
+        
+        //$model->delete();
+        
         Filex::delete($fileName); 
 
         return redirect()->route('activity.index');
