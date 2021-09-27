@@ -77,7 +77,7 @@ class ActivityController extends Controller
     {
 
         $viewModel = Response::viewModel();
-        $viewModel->data = json_decode(json_encode($this->inputField));
+        $viewModel->data = json_decode(json_encode($this->data->getInputField()));
         $viewModel->data->date = now();
 
         return view($this->sViewRoot.'.create',
@@ -114,7 +114,7 @@ class ActivityController extends Controller
         $request->session()->flash('imageTemp', $uploadTemp);
 
         //validate input value
-        $request->validate($this->validateFields);
+        $request->validate($this->data->getValidateField());
 
         //copy temporary uploaded image to real path
         $data['image'] = Filex::uploadOrCopyAndRemove('', $uploadTemp, 'activities', $upload, 'public', false);
@@ -154,7 +154,7 @@ class ActivityController extends Controller
         $data['startdt'] = ConvertDate::strDatetimeToDate($data['startdt']);
         $data['enddt'] = ConvertDate::strDatetimeToDate($data['enddt']);
 
-        $request->validate($this->validateFields);
+        $request->validate($this->data->getValidateField());
 
         if ($this->data->update($data)) {
             return redirect()->route('activity.index');

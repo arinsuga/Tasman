@@ -8,6 +8,8 @@ interface BaseRepositoryInterface
     function find($id);
 
     function getFillable();
+    function getInputField();
+    function getValidateField();
     function getRecord();
 
     function create($parData);

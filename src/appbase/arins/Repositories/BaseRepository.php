@@ -7,6 +7,7 @@ namespace Arins\Repositories;
 abstract class BaseRepository implements BaseRepositoryInterface
 {
     protected $data, $record;
+    protected $inputField, $validateFields;
 
     public function __construct($parData)
     {
@@ -32,6 +33,16 @@ abstract class BaseRepository implements BaseRepositoryInterface
     public function getFillable()
     {
         return $this->data->getFillable();
+    }
+
+    public function getInputField()
+    {
+        return $this->inputField;
+    }
+
+    public function getValidateField()
+    {
+        return $this->validateField;
     }
 
     public function getRecord()
