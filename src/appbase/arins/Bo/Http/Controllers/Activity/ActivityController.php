@@ -88,9 +88,9 @@ class ActivityController extends Controller
     /** get */
     public function edit($id)
     {
-        $data = $this->data->find($id);
+        $this->data->find($id);
         $viewModel = Response::viewModel();
-        $viewModel->data = $data;
+        $viewModel->data = $this->data->getRecord();
 
         return view($this->sViewRoot.'.edit',
         ['viewModel' => $viewModel, 'new' => false, 'fieldEnabled' => true,
@@ -172,7 +172,6 @@ class ActivityController extends Controller
     /** get */
     public function delete($id)
     {
-
         return view($this->sViewRoot.'.delete');
     }
 
@@ -180,11 +179,11 @@ class ActivityController extends Controller
     public function destroy($id)
     {
         //
-        $model = $this->data->find($id);
-        $fileName = $model->image;
+        $this->data->find($id);
+        $fileName = $this->data->getRecord()->image;
         
         //$model->delete();
-        
+        $this->data->delete();
         Filex::delete($fileName); 
 
         return redirect()->route('activity.index');

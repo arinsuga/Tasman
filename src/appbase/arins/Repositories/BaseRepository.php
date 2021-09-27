@@ -30,6 +30,11 @@ abstract class BaseRepository implements BaseRepositoryInterface
         return $this->data->getFillable();
     }
 
+    public function getRecord()
+    {
+        return $this->record;
+    }
+
     public function create($parData)
     {
         return $this->data->fill($parData)->save();
@@ -43,11 +48,6 @@ abstract class BaseRepository implements BaseRepositoryInterface
     public function delete()
     {
         return $this->record->delete();
-    }
-
-    public function getInstant()
-    {
-        return $this->data;
     }
 
     public function allOrderByIdDesc()

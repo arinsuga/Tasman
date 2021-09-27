@@ -6,8 +6,9 @@ interface BaseRepositoryInterface
 {
     function all();
     function find($id);
+
     function getFillable();
-    function getInstant();
+    function getRecord();
 
     function create($parData);
     function update($parData);
