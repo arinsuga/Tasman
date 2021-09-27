@@ -145,12 +145,12 @@ class ActivityController extends Controller
 
 ///////////////////////////////////////////////////////////////////////////////////
 
-        $model = $this->data->find($id);
+        $this->data->find($id);
         $data = $request->only($this->data->getFillable());
         $upload = $request->file('upload');
         $toggleRemoveImage = $request->input('toggleRemoveImage');
 
-        $data['image'] = Filex::uploadOrRemove($model->image, 'activities', $upload, 'public', $toggleRemoveImage);
+        $data['image'] = Filex::uploadOrRemove($this->data->getRecord()->image, 'activities', $upload, 'public', $toggleRemoveImage);
         $data['startdt'] = ConvertDate::strDatetimeToDate($data['startdt']);
         $data['enddt'] = ConvertDate::strDatetimeToDate($data['enddt']);
 

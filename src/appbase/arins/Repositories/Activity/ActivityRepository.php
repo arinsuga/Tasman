@@ -20,7 +20,7 @@ class ActivityRepository extends BaseRepository implements ActivityRepositoryInt
             'enddt' => null,
         ];
 
-        $this->validateFields = [
+        $this->validateField = [
             //code array here...
             'startdt' => 'required',
             'enddt' => 'required',

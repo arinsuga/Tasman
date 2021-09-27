@@ -7,7 +7,7 @@ namespace Arins\Repositories;
 abstract class BaseRepository implements BaseRepositoryInterface
 {
     protected $data, $record;
-    protected $inputField, $validateFields;
+    protected $inputField, $validateField;
 
     public function __construct($parData)
     {
