@@ -6,33 +6,27 @@ namespace Arins\Repositories;
 
 abstract class BaseRepository implements BaseRepositoryInterface
 {
-    protected $data, $record;
+    protected $model;
     protected $inputField, $validateField;
 
-    public function __construct($parData)
+    public function __construct($parModel)
     {
-        $this->data = $parData;
+        $this->model = $parModel;
     }
 
     public function all()
     {
-        return $this->data->all();
+        return $this->model->all();
     }
 
     function find($id)
     {
-
-        $this->record = $this->data->find($id);
-        if ($this->record) {
-            return true;
-        }
-
-        return false;
+        return $this->model->find($id);
     }
 
     public function getFillable()
     {
-        return $this->data->getFillable();
+        return $this->model->getFillable();
     }
 
     public function getInputField()
@@ -45,36 +39,31 @@ abstract class BaseRepository implements BaseRepositoryInterface
         return $this->validateField;
     }
 
-    public function getRecord()
+    public function create($inputData)
     {
-        return $this->record;
+        return $this->model->fill($inputData)->save();
     }
 
-    public function create($parData)
+    public function update($record, $inputData)
     {
-        return $this->data->fill($parData)->save();
+        return $record->fill($inputData)->save();
     }
 
-    public function update($parData)
+    public function delete($record)
     {
-        return $this->record->fill($parData)->save();
-    }
-
-    public function delete()
-    {
-        return $this->record->delete();
+        return $record->delete();
     }
 
     public function allOrderByIdDesc()
     {
-        return $this->data
+        return $this->model
                ->orderBy('id', 'desc')
                ->get();
     }
 
     public function allOrderByDateAndIdDesc()
     {
-        return $this->data
+        return $this->model
                ->orderBy('date', 'desc')
                ->orderBy('id', 'desc')
                ->get();
@@ -82,7 +71,7 @@ abstract class BaseRepository implements BaseRepositoryInterface
 
     public function allOrderByDateAndIdDescTake($numberOfRecords)
     {
-        return $this->data
+        return $this->model
                ->orderBy('date', 'desc')
                ->orderBy('id', 'desc')
                ->take($numberOfRecords)

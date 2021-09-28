@@ -17,7 +17,6 @@ class ActivityController extends Controller
 
     protected $sViewRoot;
     protected $data, $dataActivitytype;
-    protected $inputField, $validateFields;
 
 
     public function __construct(ActivityRepositoryInterface $parData,
@@ -30,32 +29,16 @@ class ActivityController extends Controller
         $this->sViewRoot = $psViewRoot;
         $this->data = $parData;
         $this->dataActivitytype = $parActivitytype;
-        $this->validateFields = [
-            //code array here...
-            'startdt' => 'required',
-            'enddt' => 'required',
-            'activitytype_id' => 'required',
-            'description' => 'required',
-        ];
-
-        $this->inputField = [
-            'activitytype_id' => null,
-            'name' => null,
-            'description' => null,
-            'image' => null,
-            'startdt' => null,
-            'enddt' => null,
-        ];
         
     }
 
     /** get */
     public function index()
     {
-        $data = $this->data->allOrderByIdDesc();
+        $records = $this->data->allOrderByIdDesc();
 
         $viewModel = Response::viewModel();
-        $viewModel->data = $data;
+        $viewModel->data = $records;
 
         return view($this->sViewRoot.'.index',
         ['viewModel' => $viewModel]);
@@ -64,9 +47,9 @@ class ActivityController extends Controller
     /** get */
     public function show($id)
     {
-        $this->data->find($id);
+        $record = $this->data->find($id);
         $viewModel = Response::viewModel();
-        $viewModel->data = $this->data->getRecord();
+        $viewModel->data = $record;
 
         return view($this->sViewRoot.'.show',
         ['viewModel' => $viewModel, 'new' => false, 'fieldEnabled' => false]);
@@ -88,9 +71,9 @@ class ActivityController extends Controller
     /** get */
     public function edit($id)
     {
-        $this->data->find($id);
+        $record = $this->data->find($id);
         $viewModel = Response::viewModel();
-        $viewModel->data = $this->data->getRecord();
+        $viewModel->data = $record;
 
         return view($this->sViewRoot.'.edit',
         ['viewModel' => $viewModel, 'new' => false, 'fieldEnabled' => true,
@@ -145,18 +128,18 @@ class ActivityController extends Controller
 
 ///////////////////////////////////////////////////////////////////////////////////
 
-        $this->data->find($id);
+        $record = $this->data->find($id);
         $data = $request->only($this->data->getFillable());
         $upload = $request->file('upload');
         $toggleRemoveImage = $request->input('toggleRemoveImage');
 
-        $data['image'] = Filex::uploadOrRemove($this->data->getRecord()->image, 'activities', $upload, 'public', $toggleRemoveImage);
+        $data['image'] = Filex::uploadOrRemove($record->image, 'activities', $upload, 'public', $toggleRemoveImage);
         $data['startdt'] = ConvertDate::strDatetimeToDate($data['startdt']);
         $data['enddt'] = ConvertDate::strDatetimeToDate($data['enddt']);
 
         $request->validate($this->data->getValidateField());
 
-        if ($this->data->update($data)) {
+        if ($this->data->update($record, $data)) {
             return redirect()->route('activity.index');
         }
 
@@ -179,11 +162,11 @@ class ActivityController extends Controller
     public function destroy($id)
     {
         //
-        $this->data->find($id);
-        $fileName = $this->data->getRecord()->image;
+        $record = $this->data->find($id);
+        $fileName = $record->image;
         
         //$model->delete();
-        $this->data->delete();
+        $this->data->delete($record);
         Filex::delete($fileName); 
 
         return redirect()->route('activity.index');

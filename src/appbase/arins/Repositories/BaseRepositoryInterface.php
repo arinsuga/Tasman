@@ -10,11 +10,10 @@ interface BaseRepositoryInterface
     function getFillable();
     function getInputField();
     function getValidateField();
-    function getRecord();
 
-    function create($parData);
-    function update($parData);
-    function delete();
+    function create($inputData);
+    function update($record, $inputData);
+    function delete($record);
 
     function allOrderByIdDesc();
     function allOrderByDateAndIdDesc();
