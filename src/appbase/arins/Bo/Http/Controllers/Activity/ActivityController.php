@@ -51,6 +51,9 @@ class ActivityController extends Controller
         $viewModel = Response::viewModel();
         $viewModel->data = $record;
 
+        $tess = json_decode(json_encode($record), true);
+        return dd($tess['id']);
+
         return view($this->sViewRoot.'.show',
         ['viewModel' => $viewModel, 'new' => false, 'fieldEnabled' => false]);
     }

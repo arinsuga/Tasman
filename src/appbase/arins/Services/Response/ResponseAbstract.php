@@ -30,9 +30,6 @@ abstract class ResponseAbstract
         }
 
         //data
-        // if ($data != null) {
-        //     $this->response["data"] = $data;
-        // }
         $this->response["data"] = $data;
 
         //form action
