@@ -35,10 +35,8 @@ class ActivityController extends Controller
     /** get */
     public function index()
     {
-        $records = $this->data->allOrderByIdDesc();
-
         $viewModel = Response::viewModel();
-        $viewModel->data = $records;
+        $viewModel->data = $this->data->allOrderByIdDesc();
 
         return view($this->sViewRoot.'.index',
         ['viewModel' => $viewModel]);
@@ -47,12 +45,19 @@ class ActivityController extends Controller
     /** get */
     public function show($id)
     {
-        $record = $this->data->find($id);
         $viewModel = Response::viewModel();
-        $viewModel->data = $record;
+        $viewModel->data = $this->data->find($id);
+        
+        // // $tes = $viewModel->data;
+        // $arai = json_encode(["satu" => 1, "dua" => 2]);
+        // $tesObject = json_decode($arai, false);
+        // //$tesObjectToArray = json_decode(json_encode($tesObject), true);
+        // $tesObjectToArray = json_decode(json_encode($arai), true);
+        
 
-        $tess = json_decode(json_encode($record), true);
-        return dd($tess['id']);
+        // //return dd($tesObject->satu);
+        // return dd($tesObjectToArray['satu']);
+
 
         return view($this->sViewRoot.'.show',
         ['viewModel' => $viewModel, 'new' => false, 'fieldEnabled' => false]);
@@ -61,7 +66,6 @@ class ActivityController extends Controller
     /** get */
     public function create()
     {
-
         $viewModel = Response::viewModel();
         $viewModel->data = json_decode(json_encode($this->data->getInputField()));
         $viewModel->data->date = now();
@@ -74,9 +78,8 @@ class ActivityController extends Controller
     /** get */
     public function edit($id)
     {
-        $record = $this->data->find($id);
         $viewModel = Response::viewModel();
-        $viewModel->data = $record;
+        $viewModel->data = $this->data->find($id);
 
         return view($this->sViewRoot.'.edit',
         ['viewModel' => $viewModel, 'new' => false, 'fieldEnabled' => true,
