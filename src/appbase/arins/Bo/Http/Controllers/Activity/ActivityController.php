@@ -48,11 +48,6 @@ class ActivityController extends Controller
         $viewModel = Response::viewModel();
         $viewModel->data = $this->data->find($id);
         
-        //$tes = $viewModel->data;
-        //return dd(Response::toObject($tes));
-
-
-
         return view($this->sViewRoot.'.show',
         ['viewModel' => $viewModel, 'new' => false, 'fieldEnabled' => false]);
     }
