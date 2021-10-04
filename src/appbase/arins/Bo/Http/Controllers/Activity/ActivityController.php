@@ -48,15 +48,9 @@ class ActivityController extends Controller
         $viewModel = Response::viewModel();
         $viewModel->data = $this->data->find($id);
         
-        // // $tes = $viewModel->data;
-        // $arai = json_encode(["satu" => 1, "dua" => 2]);
-        // $tesObject = json_decode($arai, false);
-        // //$tesObjectToArray = json_decode(json_encode($tesObject), true);
-        // $tesObjectToArray = json_decode(json_encode($arai), true);
-        
+        //$tes = $viewModel->data;
+        //return dd(Response::toObject($tes));
 
-        // //return dd($tesObject->satu);
-        // return dd($tesObjectToArray['satu']);
 
 
         return view($this->sViewRoot.'.show',

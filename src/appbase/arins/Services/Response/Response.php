@@ -10,7 +10,7 @@ class Response extends ResponseAbstract
 {
     public function viewModel($parData = null, $parFormAction = null)
     {
-        return $this->toObject(
+        return $this->asObject(
             config('response.status.ok', true),
             config('response.code.ok.number', 200), 
             config('respnse.code.ok.message', 'OK'),
@@ -19,4 +19,20 @@ class Response extends ResponseAbstract
             $parFormAction
         );
     }
+
+    public function toArray($parData)
+    {
+        return json_decode(json_encode($parData), TRUE);
+    }
+
+    public function toJson($parData)
+    {
+        return json_encode($parData);
+    }
+
+    public function toObject($parData)
+    {
+        return json_decode(json_encode($parData), FALSE);
+    }
+
 }

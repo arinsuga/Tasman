@@ -48,7 +48,7 @@ abstract class ResponseAbstract
      * @param  mixed|null  $data
      * @return array
      */
-    protected function toArray($status, $code, $message,
+    protected function asArray($status, $code, $message,
                                $description = null, $data = null, $formAction = null)
     {
         //Default Result toArray
@@ -67,7 +67,7 @@ abstract class ResponseAbstract
      * @param  mixed|null  $data
      * @return json
      */
-    protected function toJson($status, $code, $message,
+    protected function asJson($status, $code, $message,
                               $description = null, $data = null, $formAction = null)
     {
         //Default Result toArray
@@ -86,7 +86,7 @@ abstract class ResponseAbstract
      * @param  mixed|null  $data
      * @return object
      */
-    protected function toObject($status, $code, $message,
+    protected function asObject($status, $code, $message,
                                 $description = null, $data = null, $formAction = null)
     {
         //Default Result toArray
