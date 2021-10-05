@@ -1,5 +1,5 @@
 <?php
-namespace Arins\Services\Converter\Date;
+namespace Arins\Helpers\Converter\Date;
 
 interface ConvertInterface extends ConvertStringToDateInterface
 {

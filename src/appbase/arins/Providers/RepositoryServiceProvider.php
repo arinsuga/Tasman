@@ -31,7 +31,7 @@ use Arins\Models\Activitytype;
 class RepositoryServiceProvider extends ServiceProvider
 {
     /**
-     * Register services.
+     * Register services and helper.
      *
      * @return void
      */
@@ -167,7 +167,7 @@ class RepositoryServiceProvider extends ServiceProvider
     }
 
     /**
-     * Bootstrap services.
+     * Bootstrap services and helper.
      *
      * @return void
      */

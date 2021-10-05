@@ -1,6 +1,6 @@
 <?php
 
-namespace Arins\Services\Converter\Number;
+namespace Arins\Helpers\Converter\Number;
 
 use Carbon\Carbon;
 

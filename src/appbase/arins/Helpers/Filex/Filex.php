@@ -1,8 +1,8 @@
 <?php
 
-namespace Arins\Services\Filex;
+namespace Arins\Helpers\Filex;
 
-use Arins\Services\Filex\FilexInterface;
+use Arins\Helpers\Filex\FilexInterface;
 use Illuminate\Support\Facades\Storage;
 
 class Filex implements FilexInterface

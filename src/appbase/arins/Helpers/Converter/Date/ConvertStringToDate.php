@@ -1,6 +1,6 @@
 <?php
 
-namespace Arins\Services\Converter\Date;
+namespace Arins\Helpers\Converter\Date;
 
 use Carbon\Carbon;
 

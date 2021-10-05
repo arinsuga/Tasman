@@ -1,12 +1,13 @@
 <?php
 
-namespace Arins\Services\Converter\Number;
+namespace Arins\Helpers\Converter\Date;
 
-use Arins\Services\Converter\Number\ConvertInterface;
+use Arins\Helpers\Converter\Date\ConvertInterface;
+use Carbon\Carbon;
 
 class Convert implements ConvertInterface
 {
-    use ConvertStringToNumber;
+    use ConvertStringToDate;
 
     protected $result;
     protected $translationPrefixKey;

@@ -1,5 +1,5 @@
 <?php
-namespace Arins\Services\Filex;
+namespace Arins\Helpers\Filex;
 
 interface FilexInterface
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Arins\Services\Response;
+namespace Arins\Helpers\Response;
 
 abstract class ResponseAbstract
 {

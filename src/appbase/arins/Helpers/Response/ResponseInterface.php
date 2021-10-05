@@ -1,5 +1,5 @@
 <?php
-namespace Arins\Services\Response;
+namespace Arins\Helpers\Response;
 
 interface ResponseInterface
 {

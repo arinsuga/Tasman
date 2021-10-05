@@ -1,5 +1,5 @@
 <?php
-namespace Arins\Services\Formater;
+namespace Arins\Helpers\Formater;
 
 interface FormaterInterface
 {

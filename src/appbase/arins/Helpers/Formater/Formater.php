@@ -1,9 +1,9 @@
 <?php
 
-namespace Arins\Services\Formater;
+namespace Arins\Helpers\Formater;
 
-use Arins\Services\Formater\FormaterInterface;
-use Arins\Services\Formater\FormaterAbstract;
+use Arins\Helpers\Formater\FormaterInterface;
+use Arins\Helpers\Formater\FormaterAbstract;
 
 class Formater implements FormaterInterface
 {

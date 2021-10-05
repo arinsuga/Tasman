@@ -1,9 +1,9 @@
 <?php
 
-namespace Arins\Services\Response;
+namespace Arins\Helpers\Response;
 
-use Arins\Services\Response\ResponseAbstract;
-use Arins\Services\Response\ResponseInterface;
+use Arins\Helpers\Response\ResponseAbstract;
+use Arins\Helpers\Response\ResponseInterface;
 
 class Response extends ResponseAbstract
                implements ResponseInterface
