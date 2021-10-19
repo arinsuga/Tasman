@@ -149,7 +149,7 @@ class ActivityController extends Controller
         //cekfirst: Filex::delete($data['image']);
 
         //step 2: Kembali ke halaman input
-        return redirect()->route('activity.edit')
+        return redirect()->route('activity.edit', $id)
         ->withInput();
     }
 
