@@ -104,7 +104,7 @@ class ActivityController extends Controller
 
         /** jika tetap terjadi kesalahan maka ada kesalahan pada system */
         //step 1: delete image if fail to save
-        Filex::delete($data['image']);
+        //cekfirst: Filex::delete($data['image']);
 
         //step 2: Kembali ke halaman input
         return redirect()->route('activity.create')
@@ -115,24 +115,30 @@ class ActivityController extends Controller
     /** post */
     public function update(Request $request, $id)
     {
-     
-        //get input value by fillable fields
-        // $data = $request->only($this->data->getFillable()); //get field input
-        // $upload = $request->file('upload'); //upload file (image/document) ==> if included
-        // $imageTemp = $request->input('imageTemp'); //temporary file uploaded
-
-///////////////////////////////////////////////////////////////////////////////////
-
+        //get data from database
         $record = $this->data->find($id);
-        $data = $request->only($this->data->getFillable());
-        $upload = $request->file('upload');
+        $imageOld = $record->image;
+
+        //get input value by fillable fields
+        $data = $request->only($this->data->getFillable()); //get field input
+        $upload = $request->file('upload'); //upload file (image/document) ==> if included
+        $imageTemp = $request->input('imageTemp'); //temporary file uploaded
         $toggleRemoveImage = $request->input('toggleRemoveImage');
 
-        $data['image'] = Filex::uploadOrRemove($record->image, 'activities', $upload, 'public', $toggleRemoveImage);
+        //convert input value (string/date/number/email/etc)
         $data['startdt'] = ConvertDate::strDatetimeToDate($data['startdt']);
         $data['enddt'] = ConvertDate::strDatetimeToDate($data['enddt']);
 
+        //create temporary uploaded image
+        $uploadTemp = Filex::uploadTemp($upload, $imageTemp);
+        $request->session()->flash('imageTemp', $uploadTemp);
+
+        //validate input value
         $request->validate($this->data->getValidateField());
+
+        //copy temporary uploaded image to real path
+        $data['image'] = Filex::uploadOrCopyAndRemove('', $uploadTemp, 'activities', $upload, 'public', false);
+        Filex::delete($imageOld);
 
         if ($this->data->update($record, $data)) {
             return redirect()->route('activity.index');

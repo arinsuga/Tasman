@@ -116,29 +116,29 @@ class Filex implements FilexInterface
      *    to real path base on disk driver in config file
      *    filesystems.php
      * ====================================================== */
-    function uploadOrCopyAndRemove($fileName, $fileTempName, $fileLocation, $fileObject, $diskDriver, $remove)
+    function uploadOrCopyAndRemove($fileName, $fileSourceName, $fileTargetLocation, $fileObject, $diskDriver, $remove)
     {
         //code here
         $path = '';
         if ($fileObject) {
 
-            $path = $this->upload($fileName, $fileLocation, $fileObject, $diskDriver);
+            $path = $this->upload($fileName, $fileTargetLocation, $fileObject, $diskDriver);
 
-        } elseif ($fileTempName) {
+        } elseif ($fileSourceName) {
 
-            $nPos = strpos($fileTempName, '/');
+            $nPos = strpos($fileSourceName, '/');
             $nPos = ($nPos != '' ? $nPos+1 : $nPos);
             
-            $fileNewLocation = $fileLocation.'/'.substr($fileTempName, $nPos);
+            $fileNewLocation = $fileTargetLocation.'/'.substr($fileSourceName, $nPos);
 
             $path = Storage::disk($diskDriver)
-            ->copy($fileTempName, $fileNewLocation);
+            ->copy($fileSourceName, $fileNewLocation);
 
             $path = $fileNewLocation;
 
         } //end if
         
-        $this->delete($fileTempName, $diskDriver);
+        $this->delete($fileSourceName, $diskDriver);
 
         return $path;
     }
