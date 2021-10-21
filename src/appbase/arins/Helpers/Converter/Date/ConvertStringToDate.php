@@ -21,6 +21,10 @@ trait ConvertStringToDate
 
     protected function constructDate($data, $format)
     {
+        if (($data == null) || ($data == '')) {
+            return null;
+        } //end if
+
         $result = null;
         $config = config('a1.date.iso');
         

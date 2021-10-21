@@ -104,7 +104,7 @@ class ActivityController extends Controller
 
         /** jika tetap terjadi kesalahan maka ada kesalahan pada system */
         //step 1: delete image if fail to save
-        //cekfirst: Filex::delete($data['image']);
+        Filex::delete($data['image']);
 
         //step 2: Kembali ke halaman input
         return redirect()->route('activity.create')
@@ -138,7 +138,7 @@ class ActivityController extends Controller
 
         //copy temporary uploaded image to real path
         $data['image'] = Filex::uploadOrCopyAndRemove('', $uploadTemp, 'activities', $upload, 'public', false);
-        Filex::delete($imageOld);
+        // Filex::delete($imageOld);
 
         if ($this->data->update($record, $data)) {
             return redirect()->route('activity.index');

@@ -112,6 +112,37 @@ class Filex implements FilexInterface
 
     /**
      * ======================================================
+     * 6. upload atau copy file from storage temp
+     *    to real path base on disk driver in config file
+     *    filesystems.php
+     * ====================================================== */
+    function uploadOrCopy($fileName, $fileSourceName, $fileTargetLocation, $fileObject, $diskDriver, $remove)
+    {
+        //code here
+        $path = '';
+        if ($fileObject) {
+
+            $path = $this->upload($fileName, $fileTargetLocation, $fileObject, $diskDriver);
+
+        } elseif ($fileSourceName) {
+
+            $nPos = strpos($fileSourceName, '/');
+            $nPos = ($nPos != '' ? $nPos+1 : $nPos);
+            
+            $fileNewLocation = $fileTargetLocation.'/'.substr($fileSourceName, $nPos);
+
+            $path = Storage::disk($diskDriver)
+            ->copy($fileSourceName, $fileNewLocation);
+
+            $path = $fileNewLocation;
+
+        } //end if
+        
+        return $path;
+    }
+
+    /**
+     * ======================================================
      * 6. upload atau copy dan hapus file from storage temp
      *    to real path base on disk driver in config file
      *    filesystems.php
