@@ -141,12 +141,13 @@ class ActivityController extends Controller
         // Filex::delete($imageOld);
 
         if ($this->data->update($record, $data)) {
+            Filex::delete($imageOld);
             return redirect()->route('activity.index');
         }
 
         /** jika tetap terjadi kesalahan maka ada kesalahan pada system */
         //step 1: delete image if fail to save
-        //cekfirst: Filex::delete($data['image']);
+        Filex::delete($data['image']);
 
         //step 2: Kembali ke halaman input
         return redirect()->route('activity.edit', $id)
