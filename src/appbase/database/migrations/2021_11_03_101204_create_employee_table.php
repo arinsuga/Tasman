@@ -14,8 +14,15 @@ class CreateEmployeeTable extends Migration
     public function up()
     {
         Schema::create('employee', function (Blueprint $table) {
+
             $table->bigIncrements('id');
+
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->boolean('disabled')->default(false);
+
             $table->timestamps();
+
         });
     }
 
@@ -28,4 +35,5 @@ class CreateEmployeeTable extends Migration
     {
         Schema::dropIfExists('employee');
     }
+
 }
