@@ -16,10 +16,10 @@ class CreateActivityTable extends Migration
         Schema::create('activity', function (Blueprint $table) {
             $table->bigIncrements('id');
 
-            $table->bigInteger('activitytype_id')->nullable();
-            $table->bigInteger('activitysubtype1_id')->nullable();
-            $table->bigInteger('activitysubtype2_id')->nullable();
-            $table->bigInteger('activitysubtype3_id')->nullable();
+            $table->integer('activitytype_id')->nullable();
+            $table->integer('activitysubtype1_id')->nullable();
+            $table->integer('activitysubtype2_id')->nullable();
+            $table->integer('activitysubtype3_id')->nullable();
 
             $table->string('name')->nullable();
 

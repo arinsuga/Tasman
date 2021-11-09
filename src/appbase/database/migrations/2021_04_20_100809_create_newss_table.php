@@ -14,7 +14,7 @@ class CreateNewssTable extends Migration
     public function up()
     {
         Schema::create('newss', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->string('name')->nullable();
             $table->text('description')->nullable();
             $table->string('image')->nullable();

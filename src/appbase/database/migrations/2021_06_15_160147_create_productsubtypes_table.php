@@ -14,8 +14,8 @@ class CreateProductsubtypesTable extends Migration
     public function up()
     {
         Schema::create('productsubtypes', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->bigInteger('producttype_id')->nullable();
+            $table->increments('id');
+            $table->integer('producttype_id')->nullable();
             $table->string('name')->nullable();
             $table->text('description')->nullable();
             $table->string('image')->nullable();
