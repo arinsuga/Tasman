@@ -15,8 +15,10 @@ class CreateEmployeeTable extends Migration
     {
         Schema::create('employee', function (Blueprint $table) {
 
+            //key
             $table->bigIncrements('id');
-            $table->bigIncrements('user_id');
+            //foreign key
+            $table->bigInteger('user_id');
 
             //personal
             $table->string('nik')->nullable();
@@ -97,7 +99,6 @@ class CreateEmployeeTable extends Migration
             $table->string('linkedin')->nullable();
                         
             $table->timestamps();
-
         });
     }
 
