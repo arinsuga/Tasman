@@ -15,6 +15,22 @@ religion
 nationality
 education
 
+============================================================
+
+            $table->integer('status')->default(0);
+
+        //Reset table
+        DB::table('<<tablename>>')->delete();
+
+        DB::table('<<tablename>>')->insert([
+			'code' => '<<code>>',
+			'name' => '<<name>>',
+			'displayname' => '<<displayname>>',
+			'description' => '<<description>>',
+			'numsort' => <<numsort>>,
+			'status' => <<status>>,
+        ]);
+
 ==============================================
 
 nik

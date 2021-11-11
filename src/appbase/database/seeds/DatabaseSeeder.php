@@ -22,12 +22,29 @@ class DatabaseSeeder extends Seeder
         $this->call('RolesTableSeeder');
         $this->call('RoleUserTableSeeder');
 
-        $this->call('ProducttypesTableSeeder');
-        $this->call('ProductsTableSeeder');
-        $this->call('EventsTableSeeder');
-        $this->call('NewssTableSeeder');
-
         $this->call('ActivitytypeTableSeeder');
+
+        $this->call('EmpstatusTableSeeder');
+        $this->call('EmptypeTableSeeder');
+        $this->call('InactivetypeTableSeeder');
+        $this->call('JobTableSeeder');
+        $this->call('SuperiorTableSeeder');
+        $this->call('BranchTableSeeder');
+        $this->call('DeptTableSeeder');
+        $this->call('SubdeptTableSeeder');
+        $this->call('BizunitTableSeeder');
+        $this->call('LevelTableSeeder');
+        
+        $this->call('GenderTableSeeder');
+        $this->call('BloodtypeTableSeeder');
+        $this->call('ReligionTableSeeder');
+        $this->call('NationalityTableSeeder');
+        $this->call('EducationTableSeeder');
+        
+        // $this->call('ProducttypesTableSeeder');
+        // $this->call('ProductsTableSeeder');
+        // $this->call('EventsTableSeeder');
+        // $this->call('NewssTableSeeder');
 
    }
 }
