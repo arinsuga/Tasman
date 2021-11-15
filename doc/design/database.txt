@@ -9,6 +9,7 @@ subdept
 bizunit
 level
 
+marital
 gender
 bloodtype
 religion

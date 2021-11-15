@@ -54,6 +54,7 @@ class CreateEmployeeTable extends Migration
 
             //personal 2
             $table->integer('gender_id')->nullable();
+            $table->integer('marital_id')->nullable();
             $table->integer('bloodtype_id')->nullable();
             $table->integer('religion_id')->nullable();
             $table->integer('nationality_id')->nullable();
