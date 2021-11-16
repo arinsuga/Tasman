@@ -12,5 +12,6 @@ class BizunitTableSeeder extends Seeder
     public function run()
     {
         //
+                
     }
 }

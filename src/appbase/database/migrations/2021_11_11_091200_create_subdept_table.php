@@ -15,6 +15,7 @@ class CreateSubdeptTable extends Migration
     {
         Schema::create('subdept', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('dept_id')->nullable();
             $table->string('code')->nullable();
             $table->string('name')->nullable();
             $table->string('displayname')->nullable();
