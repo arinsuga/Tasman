@@ -4,9 +4,10 @@ inactivetype
 job
 superior
 branch
-dept
-subdept
 
+==dept
+subdept
+bizunit
 
 
 
