@@ -3,8 +3,8 @@ emptype
 inactivetype
 job
 superior
-branch
 
+branch
 ==dept
 subdept
 bizunit
