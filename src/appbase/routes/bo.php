@@ -45,6 +45,9 @@ Route::group(['middleware'=>'lang'],function ()
     //activity report recap
     Route::get('report/recap', 'Report\ReportController@recap')->name('report.recap');
 
+    //employee
+    Route::resource('employee', 'Employee\EmployeeController');
+
     //404 - Not Found
     Route::fallback(function () {
 

@@ -6,7 +6,7 @@ superior
 
 branch
 ==dept
-subdept
+==subdept
 bizunit
 
 

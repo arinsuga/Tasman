@@ -15,6 +15,7 @@ use Arins\Repositories\Event\EventRepository;
 use Arins\Repositories\News\NewsRepository;
 use Arins\Repositories\Activitytype\ActivitytypeRepository;
 use Arins\Repositories\Activity\ActivityRepository;
+use Arins\Repositories\Employee\EmployeeRepository;
 
 //Models
 use App\User;
@@ -27,6 +28,7 @@ use Arins\Models\Event;
 use Arins\Models\News;
 use Arins\Models\Activity;
 use Arins\Models\Activitytype;
+use Arins\Models\Employee;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -160,6 +162,17 @@ class RepositoryServiceProvider extends ServiceProvider
             {
                 $model = new Activitytype();
                 $modelRepository = new ActivitytypeRepository($model);
+                return $modelRepository;
+            }
+        );
+
+        //Employee
+        $this->app->bind(
+            'Arins\Repositories\Employee\EmployeeRepositoryInterface',
+            function()
+            {
+                $model = new Employee();
+                $modelRepository = new EmployeeRepository($model);
                 return $modelRepository;
             }
         );
