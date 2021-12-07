@@ -25,7 +25,8 @@ class CreateEmployeeTable extends Migration
             $table->string('name')->nullable();
             $table->datetime('birth_dt')->nullable();
             $table->string('birth_place')->nullable();
-            
+            $table->string('image')->nullable();
+                        
             //leave/cuti tahunan
             $table->integer('annleave_balance')->nullable();
             $table->datetime('annleave_lastdt')->nullable();

@@ -16,6 +16,7 @@ use Arins\Repositories\News\NewsRepository;
 use Arins\Repositories\Activitytype\ActivitytypeRepository;
 use Arins\Repositories\Activity\ActivityRepository;
 use Arins\Repositories\Employee\EmployeeRepository;
+use Arins\Repositories\Job\JobRepository;
 
 //Models
 use App\User;
@@ -29,6 +30,7 @@ use Arins\Models\News;
 use Arins\Models\Activity;
 use Arins\Models\Activitytype;
 use Arins\Models\Employee;
+use Arins\Models\Job;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -166,13 +168,25 @@ class RepositoryServiceProvider extends ServiceProvider
             }
         );
 
+        //Job
+        $this->app->bind(
+            'Arins\Repositories\Job\JobRepositoryInterface',
+            function()
+            {
+                $model = new Job();
+                $modelRepository = new JobRepository($model);
+                return $modelRepository;
+            }
+        );
+
         //Employee
         $this->app->bind(
             'Arins\Repositories\Employee\EmployeeRepositoryInterface',
             function()
             {
                 $model = new Employee();
-                $modelRepository = new EmployeeRepository($model);
+                $modelJob = new Job();
+                $modelRepository = new EmployeeRepository($model, $modelJob);
                 return $modelRepository;
             }
         );

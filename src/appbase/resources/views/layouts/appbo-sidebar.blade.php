@@ -22,12 +22,21 @@
         </p>
       </a>
       <ul class="nav nav-treeview">
+
+        <li class="nav-item">
+          <a href="{{ route('employee.index') }}" class="nav-link">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Karyawan</p>
+          </a>
+        </li>
+      
         <li class="nav-item">
           <a href="{{ route('activity.index') }}" class="nav-link">
             <i class="far fa-circle nav-icon"></i>
             <p>Activity</p>
           </a>
         </li>
+
       </ul>
     </li>
 

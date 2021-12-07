@@ -6,14 +6,14 @@
 
 <!-- button back -->
 <li class="nav-item">
-    <a class="nav-link" href="{{ route('activity.index') }}">
+    <a class="nav-link" href="{{ route('employee.index') }}">
         <i class="fas fa-lg fa-arrow-left"></i>
     </a>
 </li>
 
 <!-- button edit -->
 <li class="nav-item">
-    <a class="nav-link" href="{{ route('activity.edit', ['activity' => $viewModel->data->id]) }}">
+    <a class="nav-link" href="{{ route('employee.edit', ['employee' => $viewModel->data->id]) }}">
         <i class="fas fa-lg fa-edit"></i>
     </a>
 </li>
@@ -24,7 +24,7 @@
        class="nav-link" href="#">
         <i class="fas fa-lg fa-trash"></i>
     </a>
-    <form id="frmData" role="form" id="frmData" method="POST" action="{{ route('activity.destroy', ['activity' => $viewModel->data->id]) }}">
+    <form id="frmData" role="form" id="frmData" method="POST" action="{{ route('employee.destroy', ['employee' => $viewModel->data->id]) }}">
         @csrf
         @method('DELETE')
     </form>
@@ -34,7 +34,7 @@
 @endsection
 
 @section('content')
-    @include('bo.activity.data-field-items')
+    @include('bo.employee.data-field-items')
 @endsection
 
 @section('style')

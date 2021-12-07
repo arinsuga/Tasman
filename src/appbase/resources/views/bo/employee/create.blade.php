@@ -1,11 +1,11 @@
 @extends('layouts.appbo')
 
-@section('content_title', 'Activity Add')
+@section('content_title', 'Tambah Data Karyawan')
 
 @section('toolbar')
 
 <li class="nav-item">
-    <a class="nav-link" href="{{ route('activity.index') }}">
+    <a class="nav-link" href="{{ route('employee.index') }}">
         <i class="fas fa-lg fa-arrow-left"></i>
     </a>
 </li>
@@ -22,9 +22,9 @@
 
 @section('content')
 
-<form role="form" id="frmData" method="POST" action="{{ route('activity.store') }}" enctype="multipart/form-data">
+<form role="form" id="frmData" method="POST" action="{{ route('employee.store') }}" enctype="multipart/form-data">
     @csrf
-    @include('bo.activity.data-field-items')
+    @include('bo.employee.data-field-items')
 
 </form>
 
@@ -32,6 +32,6 @@
 
 @section('js')
 
-    @include('bo.activity._script')
+    @include('bo.employee._script')
 
 @endsection

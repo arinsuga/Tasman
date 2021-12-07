@@ -5,7 +5,7 @@
 @section('toolbar')
 
 <li class="nav-item">
-    <a class="nav-link" href="{{ route('activity.create') }}">
+    <a class="nav-link" href="{{ route('employee.create') }}">
         <i class="fas fa-lg fa-plus"></i>
     </a>
 </li>
@@ -20,14 +20,14 @@
 
 @section('control_sidebar')
     <div class="control-sidebar-content">
-        @include('bo.activity.data-list-filters')
+        @include('bo.employee.data-list-filters')
     </div>
 @endsection
 
 @section('content')
 
         <div style="margin-top: 10px;">
-            @include('bo.activity.data-list-items')
+            @include('bo.employee.data-list-items')
         </div>
 
 @endsection

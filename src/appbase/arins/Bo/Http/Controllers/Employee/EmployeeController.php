@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use Arins\Repositories\Employee\EmployeeRepositoryInterface;
+use Arins\Repositories\Job\JobRepositoryInterface;
+
 use Arins\Facades\Response;
 use Arins\Facades\Filex;
 use Arins\Facades\Formater;
@@ -15,18 +17,19 @@ class EmployeeController extends Controller
 {
 
     protected $sViewRoot;
-    protected $data, $dataActivitytype;
+    protected $data, $dataJob;
 
 
-    public function __construct(EmployeeRepositoryInterface $parData)
+    public function __construct(EmployeeRepositoryInterface $parData,
+                                JobRepositoryInterface $parJob)
     {
         $this->middleware('auth.admin');
         $this->middleware('is.admin');
 
-        $psViewRoot = 'bo.activity';
+        $psViewRoot = 'bo.employee';
         $this->sViewRoot = $psViewRoot;
         $this->data = $parData;
-        
+        $this->dataJob = $parJob;
     }
 
     /** get */
@@ -54,11 +57,11 @@ class EmployeeController extends Controller
     {
         $viewModel = Response::viewModel();
         $viewModel->data = json_decode(json_encode($this->data->getInputField()));
-        $viewModel->data->date = now();
 
         return view($this->sViewRoot.'.create',
         ['viewModel' => $viewModel, 'new' => true, 'fieldEnabled' => true,
-        'activitytype' => $this->dataActivitytype->all()]);
+        'job' => $this->dataJob->all()]);
+
     }
 
     /** get */

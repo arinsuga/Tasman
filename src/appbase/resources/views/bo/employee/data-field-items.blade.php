@@ -39,60 +39,46 @@ margin-left: auto; margin-right:auto;">
         @endif
       </div>
 
+      <!-- input text -->
+      <div class="form-group">
+        <label>NIK</label>
+        <input type="text" {{ $disabled }} id="nik" name="nik" class="form-control" placeholder="">
+        <p class="text-red">{{ $errors->first('nik') }}</p>
+      </div>
+
+      <!-- input text -->
+      <div class="form-group">
+        <label>Nama</label>
+        <input type="text" {{ $disabled }} id="name" name="name" class="form-control" placeholder="">
+        <p class="text-red">{{ $errors->first('name') }}</p>
+      </div>
+
       <!-- text input:text -->
       <div class="form-group">
-        <label>Jenis Pekerjaan</label>
+        <label>Jabatan</label>
         @if ($fieldEnabled == true)
-          <select name="activitytype_id" class="form-control">
-                @foreach ($activitytype as $key => $item)
+          <select name="job_id" class="form-control">
+                @foreach ($job as $key => $item)
 
                   @if ($errors->any())
-                    {{ ($item->id == old('activitytype_id') ? $selected = 'selected' : $selected = '') }}
+                    {{ ($item->id == old('job_id') ? $selected = 'selected' : $selected = '') }}
                   @else
-                    {{ ( $item->id == $viewModel->data->activitytype_id ) ? $selected = 'selected' : $selected = '' }}
+                    {{ ( $item->id == $viewModel->data->job_id ) ? $selected = 'selected' : $selected = '' }}
                   @endif
                   <option {{ $selected }} value="{{ $item->id }}">{{ $item->name }}</option>
                   
                 @endforeach
             </select>
         @else
-          <input type="hidden" name="activitytype_id" value="{{ $viewModel->data->activitytype_id }}" readonly>
+          <input type="hidden" name="job_id" value="{{ $viewModel->data->job_id }}" readonly>
           <div class="form-group">
               <input disabled type="text" value="{{ $viewModel->data->activitytype->name }}" class="form-control">
           </div>
         @endif
-        <p class="text-red">{{ $errors->first('activitytype_id') }}</p>
+        <p class="text-red">{{ $errors->first('job_id') }}</p>
 
       </div>
-
-      <div class="row">
-        <div class="col-sm-12 col-md-6">
-          <!-- text input:text -->
-          <div class="form-group">
-            <label>Mulai</label>
-            <input {{ $disabled }} type="text" id="startdt" name="startdt" class="form-control date" placeholder=""
-              value="{{ ( $errors->any() ? old('startdt') : \Arins\Facades\Formater::datetime($viewModel->data->startdt) ) }}">
-            <p class="text-red">{{ $errors->first('startdt') }}</p>
-          </div>
-        </div>
-
-        <div class="col-sm-12 col-md-6">
-          <!-- text input:text -->
-          <div class="form-group">
-            <label>Selesai</label>
-            <input {{ $disabled }} type="text" id="enddt" name="enddt" class="form-control date" placeholder=""
-              value="{{ ( $errors->any() ? old('enddt') : \Arins\Facades\Formater::datetime($viewModel->data->enddt) ) }}">
-            <p class="text-red">{{ $errors->first('enddt') }}</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- textarea -->
-      <div class="form-group">
-        <label>Deskripsi</label>
-        <textarea {{ $disabled }} id="description" name="description" class="form-control" rows="3" placeholder="">{{ ( $errors->any() ? old('description') : $viewModel->data->description ) }}</textarea>
-        <p class="text-red">{{ $errors->first('description') }}</p>
-      </div>
+      
     </div>
 </div>
 

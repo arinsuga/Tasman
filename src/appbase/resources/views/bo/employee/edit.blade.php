@@ -1,6 +1,6 @@
 @extends('layouts.appbo')
 
-@section('content_title', 'Edit Data Karyawan')
+@section('content_title', 'Ubah Data Karyawan')
 
 @section('toolbar')
 
@@ -21,17 +21,17 @@
 
 @section('content')
 
-<form role="form" id="frmData" method="POST" action="{{ route('activity.update', ['activity' => $viewModel->data->id]) }}" enctype="multipart/form-data">
+<form role="form" id="frmData" method="POST" action="{{ route('employee.update', ['employee' => $viewModel->data->id]) }}" enctype="multipart/form-data">
     @csrf
     @method('PUT')
 
-    @include('bo.activity.data-field-items')
+    @include('bo.employee.data-field-items')
 </form>
 
 @endsection
 
 @section('js')
 
-    @include('bo.activity._script')
+    @include('bo.employee._script')
 
 @endsection

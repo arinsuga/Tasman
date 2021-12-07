@@ -2,28 +2,23 @@
     <thead>
         <tr>
             <th style="width: 5%;"></th>
-            <th style="width: 15%;">Jenis Pekerjaan</th>
-            <th style="width: 10%;">Waktu</th>
-            <th style="width: 50%;">Deskripsi</th>
+            <th style="width: 15%;">NIK</th>
+            <th style="width: 10%;">Nama</th>
+            <th style="width: 50%;">Jabatan</th>
         </tr>
     </thead>
     <tbody>
 
         @foreach ($viewModel->data as $item)
-            <tr onclick="window.location.assign('{{ route('activity.show', ['activity' => $item->id]) }}');">
+            <tr onclick="window.location.assign('{{ route('employee.show', ['employee' => $item->id]) }}');">
                 <td>
                     <div class="image-table-cell">
                         <img src="{{ Arins\Facades\Filex::image($item->image) }}" alt="{{ $item->name }}">
                     </div>
                 </td>
-                <td>{{ $item->activitytype->name }}</td>
-                <td>
-                    <div class="text-center">{{ \Arins\Facades\Formater::datetime($item->startdt) }}</div>
-                    <div class="text-center">{{ \Arins\Facades\Formater::datetime($item->enddt) }}</div>
-                </td>
-                <td>
-                    <div class="truncate-multiline">{!! nl2br(e($item->description)) !!}</div>
-                </td>
+                <td>{{ $item->nik }}</td>
+                <td>{{ $item->name }}</td>
+                <td></td>
             </tr>
         @endforeach
 
