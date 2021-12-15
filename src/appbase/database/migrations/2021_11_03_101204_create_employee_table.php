@@ -18,7 +18,7 @@ class CreateEmployeeTable extends Migration
             //key
             $table->bigIncrements('id');
             //foreign key
-            $table->bigInteger('user_id');
+            $table->bigInteger('user_id')->nullable();
 
             //personal
             $table->string('nik')->nullable();

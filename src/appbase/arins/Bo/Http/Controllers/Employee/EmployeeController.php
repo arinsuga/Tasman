@@ -16,8 +16,10 @@ use Arins\Facades\ConvertDate;
 class EmployeeController extends Controller
 {
 
+    protected $routeBase;
     protected $sViewRoot;
     protected $data, $dataJob;
+    protected $uploadLoc;
 
 
     public function __construct(EmployeeRepositoryInterface $parData,
@@ -26,10 +28,12 @@ class EmployeeController extends Controller
         $this->middleware('auth.admin');
         $this->middleware('is.admin');
 
+        $this->routeBase = 'employee';
         $psViewRoot = 'bo.employee';
         $this->sViewRoot = $psViewRoot;
         $this->data = $parData;
         $this->dataJob = $parJob;
+        $this->uploadLoc = 'employee';
     }
 
     /** get */
@@ -72,7 +76,7 @@ class EmployeeController extends Controller
 
         return view($this->sViewRoot.'.edit',
         ['viewModel' => $viewModel, 'new' => false, 'fieldEnabled' => true,
-        'activitytype' => $this->dataActivitytype->all()]);
+        'job' => $this->dataJob->all()]);
     }
 
     /** post */
@@ -83,10 +87,6 @@ class EmployeeController extends Controller
         $upload = $request->file('upload'); //upload file (image/document) ==> if included
         $imageTemp = $request->input('imageTemp'); //temporary file uploaded
         
-        //convert input value (string/date/number/email/etc)
-        $data['startdt'] = ConvertDate::strDatetimeToDate($data['startdt']);
-        $data['enddt'] = ConvertDate::strDatetimeToDate($data['enddt']);
-
         //create temporary uploaded image
         $uploadTemp = Filex::uploadTemp($upload, $imageTemp);
         $request->session()->flash('imageTemp', $uploadTemp);
@@ -95,11 +95,11 @@ class EmployeeController extends Controller
         $request->validate($this->data->getValidateField());
 
         //copy temporary uploaded image to real path
-        $data['image'] = Filex::uploadOrCopyAndRemove('', $uploadTemp, 'activities', $upload, 'public', false);
+        $data['image'] = Filex::uploadOrCopyAndRemove('', $uploadTemp, $this->uploadLoc, $upload, 'public', false);
         
         //save data
         if ($this->data->create($data)) {
-            return redirect()->route('activity.index');
+            return redirect()->route($this->routeBase . '.index');
         }
 
         /** jika tetap terjadi kesalahan maka ada kesalahan pada system */
@@ -107,7 +107,7 @@ class EmployeeController extends Controller
         Filex::delete($data['image']);
 
         //step 2: Kembali ke halaman input
-        return redirect()->route('activity.create')
+        return redirect()->route($this->routeBase . '.create')
         ->withInput();
 
     }
@@ -137,12 +137,12 @@ class EmployeeController extends Controller
         $request->validate($this->data->getValidateField());
 
         //copy temporary uploaded image to real path
-        $data['image'] = Filex::uploadOrCopyAndRemove('', $uploadTemp, 'activities', $upload, 'public', false);
+        $data['image'] = Filex::uploadOrCopyAndRemove('', $uploadTemp, $this->uploadLoc, $upload, 'public', false);
         // Filex::delete($imageOld);
 
         if ($this->data->update($record, $data)) {
             Filex::delete($imageOld);
-            return redirect()->route('activity.index');
+            return redirect()->route($this->routeBase . '.index');
         }
 
         /** jika tetap terjadi kesalahan maka ada kesalahan pada system */
@@ -150,7 +150,7 @@ class EmployeeController extends Controller
         Filex::delete($data['image']);
 
         //step 2: Kembali ke halaman input
-        return redirect()->route('activity.edit', $id)
+        return redirect()->route($this->routeBase . '.edit', $id)
         ->withInput();
     }
 
@@ -171,7 +171,7 @@ class EmployeeController extends Controller
         $this->data->delete($record);
         Filex::delete($fileName); 
 
-        return redirect()->route('activity.index');
+        return redirect()->route($this->routeBase . '.index');
    }
 
     /** get */

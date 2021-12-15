@@ -89,7 +89,8 @@ class EmployeeRepository extends BaseRepository implements EmployeeRepositoryInt
 
         $this->validateField = [
             //code array here...
-
+            'nik' => 'required',
+            'name' => 'required',
         ];
 
     }
