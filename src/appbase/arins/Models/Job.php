@@ -10,4 +10,9 @@ class Job extends Model
 
     // protected $fillable = null;
 
+
+    public function employee() {
+        return $this->hasOne('Arins\Models\Employee');
+    }
+
 }

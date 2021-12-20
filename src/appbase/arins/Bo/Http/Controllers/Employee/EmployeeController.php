@@ -51,9 +51,10 @@ class EmployeeController extends Controller
     {
         $viewModel = Response::viewModel();
         $viewModel->data = $this->data->find($id);
-        
+
         return view($this->sViewRoot.'.show',
-        ['viewModel' => $viewModel, 'new' => false, 'fieldEnabled' => false]);
+        ['viewModel' => $viewModel, 'new' => false, 'fieldEnabled' => false,
+         'job' => $this->dataJob->all()]);
     }
 
     /** get */
@@ -124,10 +125,6 @@ class EmployeeController extends Controller
         $upload = $request->file('upload'); //upload file (image/document) ==> if included
         $imageTemp = $request->input('imageTemp'); //temporary file uploaded
         $toggleRemoveImage = $request->input('toggleRemoveImage');
-
-        //convert input value (string/date/number/email/etc)
-        $data['startdt'] = ConvertDate::strDatetimeToDate($data['startdt']);
-        $data['enddt'] = ConvertDate::strDatetimeToDate($data['enddt']);
 
         //create temporary uploaded image
         $uploadTemp = Filex::uploadTemp($upload, $imageTemp);

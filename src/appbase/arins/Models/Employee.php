@@ -100,4 +100,8 @@ class Employee extends Model
             'updated_at'
         ];
 
+
+    public function job() {
+        return $this->belongsTo('Arins\Models\Job');
+    }        
 }

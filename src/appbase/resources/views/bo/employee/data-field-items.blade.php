@@ -42,14 +42,16 @@ margin-left: auto; margin-right:auto;">
       <!-- input text -->
       <div class="form-group">
         <label>NIK</label>
-        <input type="text" {{ $disabled }} id="nik" name="nik" class="form-control" placeholder="">
+        <input type="text" {{ $disabled }} id="nik" name="nik" class="form-control" placeholder=""
+        value="{{ ($errors->any() ? old('nik') : $viewModel->data->nik ) }}">
         <p class="text-red">{{ $errors->first('nik') }}</p>
       </div>
 
       <!-- input text -->
       <div class="form-group">
         <label>Nama</label>
-        <input type="text" {{ $disabled }} id="name" name="name" class="form-control" placeholder="">
+        <input type="text" {{ $disabled }} id="name" name="name" class="form-control" placeholder=""
+        value="{{ ( $errors->any() ? old('name') : $viewModel->data->name ) }}">
         <p class="text-red">{{ $errors->first('name') }}</p>
       </div>
 
@@ -72,7 +74,7 @@ margin-left: auto; margin-right:auto;">
         @else
           <input type="hidden" name="job_id" value="{{ $viewModel->data->job_id }}" readonly>
           <div class="form-group">
-              <input disabled type="text" value="{{ $viewModel->data->activitytype->name }}" class="form-control">
+              <input disabled type="text" value="{{ $viewModel->data->job->name }}" class="form-control">
           </div>
         @endif
         <p class="text-red">{{ $errors->first('job_id') }}</p>
