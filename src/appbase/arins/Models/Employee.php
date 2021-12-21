@@ -100,6 +100,13 @@ class Employee extends Model
             'updated_at'
         ];
 
+    public function dept() {
+        return $this->belongsTo('Arins\Models\Dept');
+    }        
+    
+    public function Subdept() {
+        return $this->belongsTo('Arins\Models\Subdept');
+    }        
 
     public function job() {
         return $this->belongsTo('Arins\Models\Job');

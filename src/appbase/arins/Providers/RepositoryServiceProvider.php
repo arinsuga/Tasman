@@ -17,6 +17,8 @@ use Arins\Repositories\Activitytype\ActivitytypeRepository;
 use Arins\Repositories\Activity\ActivityRepository;
 use Arins\Repositories\Employee\EmployeeRepository;
 use Arins\Repositories\Job\JobRepository;
+use Arins\Repositories\Dept\DeptRepository;
+use Arins\Repositories\Subdept\SubdeptRepository;
 
 //Models
 use App\User;
@@ -31,6 +33,8 @@ use Arins\Models\Activity;
 use Arins\Models\Activitytype;
 use Arins\Models\Employee;
 use Arins\Models\Job;
+use Arins\Models\Dept;
+use Arins\Models\Subdept;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -168,6 +172,28 @@ class RepositoryServiceProvider extends ServiceProvider
             }
         );
 
+        //Dept
+        $this->app->bind(
+            'Arins\Repositories\Dept\DeptRepositoryInterface',
+            function()
+            {
+                $model = new Dept();
+                $modelRepository = new DeptRepository($model);
+                return $modelRepository;
+            }
+        );
+
+        //Subdept
+        $this->app->bind(
+            'Arins\Repositories\Subdept\SubdeptRepositoryInterface',
+            function()
+            {
+                $model = new Subdept();
+                $modelRepository = new SubdeptRepository($model);
+                return $modelRepository;
+            }
+        );
+
         //Job
         $this->app->bind(
             'Arins\Repositories\Job\JobRepositoryInterface',
@@ -185,8 +211,7 @@ class RepositoryServiceProvider extends ServiceProvider
             function()
             {
                 $model = new Employee();
-                $modelJob = new Job();
-                $modelRepository = new EmployeeRepository($model, $modelJob);
+                $modelRepository = new EmployeeRepository($model);
                 return $modelRepository;
             }
         );

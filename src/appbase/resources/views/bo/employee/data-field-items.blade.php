@@ -57,6 +57,32 @@ margin-left: auto; margin-right:auto;">
 
       <!-- text input:text -->
       <div class="form-group">
+        <label>Departemen</label>
+        @if ($fieldEnabled == true)
+          <select name="subdept_id" class="form-control">
+                @foreach ($subdept as $key => $item)
+
+                  @if ($errors->any())
+                    {{ ($item->id == old('subdept_id') ? $selected = 'selected' : $selected = '') }}
+                  @else
+                    {{ ( $item->id == $viewModel->data->subdept_id ) ? $selected = 'selected' : $selected = '' }}
+                  @endif
+                  <option {{ $selected }} value="{{ $item->id }}">{{ $item->name }}</option>
+                  
+                @endforeach
+            </select>
+        @else
+          <input type="hidden" name="job_id" value="{{ $viewModel->data->subdept_id }}" readonly>
+          <div class="form-group">
+              <input disabled type="text" value="{{ $viewModel->data->subdept->name }}" class="form-control">
+          </div>
+        @endif
+        <p class="text-red">{{ $errors->first('job_id') }}</p>
+
+      </div>
+
+      <!-- text input:text -->
+      <div class="form-group">
         <label>Jabatan</label>
         @if ($fieldEnabled == true)
           <select name="job_id" class="form-control">

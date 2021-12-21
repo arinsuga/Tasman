@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 
 use Arins\Repositories\Employee\EmployeeRepositoryInterface;
 use Arins\Repositories\Job\JobRepositoryInterface;
+use Arins\Repositories\Dept\DeptRepositoryInterface;
+use Arins\Repositories\Subdept\SubdeptRepositoryInterface;
 
 use Arins\Facades\Response;
 use Arins\Facades\Filex;
@@ -18,11 +20,13 @@ class EmployeeController extends Controller
 
     protected $routeBase;
     protected $sViewRoot;
-    protected $data, $dataJob;
+    protected $data, $dataDept, $dataSubdept, $dataJob;
     protected $uploadLoc;
 
 
     public function __construct(EmployeeRepositoryInterface $parData,
+                                DeptRepositoryInterface $parDept,
+                                SubdeptRepositoryInterface $parSubdept,
                                 JobRepositoryInterface $parJob)
     {
         $this->middleware('auth.admin');
@@ -32,6 +36,8 @@ class EmployeeController extends Controller
         $psViewRoot = 'bo.employee';
         $this->sViewRoot = $psViewRoot;
         $this->data = $parData;
+        $this->dataDept = $parDept;
+        $this->dataSubdept = $parSubdept;
         $this->dataJob = $parJob;
         $this->uploadLoc = 'employee';
     }
@@ -54,6 +60,7 @@ class EmployeeController extends Controller
 
         return view($this->sViewRoot.'.show',
         ['viewModel' => $viewModel, 'new' => false, 'fieldEnabled' => false,
+        'subdept' => $this->dataSubdept->all(),
          'job' => $this->dataJob->all()]);
     }
 
@@ -65,8 +72,8 @@ class EmployeeController extends Controller
 
         return view($this->sViewRoot.'.create',
         ['viewModel' => $viewModel, 'new' => true, 'fieldEnabled' => true,
+        'subdept' => $this->dataSubdept->all(),
         'job' => $this->dataJob->all()]);
-
     }
 
     /** get */
@@ -77,6 +84,7 @@ class EmployeeController extends Controller
 
         return view($this->sViewRoot.'.edit',
         ['viewModel' => $viewModel, 'new' => false, 'fieldEnabled' => true,
+        'subdept' => $this->dataSubdept->all(),
         'job' => $this->dataJob->all()]);
     }
 
@@ -98,6 +106,9 @@ class EmployeeController extends Controller
         //copy temporary uploaded image to real path
         $data['image'] = Filex::uploadOrCopyAndRemove('', $uploadTemp, $this->uploadLoc, $upload, 'public', false);
         
+        //Dept Id
+        $data['dept_id'] = $this->dataSubdept->find($data['subdept_id'])->dept_id;
+
         //save data
         if ($this->data->create($data)) {
             return redirect()->route($this->routeBase . '.index');
