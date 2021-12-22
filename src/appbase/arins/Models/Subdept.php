@@ -25,7 +25,7 @@ class Subdept extends Model
 
 
     public function dept() {
-        return $this->belongsTo('Arins\Models\Subdept');
+        return $this->belongsTo('Arins\Models\Dept');
     }        
 
     public function employees() {

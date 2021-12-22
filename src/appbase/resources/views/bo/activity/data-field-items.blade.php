@@ -44,7 +44,7 @@ margin-left: auto; margin-right:auto;">
         <label>Jenis Pekerjaan</label>
         @if ($fieldEnabled == true)
           <select name="activitytype_id" class="form-control">
-                @foreach ($activitytype as $key => $item)
+                @foreach ($dataModel->activitytype as $key => $item)
 
                   @if ($errors->any())
                     {{ ($item->id == old('activitytype_id') ? $selected = 'selected' : $selected = '') }}
@@ -63,28 +63,6 @@ margin-left: auto; margin-right:auto;">
         @endif
         <p class="text-red">{{ $errors->first('activitytype_id') }}</p>
 
-      </div>
-
-      <div class="row">
-        <div class="col-sm-12 col-md-6">
-          <!-- text input:text -->
-          <div class="form-group">
-            <label>Mulai</label>
-            <input {{ $disabled }} type="text" id="startdt" name="startdt" class="form-control date" placeholder=""
-              value="{{ ( $errors->any() ? old('startdt') : \Arins\Facades\Formater::datetime($viewModel->data->startdt) ) }}">
-            <p class="text-red">{{ $errors->first('startdt') }}</p>
-          </div>
-        </div>
-
-        <div class="col-sm-12 col-md-6">
-          <!-- text input:text -->
-          <div class="form-group">
-            <label>Selesai</label>
-            <input {{ $disabled }} type="text" id="enddt" name="enddt" class="form-control date" placeholder=""
-              value="{{ ( $errors->any() ? old('enddt') : \Arins\Facades\Formater::datetime($viewModel->data->enddt) ) }}">
-            <p class="text-red">{{ $errors->first('enddt') }}</p>
-          </div>
-        </div>
       </div>
 
       <!-- textarea -->
