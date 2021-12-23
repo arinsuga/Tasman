@@ -13,7 +13,7 @@ use App\Http\Controllers\Controller;
 class BoController extends Controller
 {
 
-    protected $viewModel, $dataModel;
+    protected $viewModel, $dataModel, $dataField;
     protected $sViewRoot, $sViewName;
     protected $data;
 
@@ -22,7 +22,8 @@ class BoController extends Controller
     {
         $this->middleware('auth.admin');
         $this->middleware('is.admin');
-        $this->sViewRoot = 'bo.' . $psViewName;
+        $this->sViewName = $psViewName;
+        $this->sViewRoot = 'bo.' . $this->sViewName;
     }
 
 }

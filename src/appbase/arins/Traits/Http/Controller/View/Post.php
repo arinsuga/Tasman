@@ -3,6 +3,7 @@
 namespace Arins\Traits\Http\Controller\View;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 use Arins\Facades\Response;
 use Arins\Facades\Filex;
@@ -20,23 +21,31 @@ trait Post
         $upload = $request->file('upload'); //upload file (image/document) ==> if included
         $imageTemp = $request->input('imageTemp'); //temporary file uploaded
         
-        //convert input value (string/date/number/email/etc)
-        //$data['startdt'] = now();
-        //$data['enddt'] = ConvertDate::strDatetimeToDate($data['enddt']);
+        //Check if inputs need to be transformed by transformField method
+        if (method_exists($this, 'transformField')) {
+            $data = $this->transformField($data);
+        } //end if
+
 
         //create temporary uploaded image
         $uploadTemp = Filex::uploadTemp($upload, $imageTemp);
         $request->session()->flash('imageTemp', $uploadTemp);
 
         //validate input value
-        $request->validate($this->data->getValidateField());
+        $validator = Validator::make($data, $this->data->getValidateField());
+        if ($validator->fails()) {
+            //step 2: Kembali ke halaman input
+            return redirect()->route($this->sViewName . '.create')
+            ->withErrors($validator)
+            ->withInput();
+        } //end if validator
 
         //copy temporary uploaded image to real path
         $data['image'] = Filex::uploadOrCopyAndRemove('', $uploadTemp, 'activities', $upload, 'public', false);
         
         //save data
         if ($this->data->create($data)) {
-            return redirect()->route('activity.index');
+            return redirect()->route($this->sViewName . '.index');
         }
 
         /** jika tetap terjadi kesalahan maka ada kesalahan pada system */
@@ -44,7 +53,7 @@ trait Post
         Filex::delete($data['image']);
 
         //step 2: Kembali ke halaman input
-        return redirect()->route('activity.create')
+        return redirect()->route($this->sViewName . '.create')
         ->withInput();
 
     }
@@ -79,7 +88,7 @@ trait Post
 
         if ($this->data->update($record, $data)) {
             Filex::delete($imageOld);
-            return redirect()->route('activity.index');
+            return redirect()->route($this->sViewName . '.index');
         }
 
         /** jika tetap terjadi kesalahan maka ada kesalahan pada system */
@@ -87,7 +96,7 @@ trait Post
         Filex::delete($data['image']);
 
         //step 2: Kembali ke halaman input
-        return redirect()->route('activity.edit', $id)
+        return redirect()->route($this->sViewName . '.edit', $id)
         ->withInput();
     }
 
@@ -102,7 +111,7 @@ trait Post
         $this->data->delete($record);
         Filex::delete($fileName); 
 
-        return redirect()->route('activity.index');
+        return redirect()->route($this->sViewName . '.index');
    }
 
 

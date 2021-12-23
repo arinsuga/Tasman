@@ -10,7 +10,10 @@ use Arins\Traits\Http\Controller\View\Base;
 use Arins\Repositories\Activitytype\ActivitytypeRepositoryInterface;
 use Arins\Repositories\Activity\ActivityRepositoryInterface;
 
-
+use Arins\Facades\Response;
+use Arins\Facades\Filex;
+use Arins\Facades\Formater;
+use Arins\Facades\ConvertDate;
 
 class ActivityController extends BoController
 {
@@ -38,6 +41,13 @@ class ActivityController extends BoController
 
         $this->dataModel['activitytype'] = $this->dataActivitytype->all();
         $this->dataModel = json_decode(json_encode($this->dataModel), FALSE);
+    }
+
+    protected function transformField($paDataField) {
+        $dataField = $paDataField;
+        $dataField['startdt'] = now();
+
+        return $dataField;
     }
 
     /** get */

@@ -16,14 +16,14 @@ class ActivityRepository extends BaseRepository implements ActivityRepositoryInt
             'name' => null,
             'description' => null,
             'image' => null,
-            'startdt' => null,
-            'enddt' => null,
+            //'startdt' => null,
+            // 'enddt' => null,
         ];
 
         $this->validateField = [
             //code array here...
             'startdt' => 'required',
-            'enddt' => 'required',
+            // 'enddt' => 'required',
             'activitytype_id' => 'required',
             'description' => 'required',
         ];
