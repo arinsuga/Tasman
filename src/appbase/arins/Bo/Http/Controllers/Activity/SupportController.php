@@ -40,6 +40,7 @@ class SupportController extends BoController
 
     protected function transformField($paDataField) {
         $dataField = $paDataField;
+        $dataField['activitytype_id'] = 1; //Support
         $dataField['startdt'] = now();
 
         return $dataField;

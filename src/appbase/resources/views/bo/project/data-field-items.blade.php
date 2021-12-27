@@ -39,32 +39,6 @@ margin-left: auto; margin-right:auto;">
         @endif
       </div>
 
-      <!-- text input:text -->
-      <div class="form-group">
-        <label>Jenis Pekerjaan</label>
-        @if ($fieldEnabled == true)
-          <select name="activitytype_id" class="form-control">
-                @foreach ($dataModel->activitytype as $key => $item)
-
-                  @if ($errors->any())
-                    {{ ($item->id == old('activitytype_id') ? $selected = 'selected' : $selected = '') }}
-                  @else
-                    {{ ( $item->id == $viewModel->data->activitytype_id ) ? $selected = 'selected' : $selected = '' }}
-                  @endif
-                  <option {{ $selected }} value="{{ $item->id }}">{{ $item->name }}</option>
-                  
-                @endforeach
-            </select>
-        @else
-          <input type="hidden" name="activitytype_id" value="{{ $viewModel->data->activitytype_id }}" readonly>
-          <div class="form-group">
-              <input disabled type="text" value="{{ $viewModel->data->activitytype->name }}" class="form-control">
-          </div>
-        @endif
-        <p class="text-red">{{ $errors->first('activitytype_id') }}</p>
-
-      </div>
-
       <!-- textarea -->
       <div class="form-group">
         <label>Deskripsi</label>

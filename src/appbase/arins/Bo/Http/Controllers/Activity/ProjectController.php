@@ -41,6 +41,7 @@ class ProjectController extends BoController
 
     protected function transformField($paDataField) {
         $dataField = $paDataField;
+        $dataField['activitytype_id'] = 3; //Project
         $dataField['startdt'] = now();
 
         return $dataField;
