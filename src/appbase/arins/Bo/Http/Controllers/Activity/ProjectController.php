@@ -16,7 +16,7 @@ use Arins\Facades\Filex;
 use Arins\Facades\Formater;
 use Arins\Facades\ConvertDate;
 
-class ActivityController extends BoController
+class ProjectController extends BoController
 {
 
     use Base;
@@ -30,7 +30,7 @@ class ActivityController extends BoController
                                 ActivitytypeRepositoryInterface $parActivitytype)
     {
 
-        parent::__construct('activity');
+        parent::__construct('project');
 
         $this->data = $parData;
         $this->dataActivitytype = $parActivitytype;

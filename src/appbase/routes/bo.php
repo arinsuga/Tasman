@@ -36,7 +36,7 @@ Route::group(['middleware'=>'lang'],function ()
 //    Route::resource('home', 'Home\HomeController');
     Route::get('/', 'Home\HomeController@index')->name('home.index');
 
-    //activity
+    //activity dashboard
     Route::resource('dashboard', 'Dashboard\DashboardController');
     //activity
     Route::resource('activity', 'Activity\ActivityController');
@@ -44,6 +44,14 @@ Route::group(['middleware'=>'lang'],function ()
     Route::get('report/detail', 'Report\ReportController@detail')->name('report.detail');
     //activity report recap
     Route::get('report/recap', 'Report\ReportController@recap')->name('report.recap');
+
+    //support
+    Route::resource('support', 'Activity\SupportController');
+    //maintenance
+    Route::resource('maintenance', 'Activity\MaintenanceController');
+    //project
+    Route::resource('project', 'Activity\ProjectController');
+
 
     //employee
     Route::resource('employee', 'Employee\EmployeeController');

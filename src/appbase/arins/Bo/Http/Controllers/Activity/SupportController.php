@@ -3,7 +3,6 @@
 namespace Arins\Bo\Http\Controllers\Activity;
 
 // use App\Http\Controllers\Controller;
-// use App\Http\Controllers\Controller;
 // use Illuminate\Http\Request;
 use Arins\Http\Controllers\BoController;
 use Arins\Traits\Http\Controller\View\Base;
@@ -16,7 +15,7 @@ use Arins\Facades\Filex;
 use Arins\Facades\Formater;
 use Arins\Facades\ConvertDate;
 
-class ActivityController extends BoController
+class SupportController extends BoController
 {
 
     use Base;
@@ -30,7 +29,7 @@ class ActivityController extends BoController
                                 ActivitytypeRepositoryInterface $parActivitytype)
     {
 
-        parent::__construct('activity');
+        parent::__construct('support');
 
         $this->data = $parData;
         $this->dataActivitytype = $parActivitytype;

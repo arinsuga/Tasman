@@ -23,21 +23,21 @@
 
       <ul class="nav nav-treeview">
         <li class="nav-item">
-          <a href="{{ route('activity.index') }}" class="nav-link">
+          <a href="{{ route('support.index') }}" class="nav-link">
             <i class="far fa-circle nav-icon"></i>
             <p>Support</p>
           </a>
         </li>
 
         <li class="nav-item">
-          <a href="{{ route('activity.index') }}" class="nav-link">
+          <a href="{{ route('maintenance.index') }}" class="nav-link">
             <i class="far fa-circle nav-icon"></i>
             <p>Maintenance</p>
           </a>
         </li>
 
         <li class="nav-item">
-          <a href="{{ route('activity.index') }}" class="nav-link">
+          <a href="{{ route('project.index') }}" class="nav-link">
             <i class="far fa-circle nav-icon"></i>
             <p>Project</p>
           </a>
