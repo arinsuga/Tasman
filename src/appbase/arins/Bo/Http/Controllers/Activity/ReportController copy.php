@@ -16,21 +16,16 @@ use Arins\Facades\Filex;
 use Arins\Facades\Formater;
 use Arins\Facades\ConvertDate;
 
-class ProjectController extends BoController
+class ReportController extends BoController
 {
 
-    use Base;
-
-    // protected $sViewRoot;
-    // protected $data, $dataActivitytype;
     protected $dataActivitytype;
-
 
     public function __construct(ActivityRepositoryInterface $parData,
                                 ActivitytypeRepositoryInterface $parActivitytype)
     {
 
-        parent::__construct('project');
+        parent::__construct('activity');
 
         $this->data = $parData;
         $this->dataActivitytype = $parActivitytype;
@@ -39,11 +34,30 @@ class ProjectController extends BoController
         $this->dataModel = json_decode(json_encode($this->dataModel), FALSE);
     }
 
-    protected function transformField($paDataField) {
-        $dataField = $paDataField;
-        $dataField['activitytype_id'] = 3; //Project
-        $dataField['startdt'] = now();
+    /** get */
+    public function reportDetail()
+    {
+        return dd('reportDetail');
+        $data = $this->data->allOrderByIdDesc();
 
-        return $dataField;
+        $viewModel = Response::viewModel();
+        $viewModel->data = $data;
+
+        return view($this->sViewRoot.'.report-detail',
+        ['viewModel' => $viewModel]);
     }
+
+    /** get */
+    public function reportRecap()
+    {
+        return dd('reportRecap');
+        $data = $this->data->allOrderByIdDesc();
+
+        $viewModel = Response::viewModel();
+        $viewModel->data = $data;
+
+        return view($this->sViewRoot.'.report-recap',
+        ['viewModel' => $viewModel]);
+    }
+
 }

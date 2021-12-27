@@ -46,30 +46,4 @@ class MaintenanceController extends BoController
         return $dataField;
     }
 
-    /** get */
-    public function reportDetail()
-    {
-        return dd('reportDetail');
-        $data = $this->data->allOrderByIdDesc();
-
-        $viewModel = Response::viewModel();
-        $viewModel->data = $data;
-
-        return view($this->sViewRoot.'.report-detail',
-        ['viewModel' => $viewModel]);
-    }
-
-    /** get */
-    public function reportRecap()
-    {
-        return dd('reportRecap');
-        $data = $this->data->allOrderByIdDesc();
-
-        $viewModel = Response::viewModel();
-        $viewModel->data = $data;
-
-        return view($this->sViewRoot.'.report-recap',
-        ['viewModel' => $viewModel]);
-    }
-
 }
