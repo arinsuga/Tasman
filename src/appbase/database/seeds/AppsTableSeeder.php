@@ -17,9 +17,9 @@ class AppsTableSeeder extends Seeder
         //cms
         DB::table('apps')->insert([
             'id' => 1,
-            'code' => 'cms',
-            'name' => 'Content Management System',
-            'description' => 'Content Management System for Website Management',
+            'code' => 'tsk',
+            'name' => 'Tasksheet',
+            'description' => 'Task Management System',
         ]);
     } //end method
 } //end classs

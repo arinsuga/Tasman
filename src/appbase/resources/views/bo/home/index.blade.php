@@ -6,7 +6,7 @@
     
 <div class="container">
     <div class="box" style="border: none;">
-        <img style="width: 90%;" src="{{ asset('img/logo.png') }}" alt="">
+        <img style="width: 90%;" src="{{ asset('img/'.config('a1.uiux.logo')) }}" alt="">
     </div>
 </div>
 

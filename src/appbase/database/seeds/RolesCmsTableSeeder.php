@@ -16,7 +16,7 @@ class RolesCmsTableSeeder extends Seeder
         DB::table('roles')->insert([
             //'id' => 1,
             'app_id' => 1,
-            'code' => 'cms-adm',
+            'code' => 'adm',
             'name' => 'Super Admin',
             'description' => 'Role Super Admin memiliki akses ke semua feature aplikasi.',
         ]);
@@ -25,7 +25,7 @@ class RolesCmsTableSeeder extends Seeder
         DB::table('roles')->insert([
             //'id' => 2,
             'app_id' => 1,
-            'code' => 'cms-post',
+            'code' => 'post',
             'name' => 'Content Poster Admin',
             'description' => 'Role Content Poster hanya memiliki akses untuk memposting content.',
         ]);
@@ -34,7 +34,7 @@ class RolesCmsTableSeeder extends Seeder
         DB::table('roles')->insert([
             //'id' => 3,
             'app_id' => 1,
-            'code' => 'cms-rpt',
+            'code' => 'rpt',
             'name' => 'Content Reporter',
             'description' => 'Role Content Reporter hanya memiliki akses untuk membuat laporan.',
         ]);
