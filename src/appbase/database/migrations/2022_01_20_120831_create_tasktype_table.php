@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateActivitytypeTable extends Migration
+class CreateTasktypeTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateActivitytypeTable extends Migration
      */
     public function up()
     {
-        Schema::create('activitytype', function (Blueprint $table) {
+        Schema::create('tasktype', function (Blueprint $table) {
             $table->increments('id');
             
             $table->string('name')->nullable();
@@ -21,6 +21,8 @@ class CreateActivitytypeTable extends Migration
             $table->string('image')->nullable();
 
             $table->timestamps();
+
+
         });
     }
 
@@ -31,6 +33,6 @@ class CreateActivitytypeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('activitytype');
+        Schema::dropIfExists('tasktype');
     }
 }

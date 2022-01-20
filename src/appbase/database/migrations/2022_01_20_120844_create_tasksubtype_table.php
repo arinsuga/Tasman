@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateActivitytypeTable extends Migration
+class CreateTasksubtypeTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,16 @@ class CreateActivitytypeTable extends Migration
      */
     public function up()
     {
-        Schema::create('activitytype', function (Blueprint $table) {
+        Schema::create('tasksubtype', function (Blueprint $table) {
             $table->increments('id');
-            
+            $table->integer('tasktype_id')->nullable();
+
             $table->string('name')->nullable();
             $table->string('description')->nullable();
             $table->string('image')->nullable();
 
             $table->timestamps();
+
         });
     }
 
@@ -31,6 +33,6 @@ class CreateActivitytypeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('activitytype');
+        Schema::dropIfExists('tasksubtype');
     }
 }
