@@ -21,6 +21,8 @@ class CreateActivitysubtypeTable extends Migration
             $table->string('name')->nullable();
             $table->string('description')->nullable();
             $table->string('image')->nullable();
+            $table->integer("numsort")->nullable();
+            $table->integer('status')->nullable();
 
             $table->timestamps();
         });
