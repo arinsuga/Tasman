@@ -15,7 +15,8 @@ class CreateTasktypeTable extends Migration
     {
         Schema::create('tasktype', function (Blueprint $table) {
             $table->increments('id');
-            
+            $table->integer('activitytype_id')->nullable();
+
             $table->string('name')->nullable();
             $table->string('description')->nullable();
             $table->string('image')->nullable();
