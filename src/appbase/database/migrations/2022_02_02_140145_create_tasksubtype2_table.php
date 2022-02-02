@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTasksubtypeTable extends Migration
+class CreateTasksubtype2Table extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreateTasksubtypeTable extends Migration
      */
     public function up()
     {
-        Schema::create('tasksubtype', function (Blueprint $table) {
+        Schema::create('tasksubtype2', function (Blueprint $table) {
+
             $table->increments('id');
             $table->integer('tasktype_id')->nullable();
+            $table->integer('tasksubtype1_id')->nullable();
 
             $table->string('name')->nullable();
             $table->string('description')->nullable();
@@ -24,6 +26,7 @@ class CreateTasksubtypeTable extends Migration
             $table->integer('status')->nullable();
 
             $table->timestamps();
+
 
         });
     }
@@ -35,6 +38,6 @@ class CreateTasksubtypeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tasksubtype');
+        Schema::dropIfExists('tasksubtype2');
     }
 }
