@@ -15,6 +15,7 @@ class CreateTasksubtype1Table extends Migration
     {
         Schema::create('tasksubtype1', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('activitytype_id')->nullable();
             $table->integer('tasktype_id')->nullable();
 
             $table->string('name')->nullable();
