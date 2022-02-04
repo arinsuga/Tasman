@@ -1,41 +1,35 @@
 <?php
 
-namespace Arins\Repositories\Activity;
+namespace Arins\Repositories\Activitytype;
 
 use Arins\Repositories\BaseRepository;
-use Arins\Repositories\Activitytype\ActivitytypeRepositoryInterface;
+use Arins\Repositories\Activitysubtype\ActivitysubtypeRepositoryInterface;
 
-class ActivityRepository extends BaseRepository implements ActivityRepositoryInterface
+class ActivitysubtypeRepository extends BaseRepository implements ActivitysubtypeRepositoryInterface
 {
+
     public function __construct($parData)
     {
         parent::__construct($parData);
 
         $this->inputField = [
+
             'activitytype_id' => null,
-            'activitysubtype_id' => null,
-            'tasktype_id' => null,
-            'tasksubtype1_id' => null,
-            'tasksubtype2_id' => null,
             'name' => null,
-            'subject' => null,
             'description' => null,
             'image' => null,
-            //'startdt' => null,
-            // 'enddt' => null,
+            'numsort' => null,
+            'status' => null
         ];
 
         $this->validateField = [
-            //code array here...
-            'startdt' => 'required',
-            // 'enddt' => 'required',
-            'activitytype_id' => 'required',
-            'activitysubtype_id' => null,
-            'tasktype_id' => null,
-            'tasksubtype1_id' => null,
-            'tasksubtype2_id' => null,
+
+            //'activitytype_id' => 'required',
+            'name' => 'required',
             'description' => 'required',
-            'subject' => null,
+            'image' => null,
+            'numsort' => null,
+            'status' => null
         ];
 
     }
@@ -43,7 +37,7 @@ class ActivityRepository extends BaseRepository implements ActivityRepositoryInt
     //Override parent class [BaseRepository.all()]
     public function all()
     {
-        return $this->data::with('activity')->get();;
+        return $this->data::with(['activity', 'activitytype'])->get();;
     }
 
     public function byActivitytype($id, $take=null)
@@ -62,5 +56,6 @@ class ActivityRepository extends BaseRepository implements ActivityRepositoryInt
         return 'hasil dari function countActivityByActivityType';
 
     }
+
 
 }

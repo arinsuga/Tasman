@@ -18,8 +18,11 @@ class CreateActivityTable extends Migration
 
             $table->integer('activitytype_id')->nullable();
             $table->integer('activitysubtype_id')->nullable();
+            $table->integer('activitystatus_id')->nullable();
+
             $table->integer('tasktype_id')->nullable();
-            $table->integer('tasksubtype_id')->nullable();
+            $table->integer('tasksubtype1_id')->nullable();
+            $table->integer('tasksubtype2_id')->nullable();
 
             $table->string('name')->nullable();
 

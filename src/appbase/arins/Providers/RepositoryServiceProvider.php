@@ -13,12 +13,17 @@ use Arins\Repositories\Productsubtype\ProductsubtypeRepository;
 use Arins\Repositories\Product\ProductRepository;
 use Arins\Repositories\Event\EventRepository;
 use Arins\Repositories\News\NewsRepository;
-use Arins\Repositories\Activitytype\ActivitytypeRepository;
+
 use Arins\Repositories\Activity\ActivityRepository;
+use Arins\Repositories\Activitytype\ActivitytypeRepository;
+use Arins\Repositories\Activitystatus\ActivitystatusRepository;
+
 use Arins\Repositories\Employee\EmployeeRepository;
 use Arins\Repositories\Job\JobRepository;
 use Arins\Repositories\Dept\DeptRepository;
 use Arins\Repositories\Subdept\SubdeptRepository;
+
+
 
 //Models
 use App\User;
@@ -171,6 +176,18 @@ class RepositoryServiceProvider extends ServiceProvider
                 return $modelRepository;
             }
         );
+
+        //Activitystatus
+        $this->app->bind(
+            'Arins\Repositories\Activitystatus\ActivitystatusRepositoryInterface',
+            function()
+            {
+                $model = new Activitystatus();
+                $modelRepository = new ActivitystatusRepository($model);
+                return $modelRepository;
+            }
+        );
+
 
         //Dept
         $this->app->bind(

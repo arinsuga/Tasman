@@ -9,7 +9,19 @@ class Activity extends Model
 
     protected $table = 'activity';
 
-    protected $fillable = ['activitytype_id', 'name', 'description', 'image', 'startdt', 'enddt'];
+    protected $fillable = [
+        'activitytype_id',
+        'activitysubtype_id',
+        'tasktype_id',
+        'tasksubtype1_id',
+        'tasksubtype2_id',
+        'name',
+        'subject',
+        'description',
+        'image',
+        'startdt',
+        'enddt'
+    ];
 
     protected $dates = [
         'startdt',
@@ -21,6 +33,11 @@ class Activity extends Model
     public function activitytype()
     {
         return $this->belongsTo('Arins\Models\Activitytype');
+    }
+
+    public function activitysubtype()
+    {
+        return $this->belongsTo('Arins\Models\Activitysubtype');
     }
 
 }

@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call('ActivitytypeTableSeeder');
         $this->call('ActivitysubtypeTableSeeder');
+        $this->call('ActivitystatusTableSeeder');
 
         $this->call('TasktypeTableSeeder');
         $this->call('Tasksubtype1TableSeeder');
