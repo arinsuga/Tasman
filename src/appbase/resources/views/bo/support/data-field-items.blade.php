@@ -43,7 +43,7 @@ margin-left: auto; margin-right:auto;">
       <div class="form-group">
         <label>Subject</label>
         <input {{ $disabled }} type="text" id="subject" name="subject" class="form-control" value="{{ ( $errors->any() ? old('subject') : $viewModel->data->subject ) }}">
-        <p class="text-red">{{ $errors->first('description') }}</p>
+        <p class="text-red">{{ $errors->first('subject') }}</p>
       </div>
 
       <!-- textarea -->

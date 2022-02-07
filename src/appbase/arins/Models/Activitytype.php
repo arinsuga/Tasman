@@ -16,7 +16,7 @@ class Activitytype extends Model
         return $this->hasMany('Arins\Models\Activity');
     }
 
-    public function Activitysubtypes()
+    public function activitysubtypes()
     {
         return $this->hasMany('Arins\Models\Activitysubtype');
     }

@@ -30,12 +30,12 @@ class ActivityRepository extends BaseRepository implements ActivityRepositoryInt
             'startdt' => 'required',
             // 'enddt' => 'required',
             'activitytype_id' => 'required',
-            'activitysubtype_id' => null,
-            'tasktype_id' => null,
-            'tasksubtype1_id' => null,
-            'tasksubtype2_id' => null,
+            'activitysubtype_id' => '',
+            'tasktype_id' => '',
+            'tasksubtype1_id' => '',
+            'tasksubtype2_id' => '',
             'description' => 'required',
-            'subject' => null,
+            'subject' => 'required',
         ];
 
     }
