@@ -17,13 +17,34 @@ $roleAdm = env('ADMIN_ROLE_CODE');
 $rolePost = env('POST_ROLE_CODE');
 $roleRpt = env('RPT_ROLE_CODE');
 
+use Arins\Models\Activity;
+use Arins\Models\Activitytype;
+use Arins\Models\Activitysubtype;
+use Arins\Models\Activitystatus;
+Route::get('/dd', function () {
+
+    // $data = Activitystatus::with('activities')->get();
+    //$data = Activitysubtype::with('activities', 'activitytype')->get();
+    //$data = Activitytype::with('activities')->get();
+
+
+    $data = Activity::with([
+        'activitytype',
+        'activitysubtype',
+        'activitystatus'
+        ])->get();
+
+    return $data[0]->activitystatus->name;
+});
+
+
 use Arins\Facades\Filex;
 Route::get('ddfile', function() {
     $temp = Filex::image('events/event1.png');
     return $temp;
 });
 
-Route::get('/dd', function () {
+Route::get('/ddadminrole', function () {
     $roleAdm = env('ADMIN_ROLE_CODE');
 
     $data = new \App\User();

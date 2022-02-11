@@ -40,4 +40,9 @@ class Activity extends Model
         return $this->belongsTo('Arins\Models\Activitysubtype');
     }
 
+    public function activitystatus()
+    {
+        return $this->belongsTo('Arins\Models\Activitystatus');
+    }
+
 }
