@@ -38,6 +38,32 @@ class ActivityRepository extends BaseRepository implements ActivityRepositoryInt
             'subject' => 'required',
         ];
 
+        $this->validateInput = [
+            //code array here...
+            //'startdt' => 'required',
+            // 'enddt' => 'required',
+            //'activitytype_id' => 'required',
+            //'activitysubtype_id' => '',
+            //'tasktype_id' => '',
+            //'tasksubtype1_id' => '',
+            //'tasksubtype2_id' => '',
+            'description' => 'required',
+            'subject' => 'required',
+        ];
+
+        $this->validateField = [
+            //code array here...
+            'startdt' => 'required',
+            // 'enddt' => 'required',
+            'activitytype_id' => 'required',
+            'activitysubtype_id' => '',
+            'tasktype_id' => '',
+            'tasksubtype1_id' => '',
+            'tasksubtype2_id' => '',
+            'description' => 'required',
+            'subject' => 'required',
+        ];
+
     }
 
     //Override parent class [BaseRepository.all()]

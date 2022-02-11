@@ -71,16 +71,17 @@ trait Post
         $imageTemp = $request->input('imageTemp'); //temporary file uploaded
         $toggleRemoveImage = $request->input('toggleRemoveImage');
 
-        //convert input value (string/date/number/email/etc)
-        $data['startdt'] = ConvertDate::strDatetimeToDate($data['startdt']);
-        $data['enddt'] = ConvertDate::strDatetimeToDate($data['enddt']);
+        // return dd($data);
+        // //convert input value (string/date/number/email/etc)
+        // $data['startdt'] = ConvertDate::strDatetimeToDate($data['startdt']);
+        // $data['enddt'] = ConvertDate::strDatetimeToDate($data['enddt']);
 
         //create temporary uploaded image
         $uploadTemp = Filex::uploadTemp($upload, $imageTemp);
         $request->session()->flash('imageTemp', $uploadTemp);
 
         //validate input value
-        $request->validate($this->data->getValidateField());
+        $request->validate($this->data->getValidateInput());
 
         //copy temporary uploaded image to real path
         $data['image'] = Filex::uploadOrCopyAndRemove('', $uploadTemp, 'activities', $upload, 'public', false);
