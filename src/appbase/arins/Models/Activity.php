@@ -45,4 +45,9 @@ class Activity extends Model
         return $this->belongsTo('Arins\Models\Activitystatus');
     }
 
+    public function tasktype()
+    {
+        return $this->belongsTo('Arins\Models\Tasktype');
+    }
+
 }

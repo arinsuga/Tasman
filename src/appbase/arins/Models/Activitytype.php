@@ -21,4 +21,8 @@ class Activitytype extends Model
         return $this->hasMany('Arins\Models\Activitysubtype');
     }
 
+    public function tasktypes()
+    {
+        return $this->hasMany('Arins\Models\Tasktype');
+    }
 }

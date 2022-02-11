@@ -21,20 +21,23 @@ use Arins\Models\Activity;
 use Arins\Models\Activitytype;
 use Arins\Models\Activitysubtype;
 use Arins\Models\Activitystatus;
+use Arins\Models\Tasktype;
+
 Route::get('/dd', function () {
 
     // $data = Activitystatus::with('activities')->get();
     //$data = Activitysubtype::with('activities', 'activitytype')->get();
-    //$data = Activitytype::with('activities')->get();
+    $data = Activitytype::with(['activities', 'tasktypes'])->get();
 
 
-    $data = Activity::with([
-        'activitytype',
-        'activitysubtype',
-        'activitystatus'
-        ])->get();
+    // $data = Activity::with([
+    //     'activitytype',
+    //     'activitysubtype',
+    //     'activitystatus',
+    //     'tasktype'
+    //     ])->get();
 
-    return $data[0]->activitystatus->name;
+    return $data[0]->tasktypes[0]->activities[0]->tasktype_id;
 });
 
 
@@ -120,7 +123,7 @@ Route::get('/dd/formater', function () {
         'Format date [$formater]' => $formater,
         'Format date result [$formaterResult]' => $formaterResult,
         'Tanggal Hari ini [$now]' => $now];
-   
+
 
     return dd($hasil);
 
@@ -161,12 +164,12 @@ Route::get('/onlyadmin', function() {
     // if (Gate::allows(env('ADMIN_ROLE_CODE'))) {
     //     // The current user can edit settings
     //     return Auth::user()->email.' Behasil!!!';
-    // }    
+    // }
 
     // if (Gate::allows(env('POST_ROLE_CODE'))) {
     //     // The current user can edit settings
     //     return Auth::user()->email.' Behasil!!!';
-    // }    
+    // }
 
 
     Gate::authorize(env('POST_ROLE_CODE'));
@@ -175,7 +178,7 @@ Route::get('/onlyadmin', function() {
     // if (Gate::any(['ADMIN_ROLE_CODE', 'POST_ROLE_CODE'])) {
     //     // The user can update or delete the post
     //     return Auth::user()->email.' Behasil!!! BRO';
-    // }    
+    // }
 
 
     return Auth::user()->email.' this is only for admin';
