@@ -4,12 +4,20 @@ namespace Arins\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Tasktype extends Model
+class Tasksubtype1 extends Model
 {
 
-    protected $table = 'tasktype';
+    protected $table = 'tasksubtype1';
 
-    protected $fillable = ['activitytype_id', 'name', 'description', 'image', 'numsort', 'status'];
+    protected $fillable = [
+        'activitytype_id',
+        'tasktype_id',
+        'name',
+        'description',
+        'image',
+        "numsort",
+        'status'
+    ];
 
     public function activities()
     {
@@ -21,9 +29,9 @@ class Tasktype extends Model
         return $this->belongsTo('Arins\Models\Activitytype');
     }
 
-    public function tasksubtype1()
+    public function tasktype()
     {
-        return $this->hasMany('Arins\Models\Tasksubtype1');
+        return $this->belongsTo('Arins\Models\Tasktype');
     }
 
     public function tasksubtype2()

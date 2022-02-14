@@ -22,22 +22,25 @@ use Arins\Models\Activitytype;
 use Arins\Models\Activitysubtype;
 use Arins\Models\Activitystatus;
 use Arins\Models\Tasktype;
-
+use Arins\Models\Tasksubtype1;
 Route::get('/dd', function () {
 
+    // $data = Tasksubtype1::with('activities', 'activitytype', 'tasktype')->get();
     // $data = Activitystatus::with('activities')->get();
     //$data = Activitysubtype::with('activities', 'activitytype')->get();
-    $data = Activitytype::with(['activities', 'tasktypes'])->get();
+    // $data = Activitytype::with(['activities', 'tasktypes'])->get();
 
 
-    // $data = Activity::with([
-    //     'activitytype',
-    //     'activitysubtype',
-    //     'activitystatus',
-    //     'tasktype'
-    //     ])->get();
+    $data = Activity::with([
+        'activitytype',
+        'activitysubtype',
+        'activitystatus',
+        'tasktype',
+        'tasksubtype1',
+        'tasksubtype2'
+        ])->get();
 
-    return $data[0]->tasktypes[0]->activities[0]->tasktype_id;
+    return $data[0]->tasksubtype2;
 });
 
 

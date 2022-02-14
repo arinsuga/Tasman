@@ -50,4 +50,14 @@ class Activity extends Model
         return $this->belongsTo('Arins\Models\Tasktype');
     }
 
+    public function tasksubtype1()
+    {
+        return $this->belongsTo('Arins\Models\Tasksubtype1');
+    }
+
+    public function tasksubtype2()
+    {
+        return $this->belongsTo('Arins\Models\Tasksubtype2');
+    }
+
 }
