@@ -9,6 +9,7 @@ interface BaseRepositoryInterface
 
     function getFillable();
     function getInputField();
+    function getValidateInput();
     function getValidateField();
 
     function create($inputData);

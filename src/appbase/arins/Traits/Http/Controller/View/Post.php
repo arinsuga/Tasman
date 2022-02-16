@@ -32,7 +32,7 @@ trait Post
         $request->session()->flash('imageTemp', $uploadTemp);
 
         //validate input value
-        $validator = Validator::make($data, $this->data->getValidateField());
+        $validator = Validator::make($data, $this->data->getValidateInput());
         if ($validator->fails()) {
             //step 2: Kembali ke halaman input
             return redirect()->route($this->sViewName . '.create')

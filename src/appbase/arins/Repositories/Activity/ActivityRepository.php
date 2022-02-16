@@ -14,63 +14,46 @@ class ActivityRepository extends BaseRepository implements ActivityRepositoryInt
         $this->inputField = [
             'activitytype_id' => null,
             'activitysubtype_id' => null,
+            'activitystatus_id' => null,
             'tasktype_id' => null,
             'tasksubtype1_id' => null,
             'tasksubtype2_id' => null,
             'name' => null,
             'subject' => null,
             'description' => null,
+            'resolution' => null,
             'image' => null,
-            //'startdt' => null,
-            // 'enddt' => null,
-        ];
-
-        $this->validateField = [
-            //code array here...
-            'startdt' => 'required',
-            // 'enddt' => 'required',
-            'activitytype_id' => 'required',
-            'activitysubtype_id' => '',
-            'tasktype_id' => '',
-            'tasksubtype1_id' => '',
-            'tasksubtype2_id' => '',
-            'description' => 'required',
-            'subject' => 'required',
+            'startdt' => null,
+            'enddt' => null,
+            'enduser_id' => null,
+            'enduserdept_id' => null,
+            'technician_id' => null
         ];
 
         $this->validateInput = [
-            //code array here...
-            //'startdt' => 'required',
-            // 'enddt' => 'required',
-            //'activitytype_id' => 'required',
-            //'activitysubtype_id' => '',
-            //'tasktype_id' => '',
-            //'tasksubtype1_id' => '',
-            //'tasksubtype2_id' => '',
-            'description' => 'required',
+            //remarkfortes 'activitysubtype_id' => 'required',
+            //remarkfortes 'tasktype_id' => 'required',
             'subject' => 'required',
+            'description' => 'required',
         ];
 
         $this->validateField = [
             //code array here...
             'startdt' => 'required',
-            // 'enddt' => 'required',
             'activitytype_id' => 'required',
-            'activitysubtype_id' => '',
-            'tasktype_id' => '',
-            'tasksubtype1_id' => '',
-            'tasksubtype2_id' => '',
-            'description' => 'required',
+            //remarkfortes 'activitysubtype_id' => 'required',
+            //remarkfortes 'tasktype_id' => 'required',
             'subject' => 'required',
+            'description' => 'required',
         ];
 
     }
 
-    //Override parent class [BaseRepository.all()]
-    public function all()
-    {
-        return $this->data::with('activity')->get();;
-    }
+    // //Override parent class [BaseRepository.all()]
+    // public function all()
+    // {
+    //     return $this->data::with('activity')->get();;
+    // }
 
     public function byActivitytype($id, $take=null)
     {

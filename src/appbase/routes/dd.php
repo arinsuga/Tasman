@@ -43,6 +43,17 @@ Route::get('/dd', function () {
     return $data[0]->tasksubtype2;
 });
 
+use Arins\Repositories\Activity\ActivityRepository;
+Route::get('dd1', function(){
+    
+    $model = new Activity();
+    $data = new ActivityRepository($model);
+    return $data->all();
+    return $data->allOrderByIdDesc();
+
+    $hasil = json_decode(json_encode($data), false);
+    return strtoupper($hasil->nama);
+});
 
 use Arins\Facades\Filex;
 Route::get('ddfile', function() {

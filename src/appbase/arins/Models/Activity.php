@@ -12,15 +12,20 @@ class Activity extends Model
     protected $fillable = [
         'activitytype_id',
         'activitysubtype_id',
+        'activitystatus_id',
         'tasktype_id',
         'tasksubtype1_id',
         'tasksubtype2_id',
         'name',
         'subject',
         'description',
+        'resolution',
         'image',
         'startdt',
-        'enddt'
+        'enddt',
+        'enduser_id',
+        'enduserdept_id',
+        'technician_id'
     ];
 
     protected $dates = [
