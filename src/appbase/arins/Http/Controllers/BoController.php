@@ -18,7 +18,7 @@ class BoController extends Controller
     protected $data;
 
 
-    public function __construct($psViewName)
+    public function __construct($psViewName=null)
     {
         $this->middleware('auth.admin');
         $this->middleware('is.admin');

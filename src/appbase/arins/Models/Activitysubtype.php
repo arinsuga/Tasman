@@ -15,7 +15,7 @@ class Activitysubtype extends Model
         'description',
         'image',
         'numsort',
-        'status'
+        'status',
     ];
 
     protected $dates = [

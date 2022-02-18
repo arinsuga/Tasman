@@ -9,7 +9,13 @@ class Activitytype extends Model
 
     protected $table = 'activitytype';
 
-    protected $fillable = ['name', 'description', 'image'];
+    protected $fillable = [
+        'name',
+        'description',
+        'image',
+        'numsort',
+        'status',
+    ];
 
     public function activities()
     {

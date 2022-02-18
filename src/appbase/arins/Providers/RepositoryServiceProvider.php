@@ -16,6 +16,7 @@ use Arins\Repositories\News\NewsRepository;
 
 use Arins\Repositories\Activity\ActivityRepository;
 use Arins\Repositories\Activitytype\ActivitytypeRepository;
+use Arins\Repositories\Activitysubtype\ActivitysubtypeRepository;
 use Arins\Repositories\Activitystatus\ActivitystatusRepository;
 
 use Arins\Repositories\Employee\EmployeeRepository;
@@ -34,7 +35,10 @@ use Arins\Models\Productsubtype;
 use Arins\Models\Product;
 use Arins\Models\Event;
 use Arins\Models\News;
+
 use Arins\Models\Activity;
+use Arins\Models\Activitystatus;
+use Arins\Models\Activitysubtype;
 use Arins\Models\Activitytype;
 use Arins\Models\Employee;
 use Arins\Models\Job;
@@ -166,17 +170,6 @@ class RepositoryServiceProvider extends ServiceProvider
             }
         );
 
-        //Activitytype
-        $this->app->bind(
-            'Arins\Repositories\Activitytype\ActivitytypeRepositoryInterface',
-            function()
-            {
-                $model = new Activitytype();
-                $modelRepository = new ActivitytypeRepository($model);
-                return $modelRepository;
-            }
-        );
-
         //Activitystatus
         $this->app->bind(
             'Arins\Repositories\Activitystatus\ActivitystatusRepositoryInterface',
@@ -188,6 +181,27 @@ class RepositoryServiceProvider extends ServiceProvider
             }
         );
 
+        //Activitytype
+        $this->app->bind(
+            'Arins\Repositories\Activitytype\ActivitytypeRepositoryInterface',
+            function()
+            {
+                $model = new Activitytype();
+                $modelRepository = new ActivitytypeRepository($model);
+                return $modelRepository;
+            }
+        );
+
+        //Activitysubtype
+        $this->app->bind(
+            'Arins\Repositories\Activitysubtype\ActivitysubtypeRepositoryInterface',
+            function()
+            {
+                $model = new Activitysubtype();
+                $modelRepository = new ActivitysubtypeRepository($model);
+                return $modelRepository;
+            }
+        );
 
         //Dept
         $this->app->bind(

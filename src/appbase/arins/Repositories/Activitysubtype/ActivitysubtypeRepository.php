@@ -1,6 +1,6 @@
 <?php
 
-namespace Arins\Repositories\Activitytype;
+namespace Arins\Repositories\Activitysubtype;
 
 use Arins\Repositories\BaseRepository;
 use Arins\Repositories\Activitysubtype\ActivitysubtypeRepositoryInterface;
@@ -13,23 +13,25 @@ class ActivitysubtypeRepository extends BaseRepository implements Activitysubtyp
         parent::__construct($parData);
 
         $this->inputField = [
-
             'activitytype_id' => null,
             'name' => null,
             'description' => null,
             'image' => null,
             'numsort' => null,
-            'status' => null
+            'status' => null,
+        ];
+
+        $this->validateInput = [
+            'name' => 'required',
+            'description' => 'required',
         ];
 
         $this->validateField = [
-
-            //'activitytype_id' => 'required',
+            'activitytype_id' => 'required',
             'name' => 'required',
             'description' => 'required',
-            'image' => null,
-            'numsort' => null,
-            'status' => null
+            'numsort' => 'required',
+            'status' => 'required',
         ];
 
     }
@@ -37,7 +39,7 @@ class ActivitysubtypeRepository extends BaseRepository implements Activitysubtyp
     //Override parent class [BaseRepository.all()]
     public function all()
     {
-        return $this->data::with(['activity', 'activitytype'])->get();;
+        return $this->model::with(['activities', 'activitytype'])->get();;
     }
 
     public function byActivitytype($id, $take=null)

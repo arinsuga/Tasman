@@ -9,7 +9,13 @@ class Activitystatus extends Model
 
     protected $table = 'activitystatus';
 
-    protected $fillable = ['name', 'description', 'image'];
+    protected $fillable = [
+        'name',
+        'description',
+        'image',
+        "numsort",
+        'status',
+    ];
 
     public function activities()
     {

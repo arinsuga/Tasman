@@ -32,9 +32,14 @@ Route::group(['middleware'=>'lang'],function ()
         return redirect()->back();
     })->name('change.lang');
 
+
+
     //Home
 //    Route::resource('home', 'Home\HomeController');
     Route::get('/', 'Home\HomeController@index')->name('home.index');
+
+    //Tes
+    Route::resource('ddd', 'All\DddController');
 
     //activity dashboard
     Route::resource('dashboard', 'Dashboard\DashboardController');

@@ -49,12 +49,6 @@ class ActivityRepository extends BaseRepository implements ActivityRepositoryInt
 
     }
 
-    // //Override parent class [BaseRepository.all()]
-    // public function all()
-    // {
-    //     return $this->data::with('activity')->get();;
-    // }
-
     public function byActivitytype($id, $take=null)
     {
         if ($take == null) {

@@ -1,10 +1,10 @@
 <?php
 
-namespace Arins\Repositories\Activitytype;
+namespace Arins\Repositories\Activitysubtype;
 
 use Arins\Repositories\BaseRepositoryInterface;
 
 //Inherit interface to BaseRepositoryInterface
-interface ActivitytypeRepositoryInterface extends BaseRepositoryInterface
+interface ActivitysubtypeRepositoryInterface extends BaseRepositoryInterface
 {
 }
