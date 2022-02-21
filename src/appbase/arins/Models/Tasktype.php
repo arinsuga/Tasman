@@ -9,7 +9,14 @@ class Tasktype extends Model
 
     protected $table = 'tasktype';
 
-    protected $fillable = ['activitytype_id', 'name', 'description', 'image', 'numsort', 'status'];
+    protected $fillable = [
+        'activitytype_id',
+        'name',
+        'description',
+        'image',
+        'numsort',
+        'status'
+    ];
 
     public function activities()
     {

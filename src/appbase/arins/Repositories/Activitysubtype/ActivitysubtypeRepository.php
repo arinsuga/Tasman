@@ -35,29 +35,4 @@ class ActivitysubtypeRepository extends BaseRepository implements Activitysubtyp
         ];
 
     }
-
-    //Override parent class [BaseRepository.all()]
-    public function all()
-    {
-        return $this->model::with(['activities', 'activitytype'])->get();;
-    }
-
-    public function byActivitytype($id, $take=null)
-    {
-        if ($take == null) {
-            return $this->data::where('activitytype_id', $id)->get();
-        } else {
-            return $this->data::where('activitytype_id', $id)
-            ->take($take)
-            ->get();
-        }
-    }
-
-    public function countActivityByActivityType() {
-
-        return 'hasil dari function countActivityByActivityType';
-
-    }
-
-
 }

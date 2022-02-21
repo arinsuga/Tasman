@@ -22,28 +22,16 @@ class TasktypeRepository extends BaseRepository implements TasktypeRepositoryInt
         ];
     
         $this->validateInput = [
-            'activitytype_id' => null,
             'name' => 'required',
             'description' => 'required',
-            'image' => null,
-            'numsort' => null,
-            'status' => null
         ];
     
         $this->validateField = [
             'activitytype_id' => 'required',
             'name' => 'required',
             'description' => 'required',
-            'image' => null,
             'numsort' => 'required',
             'status' => 'required'
         ];
     }
-
-    //Override parent class [BaseRepository.all()]
-    public function all()
-    {
-        return $this->model::with(['activity', 'activitytype'])->get();;
-    }
-
 }

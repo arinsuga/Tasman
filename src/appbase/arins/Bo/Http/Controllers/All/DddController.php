@@ -19,7 +19,7 @@ class DddController extends BoController
 {
     use Base;
 
-    public function __construct(ActivitysubtypeRepositoryInterface $parData)
+    public function __construct(ActivitystatusRepositoryInterface $parData)
     {
 
         // parent::__construct('activity');
@@ -31,7 +31,7 @@ class DddController extends BoController
     public function index()
     {
 
-        return $this->data->all()[0]->activitytype;
+        return $this->data->all()[0]->activities;
         return $this->data->getInputField();
         return $this->data->getValidateInput();
         return $this->data->getValidateField();

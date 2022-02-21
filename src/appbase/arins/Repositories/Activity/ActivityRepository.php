@@ -49,21 +49,21 @@ class ActivityRepository extends BaseRepository implements ActivityRepositoryInt
 
     }
 
-    public function byActivitytype($id, $take=null)
-    {
-        if ($take == null) {
-            return $this->data::where('activitytype_id', $id)->get();
-        } else {
-            return $this->data::where('activitytype_id', $id)
-            ->take($take)
-            ->get();
-        }
-    }
+    // public function byActivitytype($id, $take=null)
+    // {
+    //     if ($take == null) {
+    //         return $this->data::where('activitytype_id', $id)->get();
+    //     } else {
+    //         return $this->data::where('activitytype_id', $id)
+    //         ->take($take)
+    //         ->get();
+    //     }
+    // }
 
-    public function countActivityByActivityType() {
+    // public function countActivityByActivityType() {
 
-        return 'hasil dari function countActivityByActivityType';
+    //     return 'hasil dari function countActivityByActivityType';
 
-    }
+    // }
 
 }

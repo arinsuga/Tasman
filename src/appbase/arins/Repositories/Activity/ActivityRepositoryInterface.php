@@ -7,6 +7,6 @@ use Arins\Repositories\BaseRepositoryInterface;
 //Inherit interface to BaseRepositoryInterface
 interface ActivityRepositoryInterface extends BaseRepositoryInterface
 {
-    function byActivitytype($id, $take=null);
-    function countActivityByActivityType();
+    // function byActivitytype($id, $take=null);
+    // function countActivityByActivityType();
 }
