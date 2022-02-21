@@ -15,12 +15,13 @@ use Arins\Repositories\Activitystatus\ActivitystatusRepositoryInterface;
 use Arins\Repositories\Activitytype\ActivitytypeRepositoryInterface;
 use Arins\Repositories\Activitysubtype\ActivitysubtypeRepositoryInterface;
 use Arins\Repositories\Tasktype\TasktypeRepositoryInterface;
+use Arins\Repositories\Tasksubtype1\Tasksubtype1RepositoryInterface;
 
 class DddController extends BoController
 {
     use Base;
 
-    public function __construct(TasktypeRepositoryInterface $parData)
+    public function __construct(Tasksubtype1RepositoryInterface $parData)
     {
 
         // parent::__construct('activity');
@@ -32,7 +33,7 @@ class DddController extends BoController
     public function index()
     {
 
-        return $this->data->all()[0]->activities;
+        return $this->data->all()[1]->tasksubtype2;
         return $this->data->getInputField();
         return $this->data->getValidateInput();
         return $this->data->getValidateField();
