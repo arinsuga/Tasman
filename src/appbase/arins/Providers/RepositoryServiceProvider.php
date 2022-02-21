@@ -20,6 +20,7 @@ use Arins\Repositories\Activitytype\ActivitytypeRepository;
 use Arins\Repositories\Activitysubtype\ActivitysubtypeRepository;
 use Arins\Repositories\Tasktype\TasktypeRepository;
 use Arins\Repositories\Tasksubtype1\Tasksubtype1Repository;
+use Arins\Repositories\Tasksubtype2\Tasksubtype2Repository;
 
 use Arins\Repositories\Employee\EmployeeRepository;
 use Arins\Repositories\Job\JobRepository;
@@ -44,6 +45,7 @@ use Arins\Models\Activitysubtype;
 use Arins\Models\Activitytype;
 use Arins\Models\Tasktype;
 use Arins\Models\Tasksubtype1;
+use Arins\Models\Tasksubtype2;
 
 use Arins\Models\Employee;
 use Arins\Models\Job;
@@ -226,6 +228,17 @@ class RepositoryServiceProvider extends ServiceProvider
             {
                 $model = new Tasksubtype1();
                 $modelRepository = new Tasksubtype1Repository($model);
+                return $modelRepository;
+            }
+        );
+
+        //Tasksubtype2
+        $this->app->bind(
+            'Arins\Repositories\Tasksubtype2\Tasksubtype2RepositoryInterface',
+            function()
+            {
+                $model = new Tasksubtype2();
+                $modelRepository = new Tasksubtype2Repository($model);
                 return $modelRepository;
             }
         );
