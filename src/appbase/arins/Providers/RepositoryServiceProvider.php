@@ -15,9 +15,10 @@ use Arins\Repositories\Event\EventRepository;
 use Arins\Repositories\News\NewsRepository;
 
 use Arins\Repositories\Activity\ActivityRepository;
+use Arins\Repositories\Activitystatus\ActivitystatusRepository;
 use Arins\Repositories\Activitytype\ActivitytypeRepository;
 use Arins\Repositories\Activitysubtype\ActivitysubtypeRepository;
-use Arins\Repositories\Activitystatus\ActivitystatusRepository;
+use Arins\Repositories\Tasktype\TasktypeRepository;
 
 use Arins\Repositories\Employee\EmployeeRepository;
 use Arins\Repositories\Job\JobRepository;
@@ -40,6 +41,8 @@ use Arins\Models\Activity;
 use Arins\Models\Activitystatus;
 use Arins\Models\Activitysubtype;
 use Arins\Models\Activitytype;
+use Arins\Models\Tasktype;
+
 use Arins\Models\Employee;
 use Arins\Models\Job;
 use Arins\Models\Dept;
@@ -199,6 +202,17 @@ class RepositoryServiceProvider extends ServiceProvider
             {
                 $model = new Activitysubtype();
                 $modelRepository = new ActivitysubtypeRepository($model);
+                return $modelRepository;
+            }
+        );
+
+        //Tasktype
+        $this->app->bind(
+            'Arins\Repositories\Tasktype\TasktypeRepositoryInterface',
+            function()
+            {
+                $model = new Tasktype();
+                $modelRepository = new TasktypeRepository($model);
                 return $modelRepository;
             }
         );

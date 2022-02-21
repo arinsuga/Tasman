@@ -14,12 +14,13 @@ use Arins\Repositories\Activity\ActivityRepositoryInterface;
 use Arins\Repositories\Activitystatus\ActivitystatusRepositoryInterface;
 use Arins\Repositories\Activitytype\ActivitytypeRepositoryInterface;
 use Arins\Repositories\Activitysubtype\ActivitysubtypeRepositoryInterface;
+use Arins\Repositories\Tasktype\TasktypeRepositoryInterface;
 
 class DddController extends BoController
 {
     use Base;
 
-    public function __construct(ActivitystatusRepositoryInterface $parData)
+    public function __construct(TasktypeRepositoryInterface $parData)
     {
 
         // parent::__construct('activity');
