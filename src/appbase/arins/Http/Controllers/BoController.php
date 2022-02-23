@@ -13,8 +13,10 @@ use App\Http\Controllers\Controller;
 class BoController extends Controller
 {
 
+    protected $appConfig, $appMode;
     protected $viewModel, $dataModel, $dataField;
     protected $sViewRoot, $sViewName;
+    protected $aResponseData;
     protected $data;
 
 
@@ -24,6 +26,16 @@ class BoController extends Controller
         $this->middleware('is.admin');
         $this->sViewName = $psViewName;
         $this->sViewRoot = 'bo.' . $this->sViewName;
+        $this->appConfig = 'a1.app';
+        $this->appMode = config($this->appConfig . '.mode');
     }
+
+    protected function runResponseMethod($methodName)
+    {
+        $runMethod = config($this->appConfig . '.' . $this->appMode . '.response.' . $methodName);
+
+        return $this->$runMethod();
+    }
+
 
 }

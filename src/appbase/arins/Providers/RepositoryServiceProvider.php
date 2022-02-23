@@ -28,7 +28,6 @@ use Arins\Repositories\Dept\DeptRepository;
 use Arins\Repositories\Subdept\SubdeptRepository;
 
 
-
 //Models
 use App\User;
 
@@ -51,6 +50,9 @@ use Arins\Models\Employee;
 use Arins\Models\Job;
 use Arins\Models\Dept;
 use Arins\Models\Subdept;
+
+//todo
+use Arins\Models\Gender;
 
 class RepositoryServiceProvider extends ServiceProvider
 {

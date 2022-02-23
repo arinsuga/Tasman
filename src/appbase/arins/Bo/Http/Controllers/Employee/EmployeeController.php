@@ -2,8 +2,11 @@
 
 namespace Arins\Bo\Http\Controllers\Employee;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+// use App\Http\Controllers\Controller;
+// use Illuminate\Http\Request;
+use Arins\Http\Controllers\BoController;
+use Arins\Traits\Http\Controller\View\Base;
+
 
 use Arins\Repositories\Employee\EmployeeRepositoryInterface;
 use Arins\Repositories\Job\JobRepositoryInterface;
@@ -15,13 +18,14 @@ use Arins\Facades\Filex;
 use Arins\Facades\Formater;
 use Arins\Facades\ConvertDate;
 
-class EmployeeController extends Controller
+class EmployeeController extends BoController
 {
 
-    protected $routeBase;
-    protected $sViewRoot;
+    // protected $routeBase;
+    // protected $sViewRoot;
     protected $data, $dataDept, $dataSubdept, $dataJob;
-    protected $uploadLoc;
+    // protected $uploadLoc;
+    use Base;
 
 
     public function __construct(EmployeeRepositoryInterface $parData,
@@ -50,6 +54,7 @@ class EmployeeController extends Controller
 
         return view($this->sViewRoot.'.index',
         ['viewModel' => $viewModel]);
+
     }
 
     /** get */
@@ -88,6 +93,16 @@ class EmployeeController extends Controller
         'job' => $this->dataJob->all()]);
     }
 
+    protected function transformField($paDataField) {
+        $dataField = $paDataField;
+
+        $subdept_id = $dataField['subdept_id'];
+        return dd($dataSubdept->find($subdept_id)->dept->id);
+        $dataField['dept_id'] = $dataSubdept->find($subdept_id)->dept->id;
+
+        return $dataField;
+    }
+
     /** post */
     public function store(Request $request)
     {
@@ -100,8 +115,9 @@ class EmployeeController extends Controller
         $uploadTemp = Filex::uploadTemp($upload, $imageTemp);
         $request->session()->flash('imageTemp', $uploadTemp);
 
+        
         //validate input value
-        $request->validate($this->data->getValidateField());
+        $request->validate($this->data->getValidateInput());
 
         //copy temporary uploaded image to real path
         $data['image'] = Filex::uploadOrCopyAndRemove('', $uploadTemp, $this->uploadLoc, $upload, 'public', false);

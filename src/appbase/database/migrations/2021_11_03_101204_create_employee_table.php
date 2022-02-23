@@ -22,6 +22,7 @@ class CreateEmployeeTable extends Migration
 
             //personal
             $table->string('nik')->nullable();
+            $table->string('noabsen')->nullable();
             $table->string('name')->nullable();
             $table->datetime('birth_dt')->nullable();
             $table->string('birth_place')->nullable();

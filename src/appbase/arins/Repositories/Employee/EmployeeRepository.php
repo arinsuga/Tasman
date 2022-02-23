@@ -17,6 +17,7 @@ class EmployeeRepository extends BaseRepository implements EmployeeRepositoryInt
             'user_id' => null,
             //personal
             'nik' => null,
+            'noabsen' => null,
             'name' => null,
             'birth_dt' => null,
             'birth_place' => null,
@@ -87,10 +88,28 @@ class EmployeeRepository extends BaseRepository implements EmployeeRepositoryInt
             'linkedin' => null,
         ];
 
-        $this->validateField = [
-            //code array here...
-            'nik' => 'required',
+        $this->validateInput = [
+            //personal
             'name' => 'required',
+            //job
+            //'branch_id' => 'required',
+            //'dept_id' => 'required',
+            'subdept_id' => 'required',
+            'job_id' => 'required',
+            //personal 2
+            //'gender_id' => 'required',
+        ];
+
+        $this->validateField = [
+            //personal
+            'name' => 'required',
+            //job
+            'branch_id' => 'required',
+            'dept_id' => 'required',
+            'subdept_id' => 'required',
+            'job_id' => 'required',
+            //personal 2
+            'gender_id' => 'required',
         ];
 
     }

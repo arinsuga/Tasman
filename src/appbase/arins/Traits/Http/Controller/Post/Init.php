@@ -1,6 +1,6 @@
 <?php
 
-namespace Arins\Traits\Http\Controller\View;
+namespace Arins\Traits\Http\Controller\Post;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -10,11 +10,11 @@ use Arins\Facades\Filex;
 use Arins\Facades\Formater;
 use Arins\Facades\ConvertDate;
 
-trait Post
+trait Init
 {
 
     /** post */
-    public function store(Request $request)
+    public function initStore(Request $request)
     {
         //get input value by fillable fields
         $data = $request->only($this->data->getFillable()); //get field input
@@ -59,7 +59,7 @@ trait Post
     }
 
     /** post */
-    public function update(Request $request, $id)
+    public function initUpdate(Request $request, $id)
     {
         //get data from database
         $record = $this->data->find($id);
@@ -102,7 +102,7 @@ trait Post
     }
 
     /** post */
-    public function destroy($id)
+    public function initDestroy($id)
     {
         //
         $record = $this->data->find($id);
