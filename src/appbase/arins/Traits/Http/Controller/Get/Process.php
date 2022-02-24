@@ -7,29 +7,29 @@ use Arins\Facades\Filex;
 use Arins\Facades\Formater;
 use Arins\Facades\ConvertDate;
 
-trait Init
+trait Process
 {
-    protected function initIndex()
+    protected function processIndex()
     {
         $this->viewModel = Response::viewModel();
         $this->viewModel->data = $this->data->allOrderByIdDesc();
     }
 
-    protected function initShow($id)
+    protected function processShow($id)
     {
         $this->viewModel = Response::viewModel();
         $this->viewModel->data = $this->data->find($id);
 
     }
 
-    protected function initCreate()
+    protected function processCreate()
     {
         $this->viewModel = Response::viewModel();
         $this->viewModel->data = json_decode(json_encode($this->data->getInputField()));
         $this->viewModel->data->date = now();
     }
 
-    protected function initEdit($id)
+    protected function processEdit($id)
     {
         $this->viewModel = Response::viewModel();
         $this->viewModel->data = $this->data->find($id);

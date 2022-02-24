@@ -4,12 +4,12 @@ namespace Arins\Traits\Http\Controller\Get;
 
 trait Action
 {
-    use Init, Response;
+    use Process, Response;
 
     /** get */
     public function index()
     {
-        $this->initIndex();
+        $this->processIndex();
         
         return $this->runResponseMethod('index');
     }
@@ -17,7 +17,7 @@ trait Action
     /** get */
     public function show($id)
     {
-        $this->initShow($id);
+        $this->processShow($id);
 
         return $this->runResponseMethod('show');
     }
@@ -25,7 +25,7 @@ trait Action
     /** get */
     public function create()
     {
-        $this->initCreate();
+        $this->processCreate();
 
         return $this->runResponseMethod('create');
     }
@@ -33,14 +33,9 @@ trait Action
     /** get */
     public function edit($id)
     {
-        $this->initEdit($id);
+        $this->processEdit($id);
 
-        return view($this->sViewRoot.'.edit', [
-            'viewModel' => $this->viewModel,
-            'new' => false,
-            'fieldEnabled' => true,
-            'dataModel' => $this->dataModel
-        ]);
+        return $this->runResponseMethod('edit');
     }
 
     /** get */

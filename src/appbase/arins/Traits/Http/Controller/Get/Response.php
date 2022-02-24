@@ -52,5 +52,25 @@ trait Response
         ]);
     }
 
+    protected function responseViewEdit()
+    {
+        return view($this->sViewRoot.'.edit', [
+            'viewModel' => $this->viewModel,
+            'new' => false,
+            'fieldEnabled' => true,
+            'dataModel' => $this->dataModel
+        ]);
+    }
+
+    protected function responseJsonEdit()
+    {
+        return json_encode([
+            'viewModel' => $this->viewModel,
+            'new' => false,
+            'fieldEnabled' => true,
+            'dataModel' => $this->dataModel
+        ]);
+    }
+
 }
 

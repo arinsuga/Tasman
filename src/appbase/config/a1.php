@@ -18,6 +18,7 @@ return [
                 'index' => 'responseViewIndex',
                 'show' => 'responseViewShow',
                 'create' => 'responseViewCreate',
+                'edit' => 'responseViewEdit',
                 'delete' => 'responseViewDelete', //Temporary not use (only prepare)
                 'store' => 'responseViewStore',
                 'update' => 'responseViewUpdate',
@@ -32,6 +33,7 @@ return [
                 'index' => 'responseJsonIndex',
                 'show' => 'responseJsonShow',
                 'create' => 'responseJsonCreate',
+                'edit' => 'responseJsonEdit',
                 'delete' => 'responseJsonDelete', //Temporary not use (only prepare)
                 'store' => 'responseJsonStore',
                 'update' => 'responseJsonUpdate',

@@ -152,11 +152,9 @@ class Filex implements FilexInterface
         //code here
         $path = '';
         if ($fileObject) {
-
             $path = $this->upload($fileName, $fileTargetLocation, $fileObject, $diskDriver);
 
         } elseif ($fileSourceName) {
-
             $nPos = strpos($fileSourceName, '/');
             $nPos = ($nPos != '' ? $nPos+1 : $nPos);
             
@@ -167,6 +165,10 @@ class Filex implements FilexInterface
 
             $path = $fileNewLocation;
 
+        } elseif ($fileName) {
+
+            $path = $fileName;
+            
         } //end if
         
         $this->delete($fileSourceName, $diskDriver);

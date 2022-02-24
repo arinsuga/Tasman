@@ -28,7 +28,6 @@ class SupportController extends BoController
     public function __construct(ActivityRepositoryInterface $parData,
                                 ActivitytypeRepositoryInterface $parActivitytype)
     {
-
         parent::__construct('support');
 
         $this->data = $parData;
