@@ -4,7 +4,7 @@ namespace Arins\Traits\Http\Controller\Get;
 
 trait Action
 {
-    use Process, Response;
+    use Actionprocess, Actionresponse;
 
     /** get */
     public function index()

@@ -7,7 +7,7 @@ use Arins\Facades\Filex;
 use Arins\Facades\Formater;
 use Arins\Facades\ConvertDate;
 
-trait Process
+trait Actionprocess
 {
     protected function processIndex()
     {

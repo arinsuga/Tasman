@@ -2,7 +2,7 @@
 
 namespace Arins\Traits\Http\Controller\Get;
 
-trait Response
+trait Actionresponse
 {
     protected function responseViewIndex()
     {

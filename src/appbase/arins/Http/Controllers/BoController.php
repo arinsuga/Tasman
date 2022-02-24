@@ -17,7 +17,7 @@ class BoController extends Controller
     protected $viewModel, $dataModel, $dataField;
     protected $sViewRoot, $sViewName;
     protected $aResponseData;
-    protected $data;
+    protected $data, $validator;
 
 
     public function __construct($psViewName=null)

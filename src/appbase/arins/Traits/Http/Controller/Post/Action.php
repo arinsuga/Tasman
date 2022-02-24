@@ -12,111 +12,56 @@ use Arins\Facades\ConvertDate;
 
 trait Action
 {
+    use Actionprocess, Actionresponse;
 
     /** post */
     public function store(Request $request)
     {
-        //get input value by fillable fields
-        $data = $request->only($this->data->getFillable()); //get field input
-        $upload = $request->file('upload'); //upload file (image/document) ==> if included
-        $imageTemp = $request->input('imageTemp'); //temporary file uploaded
-        
-        //Check if inputs need to be transformed by transformField method
-        if (method_exists($this, 'transformField')) {
-            $data = $this->transformField($data);
-        } //end if
-
-
-        //create temporary uploaded image
-        $uploadTemp = Filex::uploadTemp($upload, $imageTemp);
-        $request->session()->flash('imageTemp', $uploadTemp);
-
-        //validate input value
-        $validator = Validator::make($data, $this->data->getValidateInput());
-        if ($validator->fails()) {
+        $processResult = $this->processStore($request);
+        if ($processResult == 1) {
             //step 2: Kembali ke halaman input
             return redirect()->route($this->sViewName . '.create')
-            ->withErrors($validator)
+            ->withErrors($this->validator)
             ->withInput();
         } //end if validator
 
-        //copy temporary uploaded image to real path
-        $data['image'] = Filex::uploadOrCopyAndRemove('', $uploadTemp, 'activities', $upload, 'public', false);
-        
-        //save data
-        if ($this->data->create($data)) {
+        //save data success
+        if ($processResult == 0) {
             return redirect()->route($this->sViewName . '.index');
         }
 
-        /** jika tetap terjadi kesalahan maka ada kesalahan pada system */
-        //step 1: delete image if fail to save
-        Filex::delete($data['image']);
-
         //step 2: Kembali ke halaman input
-        return redirect()->route($this->sViewName . '.create')
-        ->withInput();
-
+        if ($processResult == 2)
+        {
+            return redirect()->route($this->sViewName . '.create')
+            ->withInput();
+        }
     }
 
     /** post */
     public function update(Request $request, $id)
     {
-        //get data from database
-        $record = $this->data->find($id);
-        $imageOld = $record->image;
+        $processResult = $this->processUpdate($request, $id);
 
-        //get input value by fillable fields
-        $data = $request->only($this->data->getFillable()); //get field input
-        $upload = $request->file('upload'); //upload file (image/document) ==> if included
-        $imageTemp = $request->input('imageTemp'); //temporary file uploaded
-        $toggleRemoveImage = $request->input('toggleRemoveImage');
-        //return dd($toggleRemoveImage);
-
-        // return dd($data);
-        // //convert input value (string/date/number/email/etc)
-        // $data['startdt'] = ConvertDate::strDatetimeToDate($data['startdt']);
-        // $data['enddt'] = ConvertDate::strDatetimeToDate($data['enddt']);
-
-        //create temporary uploaded image
-        $uploadTemp = Filex::uploadTemp($upload, $imageTemp);
-        $request->session()->flash('imageTemp', $uploadTemp);
-
-        //validate input value
-        $request->validate($this->data->getValidateInput());
-
-        $imageNew = Filex::uploadOrCopyAndRemove($imageOld, $uploadTemp, 'activities', $upload, 'public', false);
-        $data['image'] = $imageNew;
-        if (strtolower($toggleRemoveImage) ==  'true')
+        //validate input value fail
+        if ($processResult == 1)
         {
-            $data['image'] = null;
-        }
+            return redirect()->route($this->sViewName . '.edit', $id)
+            ->withErrors($this->validator)
+            ->withInput();
+        } //end if
 
-        if ($this->data->update($record, $data)) {
-            if ($uploadTemp != null)
-            {
-                Filex::delete($imageOld);
-                Filex::delete($uploadTemp);
-            } //end if
-
-            if (strtolower($toggleRemoveImage) == 'true')
-            {
-                Filex::delete($imageOld);
-                Filex::delete($imageNew);
-                Filex::delete($uploadTemp);
-            }
+        //Save data success
+        if ($processResult == 0) {
             return redirect()->route($this->sViewName . '.index');
         }
 
-        /** jika tetap terjadi kesalahan maka ada kesalahan pada system */
-        //step 1: delete image if fail to save
-        if ($uploadTemp != null)
+        //step 2: Kembali ke halaman input (Error exception)
+        if ($processResult == 2)
         {
-            Filex::delete($data['image']);
-        } //end if
-
-        //step 2: Kembali ke halaman input
-        return redirect()->route($this->sViewName . '.edit', $id)
-        ->withInput();
+            return redirect()->route($this->sViewName . '.edit', $id)
+            ->withInput();
+        }
     }
 
     /** post */
