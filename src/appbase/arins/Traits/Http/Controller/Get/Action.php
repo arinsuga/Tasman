@@ -9,6 +9,11 @@ trait Action
     /** get */
     public function index()
     {
+        //Check if additional data exist
+        if (method_exists($this, 'indexAdditionalData')) {
+            $additionalData = $this->indexAdditionalData();
+        } //end if
+
         $this->processIndex();
         
         return $this->runResponseMethod('index');
@@ -17,6 +22,11 @@ trait Action
     /** get */
     public function show($id)
     {
+        //Check if additional data exist
+        if (method_exists($this, 'showAdditionalData')) {
+            $additionalData = $this->showAdditionalData($id);
+        } //end if
+
         $this->processShow($id);
 
         return $this->runResponseMethod('show');
@@ -25,6 +35,11 @@ trait Action
     /** get */
     public function create()
     {
+        //Check if additional data exist
+        if (method_exists($this, 'createAdditionalData')) {
+            $additionalData = $this->createAdditionalData();
+        } //end if
+
         $this->processCreate();
 
         return $this->runResponseMethod('create');
@@ -33,15 +48,14 @@ trait Action
     /** get */
     public function edit($id)
     {
+        //Check if additional data exist
+        if (method_exists($this, 'editAdditionalData')) {
+            $additionalData = $this->editAdditionalData($id);
+        } //end if
+
         $this->processEdit($id);
 
         return $this->runResponseMethod('edit');
-    }
-
-    /** get */
-    public function delete($id)
-    {
-        return view($this->sViewRoot.'.delete');
     }
 
 }

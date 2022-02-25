@@ -3,7 +3,7 @@
 namespace Arins\Bo\Http\Controllers\All;
 
 use Arins\Http\Controllers\BoController;
-use Arins\Traits\Http\Controller\View\Base;
+use Arins\Traits\Http\Controller\Base;
 
 use Arins\Facades\Response;
 use Arins\Facades\Filex;
@@ -25,10 +25,9 @@ class DddController extends BoController
 {
     use Base;
 
-    public function __construct(SubdeptRepositoryInterface $parData)
+    public function __construct(EmployeeRepositoryInterface $parData)
     {
 
-        // parent::__construct('activity');
         parent::__construct();
 
         $this->data = $parData;
@@ -37,10 +36,30 @@ class DddController extends BoController
     public function index()
     {
 
-        return $this->data->find(9)->dept;
-        return $this->data->getInputField();
-        return $this->data->getValidateInput();
-        return $this->data->getValidateField();
+
+        $this->aResponseData = [
+            'empat' => 4,
+        ];
+        $this->aResponseData['lima'] = 5;
+        return $this->aResponseData;
+        array_push($this->aResponseData, [
+            'satu' => 1,
+            'dua' => 2,
+            'tiga' => 3,
+        ]);
+        
+        $aHai = [
+            'satu' => 1,
+            'dua' => 2,
+            'tiga' => 3,
+        ];
+        return $aHai;
+
+        return $this->data->all();
+        // return $this->data->all();
+        // return $this->data->getInputField();
+        // return $this->data->getValidateInput();
+        // return $this->data->getValidateField();
         return 'ddd';
     }
 

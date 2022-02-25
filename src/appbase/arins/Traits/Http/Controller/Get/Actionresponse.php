@@ -6,70 +6,134 @@ trait Actionresponse
 {
     protected function responseViewIndex()
     {
-        return view($this->sViewRoot.'.index', ['viewModel' => $this->viewModel]);
+        $this->aResponseData = ['viewModel' => $this->viewModel];
+
+        foreach ($this->aResponseAdditionalData as $key => $value) {
+
+            $this->aResponseData[$key] = $value;
+
+        } //end loop
+
+        return view($this->sViewRoot.'.index', $this->aResponseData);
     }
 
     protected function responseJsonIndex()
     {
-        return json_encode(['viewModel' => $this->viewModel]);
+        $this->aResponseData = ['viewModel' => $this->viewModel];
+
+        foreach ($this->aResponseAdditionalData as $key => $value) {
+
+            $this->aResponseData[$key] = $value;
+
+        } //end loop
+
+        return json_encode($this->aResponseData);
     }
 
     protected function responseViewShow()
     {
-        return view($this->sViewRoot.'.show', [
+        $this->aResponseData = [
             'viewModel' => $this->viewModel,
             'new' => false,
             'fieldEnabled' => false
-        ]);
+        ];
+
+        foreach ($this->aResponseAdditionalData as $key => $value) {
+
+            $this->aResponseData[$key] = $value;
+
+        } //end loop
+
+        return view($this->sViewRoot.'.show', $this->aResponseData);
     }
     
     protected function responseJsonShow()
     {
-        return json_encode([
+        $this->aResponseData = [
             'viewModel' => $this->viewModel,
             'new' => false,
             'fieldEnabled' => false
-        ]);
+        ];
+
+        foreach ($this->aResponseAdditionalData as $key => $value) {
+
+            $this->aResponseData[$key] = $value;
+
+        } //end loop
+
+        return json_encode($this->aResponseData);
     }
 
     protected function responseViewCreate()
     {
-        return view($this->sViewRoot.'.create', [
+        $this->aResponseData = [
             'viewModel' => $this->viewModel,
             'new' => true,
             'fieldEnabled' => true,
             'dataModel' => $this->dataModel
-        ]);
+        ];
+
+        foreach ($this->aResponseAdditionalData as $key => $value) {
+
+            $this->aResponseData[$key] = $value;
+
+        } //end loop
+
+        return view($this->sViewRoot.'.create', $this->aResponseData);
     }
 
     protected function responseJsonCreate()
     {
-        return json_encode([
+        $this->aResponseData = [
             'viewModel' => $this->viewModel,
             'new' => true,
             'fieldEnabled' => true,
             'dataModel' => $this->dataModel
-        ]);
+        ];
+
+        foreach ($this->aResponseAdditionalData as $key => $value) {
+
+            $this->aResponseData[$key] = $value;
+
+        } //end loop
+
+        return json_encode($this->aResponseData);
     }
 
     protected function responseViewEdit()
     {
-        return view($this->sViewRoot.'.edit', [
+        $this->aResponseData = [
             'viewModel' => $this->viewModel,
             'new' => false,
             'fieldEnabled' => true,
             'dataModel' => $this->dataModel
-        ]);
+        ];
+
+        foreach ($this->aResponseAdditionalData as $key => $value) {
+
+            $this->aResponseData[$key] = $value;
+
+        } //end loop
+
+        return view($this->sViewRoot.'.edit', $this->aResponseData);
     }
 
     protected function responseJsonEdit()
     {
-        return json_encode([
+        $this->aResponseData = [
             'viewModel' => $this->viewModel,
             'new' => false,
             'fieldEnabled' => true,
             'dataModel' => $this->dataModel
-        ]);
+        ];
+
+        foreach ($this->aResponseAdditionalData as $key => $value) {
+
+            $this->aResponseData[$key] = $value;
+
+        } //end loop
+
+        return json_encode($this->aResponseData);
     }
 
 }

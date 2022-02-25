@@ -16,7 +16,7 @@ class BoController extends Controller
     protected $appConfig, $appMode;
     protected $viewModel, $dataModel, $dataField;
     protected $sViewRoot, $sViewName;
-    protected $aResponseData;
+    protected $aResponseData, $aResponseAdditionalData;
     protected $data, $validator;
 
 
@@ -28,6 +28,8 @@ class BoController extends Controller
         $this->sViewRoot = 'bo.' . $this->sViewName;
         $this->appConfig = 'a1.app';
         $this->appMode = config($this->appConfig . '.mode');
+        $this->aResponseData = [];
+        $this->aResponseAdditionalData = [];
     }
 
     protected function runResponseMethod($methodName)
