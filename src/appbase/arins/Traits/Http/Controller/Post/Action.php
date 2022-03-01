@@ -18,64 +18,22 @@ trait Action
     public function store(Request $request)
     {
         $processResult = $this->processStore($request);
-        if ($processResult == 1) {
-            //step 2: Kembali ke halaman input
-            return redirect()->route($this->sViewName . '.create')
-            ->withErrors($this->validator)
-            ->withInput();
-        } //end if validator
-
-        //save data success
-        if ($processResult == 0) {
-            return redirect()->route($this->sViewName . '.index');
-        }
-
-        //step 2: Kembali ke halaman input
-        if ($processResult == 2)
-        {
-            return redirect()->route($this->sViewName . '.create')
-            ->withInput();
-        }
+        return $this->runResponseMethod('store', $processResult);
     }
 
     /** post */
     public function update(Request $request, $id)
     {
         $processResult = $this->processUpdate($request, $id);
-
-        //validate input value fail
-        if ($processResult == 1)
-        {
-            return redirect()->route($this->sViewName . '.edit', $id)
-            ->withErrors($this->validator)
-            ->withInput();
-        } //end if
-
-        //Save data success
-        if ($processResult == 0) {
-            return redirect()->route($this->sViewName . '.index');
-        }
-
-        //step 2: Kembali ke halaman input (Error exception)
-        if ($processResult == 2)
-        {
-            return redirect()->route($this->sViewName . '.edit', $id)
-            ->withInput();
-        }
+        return $this->runResponseMethod('update', $processResult);
     }
 
     /** post */
     public function destroy($id)
     {
-        //
-        $record = $this->data->find($id);
-        $fileName = $record->image;
-        
-        //$model->delete();
-        $this->data->delete($record);
-        Filex::delete($fileName); 
+        $processResult = $this->processDestroy($id);
+        return $this->runResponseMethod('destroy', $processResult);
 
-        return redirect()->route($this->sViewName . '.index');
    }
 
 

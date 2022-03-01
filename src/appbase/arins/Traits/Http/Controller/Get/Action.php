@@ -16,7 +16,7 @@ trait Action
 
         $this->processIndex();
         
-        return $this->runResponseMethod('index');
+        return $this->runResponseMethod('index', null, null);
     }
 
     /** get */
@@ -29,7 +29,7 @@ trait Action
 
         $this->processShow($id);
 
-        return $this->runResponseMethod('show');
+        return $this->runResponseMethod('show', null, null);
     }
 
     /** get */
@@ -42,7 +42,7 @@ trait Action
 
         $this->processCreate();
 
-        return $this->runResponseMethod('create');
+        return $this->runResponseMethod('create', null, null);
     }
 
     /** get */
@@ -55,7 +55,7 @@ trait Action
 
         $this->processEdit($id);
 
-        return $this->runResponseMethod('edit');
+        return $this->runResponseMethod('edit', null, null);
     }
 
 }

@@ -11,21 +11,24 @@ use Arins\Facades\Formater;
 use Arins\Facades\ConvertDate;
 
 use Arins\Repositories\Activity\ActivityRepositoryInterface;
+
 use Arins\Repositories\Activitystatus\ActivitystatusRepositoryInterface;
 use Arins\Repositories\Activitytype\ActivitytypeRepositoryInterface;
 use Arins\Repositories\Activitysubtype\ActivitysubtypeRepositoryInterface;
+
 use Arins\Repositories\Tasktype\TasktypeRepositoryInterface;
 use Arins\Repositories\Tasksubtype1\Tasksubtype1RepositoryInterface;
 use Arins\Repositories\Tasksubtype2\Tasksubtype2RepositoryInterface;
 
 use Arins\Repositories\Employee\EmployeeRepositoryInterface;
+use Arins\Repositories\Dept\DeptRepositoryInterface;
 use Arins\Repositories\Subdept\SubdeptRepositoryInterface;
 
 class DddController extends BoController
 {
     use Base;
 
-    public function __construct(EmployeeRepositoryInterface $parData)
+    public function __construct(DeptRepositoryInterface $parData)
     {
 
         parent::__construct();
@@ -37,23 +40,6 @@ class DddController extends BoController
     {
 
 
-        $this->aResponseData = [
-            'empat' => 4,
-        ];
-        $this->aResponseData['lima'] = 5;
-        return $this->aResponseData;
-        array_push($this->aResponseData, [
-            'satu' => 1,
-            'dua' => 2,
-            'tiga' => 3,
-        ]);
-        
-        $aHai = [
-            'satu' => 1,
-            'dua' => 2,
-            'tiga' => 3,
-        ];
-        return $aHai;
 
         return $this->data->all();
         // return $this->data->all();

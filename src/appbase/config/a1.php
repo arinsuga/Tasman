@@ -12,37 +12,6 @@ return [
     */
     'app' => [
         'mode' => 'mvc',
-
-        'mvc' => [
-            'response' => [
-                'index' => 'responseViewIndex',
-                'show' => 'responseViewShow',
-                'create' => 'responseViewCreate',
-                'edit' => 'responseViewEdit',
-                'delete' => 'responseViewDelete', //Temporary not use (only prepare)
-                'store' => 'responseViewStore',
-                'update' => 'responseViewUpdate',
-                'destroy' => 'responseViewDestroy',
-            ] //end response
-
-            
-        ], //end mvc
-
-        'api' => [
-            'response' => [
-                'index' => 'responseJsonIndex',
-                'show' => 'responseJsonShow',
-                'create' => 'responseJsonCreate',
-                'edit' => 'responseJsonEdit',
-                'delete' => 'responseJsonDelete', //Temporary not use (only prepare)
-                'store' => 'responseJsonStore',
-                'update' => 'responseJsonUpdate',
-                'destroy' => 'responseJsonDestroy',
-            ], //end response
-
-            
-        ], //end api
-
     ], //end app
 
     /*

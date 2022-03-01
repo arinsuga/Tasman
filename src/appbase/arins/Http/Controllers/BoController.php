@@ -18,7 +18,7 @@ class BoController extends Controller
     protected $sViewRoot, $sViewName;
     protected $aResponseData, $aResponseAdditionalData;
     protected $data, $validator;
-
+    protected $controllerModes;
 
     public function __construct($psViewName=null)
     {
@@ -30,13 +30,61 @@ class BoController extends Controller
         $this->appMode = config($this->appConfig . '.mode');
         $this->aResponseData = [];
         $this->aResponseAdditionalData = [];
+
+        $this->controllerModes = $this->initControllerModes();
     }
 
-    protected function runResponseMethod($methodName)
+    protected function initControllerModes()
     {
-        $runMethod = config($this->appConfig . '.' . $this->appMode . '.response.' . $methodName);
+        return [
+            'mvc' => [
+                'response' => [
+                    'index' => 'responseViewIndex',
+                    'show' => 'responseViewShow',
+                    'create' => 'responseViewCreate',
+                    'edit' => 'responseViewEdit',
+                    'delete' => 'responseViewDelete', //Temporary not use (only prepare)
+                    'store' => ['responseViewStore0', 'responseViewStore1', 'responseViewStore2'],
+                    'update' => ['responseViewUpdate0', 'responseViewUpdate1', 'responseViewUpdate2'],
+                    'destroy' => ['responseViewDestroy0', 'responseViewDestroy1', 'responseViewDestroy2'],
+                ] //end response
+    
+                
+            ], //end mvc
+    
+            'api' => [
+                'response' => [
+                    'index' => 'responseJsonIndex',
+                    'show' => 'responseJsonShow',
+                    'create' => 'responseJsonCreate',
+                    'edit' => 'responseJsonEdit',
+                    'delete' => 'responseJsonDelete', //Temporary not use (only prepare)
+                    'store' => ['responseJsonStore0', 'responseJsonStore1', 'responseJsonStore2'],
+                    'update' => ['responseJsonUpdate0', 'responseJsonUpdate1', 'responseJsonUpdate2'],
+                    'destroy' => ['responseJsonDestroy0', 'responseJsonDestroy1', 'responseJsonDestroy2'],
+                ], //end response
+    
+                
+            ], //end api
+    
+        ];
+    }
 
-        return $this->$runMethod();
+    protected function runResponseMethod($methodName, $responseType = null, $id = null)
+    {        
+        if ($responseType === null)
+        {
+            $runMethod = $this->controllerModes[config('a1.app.mode')]['response'][$methodName];
+        } else {
+            $runMethod = $this->controllerModes[config('a1.app.mode')]['response'][$methodName][$responseType];
+        }
+
+        if ($id === null)
+        {
+            return $this->$runMethod();
+        } else {
+            return $this->$runMethod($id);
+        }
     }
 
 
