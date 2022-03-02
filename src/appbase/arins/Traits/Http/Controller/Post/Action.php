@@ -12,7 +12,7 @@ use Arins\Facades\ConvertDate;
 
 trait Action
 {
-    use Actionprocess, Actionresponse;
+    use Actionprocess, Actionresponseview, Actionresponsejson;
 
     /** post */
     public function store(Request $request)
@@ -25,14 +25,14 @@ trait Action
     public function update(Request $request, $id)
     {
         $processResult = $this->processUpdate($request, $id);
-        return $this->runResponseMethod('update', $processResult);
+        return $this->runResponseMethod('update', $processResult, $id);
     }
 
     /** post */
     public function destroy($id)
     {
         $processResult = $this->processDestroy($id);
-        return $this->runResponseMethod('destroy', $processResult);
+        return $this->runResponseMethod('destroy', $processResult, $id);
 
    }
 

@@ -5,7 +5,7 @@ namespace Arins\Traits\Http\Controller\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-trait Actionresponse
+trait Actionresponseview
 {
 
     public function responseViewStore0()
@@ -28,21 +28,19 @@ trait Actionresponse
         ->withInput();
     }
 
-
-
-    public function responseViewUpdate0(Request $request, $id)
+    public function responseViewUpdate0($id)
     {
         return redirect()->route($this->sViewName . '.index');
     }
 
-    public function responseViewUpdate1(Request $request, $id)
+    public function responseViewUpdate1($id)
     {
         return redirect()->route($this->sViewName . '.edit', $id)
         ->withErrors($this->validator)
         ->withInput();
     }
 
-    public function responseViewUpdate2(Request $request, $id)
+    public function responseViewUpdate2($id)
     {
         return redirect()->route($this->sViewName . '.edit', $id)
         ->withInput();
