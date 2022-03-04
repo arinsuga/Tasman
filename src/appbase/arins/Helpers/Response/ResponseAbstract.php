@@ -25,17 +25,16 @@ abstract class ResponseAbstract
         ];
 
         //description
-        if ($description != null) {
-            $this->response["status_description"] = $description;
-        }
+        $this->response["status_description"] = $description;
 
         //data
         $this->response["data"] = $data;
 
         //form action
-        if ($formAction != null) {
+        if ($formAction != null)
+        {
             $this->response["formAction"] = $formAction;
-        }
+        } //end if
     }
 
     /**

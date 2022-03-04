@@ -6,6 +6,7 @@ interface BaseRepositoryInterface
 {
     function all();
     function find($id);
+    function getId();
 
     function getFillable();
     function getInputField();

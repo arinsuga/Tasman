@@ -15,6 +15,7 @@ trait Actionprocess
 
     protected function processStore(Request $request)
     {
+        
         //get input value by fillable fields
         $data = $request->only($this->data->getFillable()); //get field input
         $upload = $request->file('upload'); //upload file (image/document) ==> if included

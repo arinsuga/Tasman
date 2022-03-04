@@ -24,6 +24,11 @@ abstract class BaseRepository implements BaseRepositoryInterface
         return $this->model->find($id);
     }
 
+    function getId()
+    {
+        return $this->model->id;
+    }
+
     public function getFillable()
     {
         return $this->model->getFillable();

@@ -5,60 +5,93 @@ namespace Arins\Traits\Http\Controller\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
+use Arins\Facades\Response;
+
 trait Actionresponsejson
 {
 
     public function responseJsonStore0()
     {
-        return redirect()->route($this->sViewName . '.index');
+        $result = Response::saveOk();
+        $result->status_description = 'Add Data Success';
+        $result->data = ['id' => $this->data->getId()];
+
+        return json_encode($result);
     }
 
     public function responseJsonStore1()
     {
-        // return dd('berhasil response view store 1');
-        return redirect()->route($this->sViewName . '.create')
-        ->withErrors($this->validator)
-        ->withInput();
+        $result = Response::validationFailed();
+        $result->status_description = 'Validation Failed';
+        $result->data = [
+            'errors' => $this->validator->messages()->messages(),
+        ];
+
+        return json_encode($result);
     }
 
     public function responseJsonStore2()
     {
-        // return dd('berhasil response view store 2');
-        return redirect()->route($this->sViewName . '.create')
-        ->withInput();
+        $result = Response::saveFailed();
+        $result->status_description = 'Add Data Failed';
+
+        return json_encode($result);
     }
 
     public function responseJsonUpdate0($id)
     {
-        return redirect()->route($this->sViewName . '.index');
+        $result = Response::saveOk();
+        $result->status_description = 'Update Data Success';
+        $result->data = ['id' => $this->data->getId()];
+
+        return json_encode($result);
     }
 
     public function responseJsonUpdate1($id)
     {
-        return redirect()->route($this->sViewName . '.edit', $id)
-        ->withErrors($this->validator)
-        ->withInput();
+        $result = Response::validationFailed();
+        $result->status_description = 'Validation Failed';
+        $result->data = [
+            'errors' => $this->validator->messages()->messages(),
+        ];
+
+        return json_encode($result);
     }
 
     public function responseJsonUpdate2($id)
     {
-        return redirect()->route($this->sViewName . '.edit', $id)
-        ->withInput();
+        $result = Response::saveFailed();
+        $result->status_description = 'Update Data Failed';
+
+        return json_encode($result);
     }
 
     public function responseJsonDestroy0($id)
     {
-        return redirect()->route($this->sViewName . '.index');
+        $result = Response::saveOk();
+        $result->status_description = 'Delete Data Success';
+        $result->data = ['id' => $this->data->getId()];
+
+        return json_encode($result);
     }
 
     public function responseJsonDestroy1($id)
     {
-        //code here...
+        $result = Response::validationFailed();
+        $result->status_description = 'Validation Failed';
+        $result->data = [
+            'errors' => $this->validator->messages()->messages(),
+        ];
+
+        return json_encode($result);
     }
 
     public function responseJsonDestroy2($id)
     {
-        //code here...
+        $result = Response::saveFailed();
+        $result->status_description = 'Delete Data Failed';
+
+        return json_encode($result);
     }
 
 

@@ -20,6 +20,43 @@ class Response extends ResponseAbstract
         );
     }
 
+    public function saveOk($parData = null, $parFormAction = null)
+    {
+        return $this->asObject(
+            config('response.status.ok', true),
+            config('response.code.ok.number', 200), 
+            config('respnse.code.ok.message', 'OK'),
+            null,
+            $parData,
+            $parFormAction
+        );
+    }
+
+    public function saveFailed($parData = null, $parFormAction = null)
+    {
+        return $this->asObject(
+            config('response.status.!ok', false),
+            config('response.code.internalservererror.number', 500), 
+            config('respnse.code.internalservererror.message', 'Internal Server Error'),
+            null,
+            $parData,
+            $parFormAction
+        );
+    }
+
+    public function validationFailed($parData = null, $parFormAction = null)
+    {
+        return $this->asObject(
+            config('response.status.!ok', false),
+            config('response.code.badrequest.number', 400), 
+            config('respnse.code.badrequest.message', 'Bad Request'),
+            null,
+            $parData,
+            $parFormAction
+        );
+    }
+
+
     public function toArray($parData)
     {
         return json_decode(json_encode($parData), TRUE);
