@@ -35,4 +35,9 @@ class ActivitysubtypeRepository extends BaseRepository implements Activitysubtyp
         ];
 
     }
+
+    public function byActivitytype($id)
+    {
+        return $this->model->where('activitytype_id', $id)->get();
+    }
 }
