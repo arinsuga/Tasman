@@ -8,7 +8,7 @@ trait Actionresponse
     {
         $this->aResponseData = ['viewModel' => $this->viewModel];
 
-        foreach ($this->aResponseAdditionalData as $key => $value) {
+        foreach ($this->dataModel as $key => $value) {
 
             $this->aResponseData[$key] = $value;
 
@@ -21,7 +21,7 @@ trait Actionresponse
     {
         $this->aResponseData = ['viewModel' => $this->viewModel];
 
-        foreach ($this->aResponseAdditionalData as $key => $value) {
+        foreach ($this->dataModel as $key => $value) {
 
             $this->aResponseData[$key] = $value;
 
@@ -38,7 +38,7 @@ trait Actionresponse
             'fieldEnabled' => false
         ];
 
-        foreach ($this->aResponseAdditionalData as $key => $value) {
+        foreach ($this->dataModel as $key => $value) {
 
             $this->aResponseData[$key] = $value;
 
@@ -55,7 +55,7 @@ trait Actionresponse
             'fieldEnabled' => false
         ];
 
-        foreach ($this->aResponseAdditionalData as $key => $value) {
+        foreach ($this->dataModel as $key => $value) {
 
             $this->aResponseData[$key] = $value;
 
@@ -70,10 +70,9 @@ trait Actionresponse
             'viewModel' => $this->viewModel,
             'new' => true,
             'fieldEnabled' => true,
-            'dataModel' => $this->dataModel
         ];
 
-        foreach ($this->aResponseAdditionalData as $key => $value) {
+        foreach ($this->dataModel as $key => $value) {
 
             $this->aResponseData[$key] = $value;
 
@@ -91,7 +90,7 @@ trait Actionresponse
             'dataModel' => $this->dataModel
         ];
 
-        foreach ($this->aResponseAdditionalData as $key => $value) {
+        foreach ($this->dataModel as $key => $value) {
 
             $this->aResponseData[$key] = $value;
 
@@ -109,7 +108,7 @@ trait Actionresponse
             'dataModel' => $this->dataModel
         ];
 
-        foreach ($this->aResponseAdditionalData as $key => $value) {
+        foreach ($this->dataModel as $key => $value) {
 
             $this->aResponseData[$key] = $value;
 
@@ -127,7 +126,7 @@ trait Actionresponse
             'dataModel' => $this->dataModel
         ];
 
-        foreach ($this->aResponseAdditionalData as $key => $value) {
+        foreach ($this->dataModel as $key => $value) {
 
             $this->aResponseData[$key] = $value;
 

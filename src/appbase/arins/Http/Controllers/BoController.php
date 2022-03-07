@@ -16,7 +16,7 @@ class BoController extends Controller
     protected $appConfig, $appMode;
     protected $viewModel, $dataModel, $dataField;
     protected $sViewRoot, $sViewName;
-    protected $aResponseData, $aResponseAdditionalData;
+    protected $aResponseData;
     protected $data, $validator;
     protected $controllerModes;
 
@@ -29,7 +29,7 @@ class BoController extends Controller
         $this->appConfig = 'a1.app';
         $this->appMode = config($this->appConfig . '.mode');
         $this->aResponseData = [];
-        $this->aResponseAdditionalData = [];
+        $this->dataModel = [];
 
         $this->controllerModes = $this->initControllerModes();
     }

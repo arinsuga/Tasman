@@ -32,9 +32,7 @@ class SupportController extends BoController
 
         $this->data = $parData;
         $this->dataActivitytype = $parActivitytype;
-
-        $this->dataModel['activitytype'] = $this->dataActivitytype->all();
-        $this->dataModel = json_decode(json_encode($this->dataModel), FALSE);
+        $this->dataModel = ['activitytype' => $this->dataActivitytype->all()];        
     }
 
     protected function transformField($paDataField) {

@@ -31,7 +31,7 @@ class EmployeeController extends BoController
         //Pakai cara ini jika create dan edit additional data nya sama
         //Cara lain adalah buat method [actionname]AdditionalData dan
         //tempatkan array dibawah di dalam method tersebut
-        $this->aResponseAdditionalData = [
+        $this->dataModel = [
             'subdept' => $this->dataSubdept->all(),
             'job' => $this->dataJob->all()];        
     }
