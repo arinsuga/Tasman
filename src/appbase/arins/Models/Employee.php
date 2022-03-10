@@ -100,6 +100,11 @@ class Employee extends Model
             'updated_at'
         ];
 
+    public function activities()
+    {
+        return $this->hasMany('Arins\Models\Activity');
+    }
+
     public function dept() {
         return $this->belongsTo('Arins\Models\Dept');
     }        

@@ -35,6 +35,16 @@ class Activity extends Model
         'updated_at',
     ];
 
+    public function enduser()
+    {
+        return $this->belongsTo('Arins\Models\Employee');
+    }
+
+    public function technician()
+    {
+        return $this->belongsTo('Arins\Models\Employee');
+    }
+
     public function activitytype()
     {
         return $this->belongsTo('Arins\Models\Activitytype');

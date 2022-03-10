@@ -24,7 +24,10 @@
 
 <form role="form" id="frmData" method="POST" action="{{ route('support.store') }}" enctype="multipart/form-data">
     @csrf
-    @include('bo.support.data-field-items')
+
+    <div style="display: flex; justify-content=center;">
+        @include('bo.support.data-field-items')
+    </div>
 
 </form>
 

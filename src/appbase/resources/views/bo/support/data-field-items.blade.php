@@ -40,6 +40,58 @@ margin-left: auto; margin-right:auto;">
       </div>
 
       <div class="form-group">
+        <label>Karyawan</label>
+        @if ($fieldEnabled == true)
+          <select name="enduser_id" class="form-control">
+                @foreach ($enduser as $key => $item)
+
+                  @if ($errors->any())
+                    {{ ($item->id == old('enduser_id') ? $selected = 'selected' : $selected = '') }}
+                  @else
+                    {{ ( $item->id == $viewModel->data->enduser_id ) ? $selected = 'selected' : $selected = '' }}
+                  @endif
+                  <option {{ $selected }} value="{{ $item->id }}">{{ $item->name }}</option>
+                  
+                @endforeach
+            </select>
+        @else
+          <input type="hidden" name="enduser_id" value="{{ $viewModel->data->enduser_id }}" readonly>
+          <div class="form-group">
+              <input disabled type="text" value="{{ $viewModel->data->enduser->name }}" class="form-control">
+          </div>
+        @endif
+        <p class="text-red">{{ $errors->first('enduser_id') }}</p>
+
+      </div>
+
+<hr>
+
+<div class="form-group">
+        <label>Teknisi</label>
+        @if ($fieldEnabled == true)
+          <select name="technician_id" class="form-control">
+                @foreach ($technician as $key => $item)
+
+                  @if ($errors->any())
+                    {{ ($item->id == old('technician_id') ? $selected = 'selected' : $selected = '') }}
+                  @else
+                    {{ ( $item->id == $viewModel->data->technician_id ) ? $selected = 'selected' : $selected = '' }}
+                  @endif
+                  <option {{ $selected }} value="{{ $item->id }}">{{ $item->name }}</option>
+                  
+                @endforeach
+            </select>
+        @else
+          <input type="hidden" name="technician_id" value="{{ $viewModel->data->technician_id }}" readonly>
+          <div class="form-group">
+              <input disabled type="text" value="{{ $viewModel->data->technician->name }}" class="form-control">
+          </div>
+        @endif
+        <p class="text-red">{{ $errors->first('technician_id') }}</p>
+
+      </div>
+
+      <div class="form-group">
         <label>Jenis Pengaduan</label>
         @if ($fieldEnabled == true)
           <select name="activitysubtype_id" class="form-control">
@@ -55,7 +107,7 @@ margin-left: auto; margin-right:auto;">
                 @endforeach
             </select>
         @else
-          <input type="hidden" name="job_id" value="{{ $viewModel->data->activitysubtype_id }}" readonly>
+          <input type="hidden" name="activitysubtype_id" value="{{ $viewModel->data->activitysubtype_id }}" readonly>
           <div class="form-group">
               <input disabled type="text" value="{{ $viewModel->data->activitysubtype->name }}" class="form-control">
           </div>
@@ -80,7 +132,7 @@ margin-left: auto; margin-right:auto;">
                 @endforeach
             </select>
         @else
-          <input type="hidden" name="job_id" value="{{ $viewModel->data->tasktype_id }}" readonly>
+          <input type="hidden" name="tasktype_id" value="{{ $viewModel->data->tasktype_id }}" readonly>
           <div class="form-group">
               <input disabled type="text" value="{{ $viewModel->data->tasktype->name }}" class="form-control">
           </div>
@@ -105,7 +157,7 @@ margin-left: auto; margin-right:auto;">
                 @endforeach
             </select>
         @else
-          <input type="hidden" name="job_id" value="{{ $viewModel->data->tasksubtype1_id }}" readonly>
+          <input type="hidden" name="tasksubtype1_id" value="{{ $viewModel->data->tasksubtype1_id }}" readonly>
           <div class="form-group">
               <input disabled type="text" value="{{ $viewModel->data->tasksubtype1->name }}" class="form-control">
           </div>
@@ -117,7 +169,7 @@ margin-left: auto; margin-right:auto;">
       <div class="form-group">
         <label>item</label>
         @if ($fieldEnabled == true)
-          <select name="tasksubtype1_id" class="form-control">
+          <select name="tasksubtype2_id" class="form-control">
                 @foreach ($tasksubtype2 as $key => $item)
 
                   @if ($errors->any())
@@ -130,7 +182,7 @@ margin-left: auto; margin-right:auto;">
                 @endforeach
             </select>
         @else
-          <input type="hidden" name="job_id" value="{{ $viewModel->data->tasksubtype2_id }}" readonly>
+          <input type="hidden" name="tasksubtype2_id" value="{{ $viewModel->data->tasksubtype2_id }}" readonly>
           <div class="form-group">
               <input disabled type="text" value="{{ $viewModel->data->tasksubtype2->name }}" class="form-control">
           </div>

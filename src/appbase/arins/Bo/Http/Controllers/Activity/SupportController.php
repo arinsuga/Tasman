@@ -13,6 +13,7 @@ use Arins\Repositories\Activitysubtype\ActivitysubtypeRepositoryInterface;
 use Arins\Repositories\Tasktype\TasktypeRepositoryInterface;
 use Arins\Repositories\Tasksubtype1\Tasksubtype1RepositoryInterface;
 use Arins\Repositories\Tasksubtype2\Tasksubtype2RepositoryInterface;
+use Arins\Repositories\Employee\EmployeeRepositoryInterface;
 
 class SupportController extends BoController
 {
@@ -26,13 +27,15 @@ class SupportController extends BoController
     protected $dataTasktype;
     protected $dataTasksubtype1;
     protected $dataTasksubtype2;
+    protected $dataEmployee;
 
 
     public function __construct(ActivityRepositoryInterface $parData,
                                 ActivitysubtypeRepositoryInterface $parActivitysubtype,
                                 TasktypeRepositoryInterface $parTasktype,
                                 Tasksubtype1RepositoryInterface $parTasksubtype1,
-                                Tasksubtype2RepositoryInterface $parTasksubtype2)
+                                Tasksubtype2RepositoryInterface $parTasksubtype2,
+                                EmployeeRepositoryInterface $parEmployee)
     {
         parent::__construct('support');
 
@@ -42,12 +45,15 @@ class SupportController extends BoController
         $this->dataTasktype = $parTasktype;
         $this->dataTasksubtype1 = $parTasksubtype1;
         $this->dataTasksubtype2 = $parTasksubtype2;
+        $this->dataEmployee = $parEmployee;
 
         $this->dataModel = [
             'activitysubtype' => $this->dataActivitysubtype->byActivitytype($this->activitytype_id),
             'tasktype' => $this->dataTasktype->all(),
             'tasksubtype1' => $this->dataTasksubtype1->all(),
             'tasksubtype2' => $this->dataTasksubtype2->all(),
+            'enduser' => $this->dataEmployee->all(),
+            'technician' => $this->dataEmployee->all()
         ];        
     }
 
@@ -55,6 +61,12 @@ class SupportController extends BoController
         $dataField = $paDataField;
         $dataField['activitytype_id'] = 1; //Support
         $dataField['activitystatus_id'] = 1; //open
+
+        $employee = $this->dataEmployee->find($dataField['enduser_id']);
+        if ($employee != null)
+        {
+            $dataField['enduserdept_id'] = $employee->dept_id;
+        }
         $dataField['startdt'] = now();
 
         return $dataField;
