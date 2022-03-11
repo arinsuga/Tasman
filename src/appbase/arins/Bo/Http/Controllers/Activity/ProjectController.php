@@ -6,7 +6,7 @@ namespace Arins\Bo\Http\Controllers\Activity;
 // use App\Http\Controllers\Controller;
 // use Illuminate\Http\Request;
 use Arins\Http\Controllers\BoController;
-use Arins\Traits\Http\Controller\View\Base;
+use Arins\Traits\Http\Controller\Base;
 
 use Arins\Repositories\Activitytype\ActivitytypeRepositoryInterface;
 use Arins\Repositories\Activity\ActivityRepositoryInterface;

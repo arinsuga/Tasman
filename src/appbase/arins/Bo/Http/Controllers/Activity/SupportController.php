@@ -2,10 +2,14 @@
 
 namespace Arins\Bo\Http\Controllers\Activity;
 
-// use App\Http\Controllers\Controller;
-// use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+
 use Arins\Http\Controllers\BoController;
 use Arins\Traits\Http\Controller\Base;
+use Arins\Bo\Http\Controllers\Activity\Support\Pending;
+use Arins\Bo\Http\Controllers\Activity\Support\Cancel;
+use Arins\Bo\Http\Controllers\Activity\Support\Close;
 
 use Arins\Repositories\Activity\ActivityRepositoryInterface;
 
@@ -18,7 +22,7 @@ use Arins\Repositories\Employee\EmployeeRepositoryInterface;
 class SupportController extends BoController
 {
 
-    use Base;
+    use Base, Close, Pending, Cancel;
 
     // protected $sViewRoot;
     // protected $data, $dataActivitytype;
@@ -70,6 +74,49 @@ class SupportController extends BoController
         $dataField['startdt'] = now();
 
         return $dataField;
+    }
+
+    protected function responseView($viewName)
+    {
+        $this->aResponseData = [
+            'viewModel' => $this->viewModel,
+            'new' => false,
+            'fieldEnabled' => true,
+            'dataModel' => $this->dataModel
+        ];
+
+        foreach ($this->dataModel as $key => $value) {
+
+            $this->aResponseData[$key] = $value;
+
+        } //end loop
+
+        return view($this->sViewRoot . '.' . $viewName, $this->aResponseData);
+    }
+
+    protected function updateResult(Request $request, $id, $activityStatusId = null)
+    {
+        //get data from database
+        $record = $this->data->find($id);
+        $record->activitystatus_id = $activityStatusId;
+
+        //get input value by fillable fields
+        $data = $request->only($this->data->getFillable()); //get field input
+
+        //validate input value (validate resolution)
+        if ($activityStatusId == 2)
+        {
+            $record->resolution = $request->input('resolution');
+            // $request->validate(['resolution' => 'required']);
+        } //end if
+
+        if ($this->data->update($record, $data)) {
+            return 0; //success
+        }
+
+        /** jika tetap terjadi kesalahan maka ada kesalahan pada system */
+        //step 2: Kembali ke halaman input
+        return 2; //fail of exception
     }
 
 }

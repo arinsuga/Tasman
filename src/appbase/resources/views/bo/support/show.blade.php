@@ -11,6 +11,26 @@
     </a>
 </li>
 
+<!-- button close -->
+<li class="nav-item">
+    <a class="nav-link" href="{{ route('support.close', ['support' => $viewModel->data->id]) }}">
+        <span style="font-weight: bold;">Close</span>
+    </a>
+</li>
+<!-- button cancel -->
+<li class="nav-item">
+    <a class="nav-link" href="{{ route('support.cancel', ['support' => $viewModel->data->id]) }}">
+        <span style="font-weight: bold;">Cancel</span>
+    </a>
+</li>
+
+<!-- button pending -->
+<li class="nav-item">
+    <a class="nav-link" href="{{ route('support.pending', ['support' => $viewModel->data->id]) }}">
+        <span style="font-weight: bold;">Pending</span>
+    </a>
+</li>
+
 <!-- button edit -->
 <li class="nav-item">
     <a class="nav-link" href="{{ route('support.edit', ['support' => $viewModel->data->id]) }}">

@@ -52,6 +52,15 @@ Route::group(['middleware'=>'lang'],function ()
 
     //support
     Route::resource('support', 'Activity\SupportController');
+    Route::get('support/{close}/close', 'Activity\SupportController@close')->name('support.close');
+    Route::put('support/{close}/close', 'Activity\SupportController@updateClose')->name('support.update.close');
+
+    Route::get('support/{cancel}/cancel', 'Activity\SupportController@cancel')->name('support.cancel');
+    Route::put('support/{cancel}/cancel', 'Activity\SupportController@updateCancel')->name('support.update.cancel');
+
+    Route::get('support/{pending}/pending', 'Activity\SupportController@pending')->name('support.pending');
+    Route::put('support/{pending}/pending', 'Activity\SupportController@updatePending')->name('support.update.pending');
+
     //maintenance
     Route::resource('maintenance', 'Activity\MaintenanceController');
     //project
