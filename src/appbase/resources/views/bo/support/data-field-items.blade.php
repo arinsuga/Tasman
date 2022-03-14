@@ -39,6 +39,18 @@ margin-left: auto; margin-right:auto;">
         @endif
       </div>
 
+      @if (isset($showResolution) && $showResolution === true)
+          <!-- textarea -->
+          <div class="form-group">
+            <label>Resolusi</label>
+            <textarea {{ $disabled }} id="resolution" name="resolution" class="form-control" rows="3" placeholder="">{{ ( $errors->any() ? old('resolution') : $viewModel->data->resolution ) }}</textarea>
+            <p class="text-red">{{ $errors->first('resolution') }}</p>
+          </div>
+
+          <hr>      
+      @endif      
+
+
       <div class="form-group">
         <label>Karyawan</label>
         @if ($fieldEnabled == true)
@@ -63,8 +75,6 @@ margin-left: auto; margin-right:auto;">
         <p class="text-red">{{ $errors->first('enduser_id') }}</p>
 
       </div>
-
-<hr>
 
 <div class="form-group">
         <label>Teknisi</label>

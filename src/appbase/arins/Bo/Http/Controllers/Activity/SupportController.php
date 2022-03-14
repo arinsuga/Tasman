@@ -76,12 +76,13 @@ class SupportController extends BoController
         return $dataField;
     }
 
-    protected function responseView($viewName)
+    protected function responseView($viewName, $new = false, $fieldEnabled = false, $showResolution = false)
     {
         $this->aResponseData = [
             'viewModel' => $this->viewModel,
-            'new' => false,
-            'fieldEnabled' => true,
+            'new' => $new,
+            'fieldEnabled' => $fieldEnabled,
+            'showResolution' => $showResolution,
             'dataModel' => $this->dataModel
         ];
 
@@ -107,7 +108,7 @@ class SupportController extends BoController
         if ($activityStatusId == 2)
         {
             $record->resolution = $request->input('resolution');
-            // $request->validate(['resolution' => 'required']);
+            $request->validate(['resolution' => 'required']);
         } //end if
 
         if ($this->data->update($record, $data)) {

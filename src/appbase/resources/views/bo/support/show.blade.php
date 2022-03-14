@@ -11,10 +11,23 @@
     </a>
 </li>
 
+<!-- <li class="nav-item">
+    <a class="nav-link" href="{{ route('support.close', ['support' => $viewModel->data->id]) }}">
+        <span style="font-weight: bold;">status = {{ $viewModel->data->activitystatus_id }}</span>
+    </a>
+</li> -->
+
+@if ($viewModel->data->activitystatus_id == 1)
 <!-- button close -->
 <li class="nav-item">
     <a class="nav-link" href="{{ route('support.close', ['support' => $viewModel->data->id]) }}">
         <span style="font-weight: bold;">Close</span>
+    </a>
+</li>
+<!-- button pending -->
+<li class="nav-item">
+    <a class="nav-link" href="{{ route('support.pending', ['support' => $viewModel->data->id]) }}">
+        <span style="font-weight: bold;">Pending</span>
     </a>
 </li>
 <!-- button cancel -->
@@ -24,19 +37,14 @@
     </a>
 </li>
 
-<!-- button pending -->
-<li class="nav-item">
-    <a class="nav-link" href="{{ route('support.pending', ['support' => $viewModel->data->id]) }}">
-        <span style="font-weight: bold;">Pending</span>
-    </a>
-</li>
-
 <!-- button edit -->
 <li class="nav-item">
     <a class="nav-link" href="{{ route('support.edit', ['support' => $viewModel->data->id]) }}">
         <i class="fas fa-lg fa-edit"></i>
     </a>
 </li>
+@endif
+
 
 <!-- button delete -->
 <li class="nav-item">
