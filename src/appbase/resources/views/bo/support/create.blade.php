@@ -28,7 +28,6 @@
     <div style="display: flex; justify-content=center;">
         @include('bo.support.data-field-items')
     </div>
-
 </form>
 
 @endsection

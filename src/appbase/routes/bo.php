@@ -51,15 +51,15 @@ Route::group(['middleware'=>'lang'],function ()
     Route::get('report/recap', 'Report\ReportController@recap')->name('report.recap');
 
     //support
-    Route::resource('support', 'Activity\SupportController');
-    Route::get('support/{close}/close', 'Activity\SupportController@close')->name('support.close');
-    Route::put('support/{close}/close', 'Activity\SupportController@updateClose')->name('support.update.close');
+    Route::resource('support', 'Support\SupportController');
+    Route::get('support/{close}/close', 'Support\SupportController@close')->name('support.close');
+    Route::put('support/{close}/close', 'Support\SupportController@updateClose')->name('support.update.close');
 
-    Route::get('support/{cancel}/cancel', 'Activity\SupportController@cancel')->name('support.cancel');
-    Route::put('support/{cancel}/cancel', 'Activity\SupportController@updateCancel')->name('support.update.cancel');
+    Route::get('support/{cancel}/cancel', 'Support\SupportController@cancel')->name('support.cancel');
+    Route::put('support/{cancel}/cancel', 'Support\SupportController@updateCancel')->name('support.update.cancel');
 
-    Route::get('support/{pending}/pending', 'Activity\SupportController@pending')->name('support.pending');
-    Route::put('support/{pending}/pending', 'Activity\SupportController@updatePending')->name('support.update.pending');
+    Route::get('support/{pending}/pending', 'Support\SupportController@pending')->name('support.pending');
+    Route::put('support/{pending}/pending', 'Support\SupportController@updatePending')->name('support.update.pending');
 
     //maintenance
     Route::resource('maintenance', 'Activity\MaintenanceController');

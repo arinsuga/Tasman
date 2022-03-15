@@ -1,15 +1,15 @@
 <?php
 
-namespace Arins\Bo\Http\Controllers\Activity;
+namespace Arins\Bo\Http\Controllers\Support;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use Arins\Http\Controllers\BoController;
 use Arins\Traits\Http\Controller\Base;
-use Arins\Bo\Http\Controllers\Activity\Support\Pending;
-use Arins\Bo\Http\Controllers\Activity\Support\Cancel;
-use Arins\Bo\Http\Controllers\Activity\Support\Close;
+use Arins\Bo\Http\Controllers\Support\Pending;
+use Arins\Bo\Http\Controllers\Support\Cancel;
+use Arins\Bo\Http\Controllers\Support\Close;
 
 use Arins\Repositories\Activity\ActivityRepositoryInterface;
 
@@ -19,7 +19,12 @@ use Arins\Repositories\Tasksubtype1\Tasksubtype1RepositoryInterface;
 use Arins\Repositories\Tasksubtype2\Tasksubtype2RepositoryInterface;
 use Arins\Repositories\Employee\EmployeeRepositoryInterface;
 
-class SupportController extends BoController
+use Arins\Facades\Response;
+// use Arins\Facades\Filex;
+// use Arins\Facades\Formater;
+// use Arins\Facades\ConvertDate;
+
+class SupportOldController extends BoController
 {
 
     use Base, Close, Pending, Cancel;
@@ -27,6 +32,7 @@ class SupportController extends BoController
     // protected $sViewRoot;
     // protected $data, $dataActivitytype;
     protected $activitytype_id;
+    protected $activitystatus_open;
     protected $dataActivitysubtype;
     protected $dataTasktype;
     protected $dataTasksubtype1;
@@ -44,6 +50,7 @@ class SupportController extends BoController
         parent::__construct('support');
 
         $this->activitytype_id = 1; //support
+        $this->activitystatus_open = 1; //open
         $this->data = $parData;
         $this->dataActivitysubtype = $parActivitysubtype;
         $this->dataTasktype = $parTasktype;
@@ -63,8 +70,8 @@ class SupportController extends BoController
 
     protected function transformField($paDataField) {
         $dataField = $paDataField;
-        $dataField['activitytype_id'] = 1; //Support
-        $dataField['activitystatus_id'] = 1; //open
+        $dataField['activitytype_id'] = $this->activitytype_id; //Support
+        $dataField['activitystatus_id'] = $this->activitystatus_open; //open
 
         $employee = $this->dataEmployee->find($dataField['enduser_id']);
         if ($employee != null)
@@ -119,5 +126,13 @@ class SupportController extends BoController
         //step 2: Kembali ke halaman input
         return 2; //fail of exception
     }
+
+    //overrided method
+    protected function processIndex()
+    {
+        $this->viewModel = Response::viewModel();
+        $this->viewModel->data = $this->data->byActivitytype($this->activitytype_id);
+    }
+
 
 }

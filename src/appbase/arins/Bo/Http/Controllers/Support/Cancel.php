@@ -1,15 +1,15 @@
 <?php
 
-namespace Arins\Bo\Http\Controllers\Activity\Support;
+namespace Arins\Bo\Http\Controllers\Support;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-trait Close
+trait Cancel
 {
 
-    /** close */
-    public function close($id)
+    /** cancel */
+    public function cancel($id)
     {
         //Check if additional data exist
         if (method_exists($this, 'editAdditionalData')) {
@@ -18,13 +18,13 @@ trait Close
 
         $this->processEdit($id);
 
-        return $this->responseView('close', false, true, true);
+        return $this->responseView('cancel');
     }
 
     /** post */
-    public function updateClose(Request $request, $id)
+    public function updateCancel(Request $request, $id)
     {
-        $processResult = $this->updateResult($request, $id, 2);
+        $processResult = $this->updateResult($request, $id, 4);
         return $this->runResponseMethod('update', $processResult, $id);
     }
 

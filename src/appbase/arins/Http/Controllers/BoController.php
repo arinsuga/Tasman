@@ -24,7 +24,12 @@ class BoController extends Controller
     {
         $this->middleware('auth.admin');
         $this->middleware('is.admin');
-        $this->sViewName = $psViewName;
+
+        if ($psViewName != null)
+        {
+            $this->sViewName = $psViewName;
+        } //end if
+        
         $this->sViewRoot = 'bo.' . $this->sViewName;
         $this->appConfig = 'a1.app';
         $this->appMode = config($this->appConfig . '.mode');

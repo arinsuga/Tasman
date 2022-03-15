@@ -2,74 +2,147 @@
 
 namespace Arins\Bo\Http\Controllers\Activity;
 
-// use App\Http\Controllers\Controller;
-// use App\Http\Controllers\Controller;
-// use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+
 use Arins\Http\Controllers\BoController;
 use Arins\Traits\Http\Controller\Base;
+use Arins\Bo\Http\Controllers\Support\Pending;
+use Arins\Bo\Http\Controllers\Support\Cancel;
+use Arins\Bo\Http\Controllers\Support\Close;
 
-use Arins\Repositories\Activitytype\ActivitytypeRepositoryInterface;
 use Arins\Repositories\Activity\ActivityRepositoryInterface;
 
+use Arins\Repositories\Activitytype\ActivitytypeRepositoryInterface;
+use Arins\Repositories\Activitysubtype\ActivitysubtypeRepositoryInterface;
+use Arins\Repositories\Tasktype\TasktypeRepositoryInterface;
+use Arins\Repositories\Tasksubtype1\Tasksubtype1RepositoryInterface;
+use Arins\Repositories\Tasksubtype2\Tasksubtype2RepositoryInterface;
+use Arins\Repositories\Employee\EmployeeRepositoryInterface;
+
 use Arins\Facades\Response;
-use Arins\Facades\Filex;
-use Arins\Facades\Formater;
-use Arins\Facades\ConvertDate;
+// use Arins\Facades\Filex;
+// use Arins\Facades\Formater;
+// use Arins\Facades\ConvertDate;
 
 class ActivityController extends BoController
 {
+    use Base, Close, Pending, Cancel;
 
-    use Base;
-
-    // protected $sViewRoot;
-    // protected $data, $dataActivitytype;
     protected $dataActivitytype;
-
+    protected $activitytype_id;
+    protected $activitystatus_open;
+    protected $dataActivitysubtype;
+    protected $dataTasktype;
+    protected $dataTasksubtype1;
+    protected $dataTasksubtype2;
+    protected $dataEmployee;
 
     public function __construct(ActivityRepositoryInterface $parData,
-                                ActivitytypeRepositoryInterface $parActivitytype)
+                                ActivitytypeRepositoryInterface $parActivitytype,
+                                ActivitysubtypeRepositoryInterface $parActivitysubtype,
+                                TasktypeRepositoryInterface $parTasktype,
+                                Tasksubtype1RepositoryInterface $parTasksubtype1,
+                                Tasksubtype2RepositoryInterface $parTasksubtype2,
+                                EmployeeRepositoryInterface $parEmployee)
     {
+        if ($this->sViewName == null)
+        {
+            $this->sViewName = 'activity';
+        } //end if
 
-        parent::__construct('activity');
+        parent::__construct();
 
+        $this->activitystatus_open = 1; //open
         $this->data = $parData;
         $this->dataActivitytype = $parActivitytype;
+        $this->dataActivitysubtype = $parActivitysubtype;
+        $this->dataTasktype = $parTasktype;
+        $this->dataTasksubtype1 = $parTasksubtype1;
+        $this->dataTasksubtype2 = $parTasksubtype2;
+        $this->dataEmployee = $parEmployee;
 
-        $this->dataModel['activitytype'] = $this->dataActivitytype->all();
-        $this->dataModel = json_decode(json_encode($this->dataModel), FALSE);
+        $this->dataModel = [
+            'activitytype' => $this->dataActivitytype->all(),
+            'activitysubtype' => $this->dataActivitysubtype->byActivitytype($this->activitytype_id),
+            'tasktype' => $this->dataTasktype->all(),
+            'tasksubtype1' => $this->dataTasksubtype1->all(),
+            'tasksubtype2' => $this->dataTasksubtype2->all(),
+            'enduser' => $this->dataEmployee->all(),
+            'technician' => $this->dataEmployee->all()
+        ];        
     }
 
     protected function transformField($paDataField) {
         $dataField = $paDataField;
+        $dataField['activitytype_id'] = $this->activitytype_id; //Support
+        $dataField['activitystatus_id'] = $this->activitystatus_open; //open
+
+        $employee = $this->dataEmployee->find($dataField['enduser_id']);
+        if ($employee != null)
+        {
+            $dataField['enduserdept_id'] = $employee->dept_id;
+        }
         $dataField['startdt'] = now();
 
         return $dataField;
     }
 
-    /** get */
-    public function reportDetail()
+    protected function responseView($viewName, $new = false, $fieldEnabled = false, $showResolution = false)
     {
-        return dd('reportDetail');
-        $data = $this->data->allOrderByIdDesc();
+        $this->aResponseData = [
+            'viewModel' => $this->viewModel,
+            'new' => $new,
+            'fieldEnabled' => $fieldEnabled,
+            'showResolution' => $showResolution,
+            'dataModel' => $this->dataModel
+        ];
 
-        $viewModel = Response::viewModel();
-        $viewModel->data = $data;
+        foreach ($this->dataModel as $key => $value) {
 
-        return view($this->sViewRoot.'.report-detail',
-        ['viewModel' => $viewModel]);
+            $this->aResponseData[$key] = $value;
+
+        } //end loop
+
+        return view($this->sViewRoot . '.' . $viewName, $this->aResponseData);
     }
 
-    /** get */
-    public function reportRecap()
+    protected function updateResult(Request $request, $id, $activityStatusId = null)
     {
-        return dd('reportRecap');
-        $data = $this->data->allOrderByIdDesc();
+        //get data from database
+        $record = $this->data->find($id);
+        $record->activitystatus_id = $activityStatusId;
 
-        $viewModel = Response::viewModel();
-        $viewModel->data = $data;
+        //get input value by fillable fields
+        $data = $request->only($this->data->getFillable()); //get field input
 
-        return view($this->sViewRoot.'.report-recap',
-        ['viewModel' => $viewModel]);
+        //validate input value (validate resolution)
+        if ($activityStatusId == 2)
+        {
+            $record->resolution = $request->input('resolution');
+            $request->validate(['resolution' => 'required']);
+        } //end if
+
+        if ($this->data->update($record, $data)) {
+            return 0; //success
+        }
+
+        /** jika tetap terjadi kesalahan maka ada kesalahan pada system */
+        //step 2: Kembali ke halaman input
+        return 2; //fail of exception
     }
+
+    //overrided method
+    protected function processIndex()
+    {
+        $this->viewModel = Response::viewModel();
+        if ($this->activitytype_id == null)
+        {
+            $this->viewModel->data = $this->data->allOrderByDateAndIdDesc();
+        } else {
+            $this->viewModel->data = $this->data->byActivitytype($this->activitytype_id);
+        }
+    }
+
 
 }

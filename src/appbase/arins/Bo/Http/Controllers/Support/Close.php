@@ -1,15 +1,15 @@
 <?php
 
-namespace Arins\Bo\Http\Controllers\Activity\Support;
+namespace Arins\Bo\Http\Controllers\Support;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-trait Pending
+trait Close
 {
 
-    /** pending */
-    public function pending($id)
+    /** close */
+    public function close($id)
     {
         //Check if additional data exist
         if (method_exists($this, 'editAdditionalData')) {
@@ -18,13 +18,13 @@ trait Pending
 
         $this->processEdit($id);
 
-        return $this->responseView('pending');
+        return $this->responseView('close', false, true, true);
     }
 
     /** post */
-    public function updatePending(Request $request, $id)
+    public function updateClose(Request $request, $id)
     {
-        $processResult = $this->updateResult($request, $id, 3);
+        $processResult = $this->updateResult($request, $id, 2);
         return $this->runResponseMethod('update', $processResult, $id);
     }
 
