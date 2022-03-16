@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 
 use Arins\Http\Controllers\BoController;
 use Arins\Traits\Http\Controller\Base;
-use Arins\Bo\Http\Controllers\Support\Pending;
-use Arins\Bo\Http\Controllers\Support\Cancel;
-use Arins\Bo\Http\Controllers\Support\Close;
+use Arins\Bo\Http\Controllers\Activity\Pending;
+use Arins\Bo\Http\Controllers\Activity\Cancel;
+use Arins\Bo\Http\Controllers\Activity\Close;
 
 use Arins\Repositories\Activity\ActivityRepositoryInterface;
 

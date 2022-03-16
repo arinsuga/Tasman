@@ -73,7 +73,15 @@ Route::group(['middleware'=>'lang'],function ()
     Route::put('maintenance/{pending}/pending', 'Maintenance\MaintenanceController@updatePending')->name('maintenance.update.pending');
 
     //project
-    Route::resource('project', 'Activity\ProjectController');
+    Route::resource('project', 'Project\ProjectController');
+    Route::get('project/{close}/close', 'Project\ProjectController@close')->name('project.close');
+    Route::put('project/{close}/close', 'Project\ProjectController@updateClose')->name('project.update.close');
+
+    Route::get('project/{cancel}/cancel', 'Project\ProjectController@cancel')->name('project.cancel');
+    Route::put('project/{cancel}/cancel', 'Project\ProjectController@updateCancel')->name('project.update.cancel');
+
+    Route::get('project/{pending}/pending', 'Project\ProjectController@pending')->name('project.pending');
+    Route::put('project/{pending}/pending', 'Project\ProjectController@updatePending')->name('project.update.pending');
 
 
     //employee
