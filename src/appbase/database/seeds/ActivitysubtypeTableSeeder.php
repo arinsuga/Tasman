@@ -18,9 +18,6 @@ class ActivitysubtypeTableSeeder extends Seeder
         DB::table("activitysubtype")->insert([ "id" => 3, "activitytype_id" => 2, "name" => "Reguler", "description" => "Reguler", "image" => null, "numsort" => 30, "status" => 1 ]);   
         DB::table("activitysubtype")->insert([ "id" => 4, "activitytype_id" => 2, "name" => "Request", "description" => "Request", "image" => null, "numsort" => 40, "status" => 1 ]);   
         DB::table("activitysubtype")->insert([ "id" => 5, "activitytype_id" => 2, "name" => "Incident", "description" => "Incident", "image" => null, "numsort" => 50, "status" => 1 ]);   
-        DB::table("activitysubtype")->insert([ "id" => 6, "activitytype_id" => 3, "name" => "Hardware", "description" => "Hardware", "image" => null, "numsort" => 60, "status" => 1 ]);   
-        DB::table("activitysubtype")->insert([ "id" => 7, "activitytype_id" => 3, "name" => "Software", "description" => "Software", "image" => null, "numsort" => 70, "status" => 1 ]);   
-        DB::table("activitysubtype")->insert([ "id" => 8, "activitytype_id" => 3, "name" => "Network", "description" => "Network", "image" => null, "numsort" => 80, "status" => 1 ]);   
                 
 
     }
