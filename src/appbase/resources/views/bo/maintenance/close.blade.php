@@ -1,11 +1,11 @@
 @extends('layouts.appbo')
 
-@section('content_title', 'Maintenance Add')
+@section('content_title', 'Maintenance Closing')
 
 @section('toolbar')
 
 <li class="nav-item">
-    <a class="nav-link" href="{{ route('maintenance.index') }}">
+    <a class="nav-link" href="{{ url()->previous() }}">
         <i class="fas fa-lg fa-arrow-left"></i>
     </a>
 </li>
@@ -19,15 +19,13 @@
 
 @endsection
 
-
 @section('content')
 
-<form role="form" id="frmData" method="POST" action="{{ route('maintenance.store') }}" enctype="multipart/form-data">
+<form role="form" id="frmData" method="POST" action="{{ route('maintenance.update.close', ['maintenance' => $viewModel->data->id]) }}" enctype="multipart/form-data">
     @csrf
+    @method('PUT')
 
-    <div style="display: flex; justify-content=center;">
-        @include('bo.maintenance.data-field-items')
-    </div>
+    @include('bo.maintenance.data-field-items')
 </form>
 
 @endsection

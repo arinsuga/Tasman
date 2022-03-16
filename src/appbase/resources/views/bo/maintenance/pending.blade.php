@@ -1,6 +1,6 @@
 @extends('layouts.appbo')
 
-@section('content_title', 'Project Edit')
+@section('content_title', 'Maintenance Pending')
 
 @section('toolbar')
 
@@ -21,17 +21,17 @@
 
 @section('content')
 
-<form role="form" id="frmData" method="POST" action="{{ route('project.update', ['project' => $viewModel->data->id]) }}" enctype="multipart/form-data">
+<form role="form" id="frmData" method="POST" action="{{ route('maintenance.update.pending', ['maintenance' => $viewModel->data->id]) }}" enctype="multipart/form-data">
     @csrf
     @method('PUT')
 
-    @include('bo.project.data-field-items')
+    @include('bo.maintenance.data-field-items')
 </form>
 
 @endsection
 
 @section('js')
 
-    @include('bo.project._script')
+    @include('bo.maintenance._script')
 
 @endsection

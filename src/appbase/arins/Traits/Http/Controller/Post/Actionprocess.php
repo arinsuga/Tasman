@@ -111,6 +111,7 @@ trait Actionprocess
     {
         //
         $record = $this->data->find($id);
+        //return dd($record);
         $fileName = $record->image;
         
         //$model->delete();

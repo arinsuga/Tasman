@@ -1,11 +1,11 @@
 @extends('layouts.appbo')
 
-@section('content_title', 'Project Add')
+@section('content_title', 'Maintenance Cancel')
 
 @section('toolbar')
 
 <li class="nav-item">
-    <a class="nav-link" href="{{ route('project.index') }}">
+    <a class="nav-link" href="{{ url()->previous() }}">
         <i class="fas fa-lg fa-arrow-left"></i>
     </a>
 </li>
@@ -19,19 +19,19 @@
 
 @endsection
 
-
 @section('content')
 
-<form role="form" id="frmData" method="POST" action="{{ route('project.store') }}" enctype="multipart/form-data">
+<form role="form" id="frmData" method="POST" action="{{ route('maintenance.update.cancel', ['maintenance' => $viewModel->data->id]) }}" enctype="multipart/form-data">
     @csrf
-    @include('bo.project.data-field-items')
+    @method('PUT')
 
+    @include('bo.maintenance.data-field-items')
 </form>
 
 @endsection
 
 @section('js')
 
-    @include('bo.project._script')
+    @include('bo.maintenance._script')
 
 @endsection

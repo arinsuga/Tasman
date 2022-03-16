@@ -62,7 +62,16 @@ Route::group(['middleware'=>'lang'],function ()
     Route::put('support/{pending}/pending', 'Support\SupportController@updatePending')->name('support.update.pending');
 
     //maintenance
-    Route::resource('maintenance', 'Activity\MaintenanceController');
+    Route::resource('maintenance', 'Maintenance\MaintenanceController');
+    Route::get('maintenance/{close}/close', 'Maintenance\MaintenanceController@close')->name('maintenance.close');
+    Route::put('maintenance/{close}/close', 'Maintenance\MaintenanceController@updateClose')->name('maintenance.update.close');
+
+    Route::get('maintenance/{cancel}/cancel', 'Maintenance\MaintenanceController@cancel')->name('maintenance.cancel');
+    Route::put('maintenance/{cancel}/cancel', 'Maintenance\MaintenanceController@updateCancel')->name('maintenance.update.cancel');
+
+    Route::get('maintenance/{pending}/pending', 'Maintenance\MaintenanceController@pending')->name('maintenance.pending');
+    Route::put('maintenance/{pending}/pending', 'Maintenance\MaintenanceController@updatePending')->name('maintenance.update.pending');
+
     //project
     Route::resource('project', 'Activity\ProjectController');
 
