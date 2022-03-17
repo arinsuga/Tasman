@@ -27,6 +27,7 @@ class SupportController extends ActivityController
                                 Tasksubtype2RepositoryInterface $parTasksubtype2,
                                 EmployeeRepositoryInterface $parEmployee)
     {
+        $this->uploadDirectory = 'support';
         $this->sViewName = 'support';
         $this->activitytype_id = 1; //support
 

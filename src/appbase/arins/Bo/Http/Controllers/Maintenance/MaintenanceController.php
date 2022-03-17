@@ -26,6 +26,7 @@ class MaintenanceController extends ActivityController
                                 Tasksubtype2RepositoryInterface $parTasksubtype2,
                                 EmployeeRepositoryInterface $parEmployee)
     {
+        $this->uploadDirectory = 'maintenance';
         $this->sViewName = 'maintenance';
         $this->activitytype_id = 2; //maintenance
 

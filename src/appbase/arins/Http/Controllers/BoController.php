@@ -19,6 +19,7 @@ class BoController extends Controller
     protected $aResponseData;
     protected $data, $validator;
     protected $controllerModes;
+    protected $uploadDirectory;
 
     public function __construct($psViewName=null)
     {

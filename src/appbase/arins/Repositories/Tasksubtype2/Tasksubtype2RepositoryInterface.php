@@ -7,4 +7,5 @@ use Arins\Repositories\BaseRepositoryInterface;
 //Inherit interface to BaseRepositoryInterface
 interface Tasksubtype2RepositoryInterface extends BaseRepositoryInterface
 {
+    function byActivitytype($id);
 }

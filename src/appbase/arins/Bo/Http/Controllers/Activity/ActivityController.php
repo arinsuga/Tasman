@@ -65,9 +65,9 @@ class ActivityController extends BoController
         $this->dataModel = [
             'activitytype' => $this->dataActivitytype->all(),
             'activitysubtype' => $this->dataActivitysubtype->byActivitytype($this->activitytype_id),
-            'tasktype' => $this->dataTasktype->all(),
-            'tasksubtype1' => $this->dataTasksubtype1->all(),
-            'tasksubtype2' => $this->dataTasksubtype2->all(),
+            'tasktype' => $this->dataTasktype->byActivitytype($this->activitytype_id),
+            'tasksubtype1' => $this->dataTasksubtype1->byActivitytype($this->activitytype_id),
+            'tasksubtype2' => $this->dataTasksubtype2->byActivitytype($this->activitytype_id),
             'enduser' => $this->dataEmployee->all(),
             'technician' => $this->dataEmployee->all()
         ];        
@@ -78,11 +78,20 @@ class ActivityController extends BoController
         $dataField['activitytype_id'] = $this->activitytype_id; //Support
         $dataField['activitystatus_id'] = $this->activitystatus_open; //open
 
-        $employee = $this->dataEmployee->find($dataField['enduser_id']);
-        if ($employee != null)
+        // enduser_id
+        if (isset($dataField['enduser_id']))
         {
-            $dataField['enduserdept_id'] = $employee->dept_id;
-        }
+            $employee = $this->dataEmployee->find($dataField['enduser_id']);
+        } //end if
+
+        // enduserdept_id'
+        if (isset($dataField['enduserdept_id']))
+        {
+            if ($employee != null)
+            {
+                $dataField['enduserdept_id'] = $employee->dept_id;
+            } //end if
+        } //end if
         $dataField['startdt'] = now();
 
         return $dataField;

@@ -26,6 +26,7 @@ class ProjectController extends ActivityController
                                 Tasksubtype2RepositoryInterface $parTasksubtype2,
                                 EmployeeRepositoryInterface $parEmployee)
     {
+        $this->uploadDirectory = 'project';
         $this->sViewName = 'project';
         $this->activitytype_id = 3; //project
 

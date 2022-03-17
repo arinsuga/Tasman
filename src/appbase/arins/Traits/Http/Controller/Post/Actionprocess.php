@@ -39,7 +39,7 @@ trait Actionprocess
         } //end if validator
 
         //copy temporary uploaded image to real path
-        $data['image'] = Filex::uploadOrCopyAndRemove('', $uploadTemp, 'activities', $upload, 'public', false);
+        $data['image'] = Filex::uploadOrCopyAndRemove('', $uploadTemp, $this->uploadDirectory, $upload, 'public', false);
         
         //save data
         if ($this->data->create($data)) {
@@ -73,7 +73,7 @@ trait Actionprocess
         //validate input value
         $request->validate($this->data->getValidateInput());
 
-        $imageNew = Filex::uploadOrCopyAndRemove($imageOld, $uploadTemp, 'activities', $upload, 'public', false);
+        $imageNew = Filex::uploadOrCopyAndRemove($imageOld, $uploadTemp, $this->uploadDirectory, $upload, 'public', false);
         $data['image'] = $imageNew;
         if (strtolower($toggleRemoveImage) ==  'true')
         {

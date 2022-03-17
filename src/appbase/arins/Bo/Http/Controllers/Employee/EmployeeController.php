@@ -21,6 +21,9 @@ class EmployeeController extends BoController
                                 SubdeptRepositoryInterface $parSubdept,
                                 JobRepositoryInterface $parJob)
     {
+        $this->uploadDirectory = 'employee';
+        $this->sViewName = 'employee';
+
         parent::__construct('employee');
 
         $this->data = $parData;

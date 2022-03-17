@@ -40,4 +40,10 @@ class Tasksubtype2Repository extends BaseRepository implements Tasksubtype2Repos
             'status' => 'require'
         ];
     }
+
+    public function byActivitytype($id)
+    {
+        return $this->model->where('activitytype_id', $id)->get();
+    }
+    
 }

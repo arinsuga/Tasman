@@ -31,7 +31,11 @@ class TasktypeTableSeeder extends Seeder
         DB::table("tasktype")->insert([ "id" => 16, "activitytype_id" => 3, "name" => "Hardware", "description" => "Hardware", "image" => null, "numsort" => 160, "status" => 1 ]); 
         DB::table("tasktype")->insert([ "id" => 17, "activitytype_id" => 3, "name" => "Software", "description" => "Software", "image" => null, "numsort" => 170, "status" => 1 ]); 
         DB::table("tasktype")->insert([ "id" => 18, "activitytype_id" => 3, "name" => "Network", "description" => "Network", "image" => null, "numsort" => 180, "status" => 1 ]); 
-             
+        DB::table("tasktype")->insert([ "id" => 19, "activitytype_id" => 3, "name" => "Arsitek", "description" => "Arsitek", "image" => null, "numsort" => 190, "status" => 1 ]); 
+        DB::table("tasktype")->insert([ "id" => 20, "activitytype_id" => 3, "name" => "Interior", "description" => "Interior", "image" => null, "numsort" => 200, "status" => 1 ]); 
+        DB::table("tasktype")->insert([ "id" => 21, "activitytype_id" => 3, "name" => "Pelaksana", "description" => "Pelaksana", "image" => null, "numsort" => 210, "status" => 1 ]); 
+        DB::table("tasktype")->insert([ "id" => 22, "activitytype_id" => 3, "name" => "DnB", "description" => "DnB", "image" => null, "numsort" => 220, "status" => 1 ]); 
+                     
         
     }
 }

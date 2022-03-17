@@ -52,82 +52,7 @@ margin-left: auto; margin-right:auto;">
 
 
       <div class="form-group">
-        <label>Karyawan</label>
-        @if ($fieldEnabled == true)
-          <select name="enduser_id" class="form-control">
-                @foreach ($enduser as $key => $item)
-
-                  @if ($errors->any())
-                    {{ ($item->id == old('enduser_id') ? $selected = 'selected' : $selected = '') }}
-                  @else
-                    {{ ( $item->id == $viewModel->data->enduser_id ) ? $selected = 'selected' : $selected = '' }}
-                  @endif
-                  <option {{ $selected }} value="{{ $item->id }}">{{ $item->name }}</option>
-                  
-                @endforeach
-            </select>
-        @else
-          <input type="hidden" name="enduser_id" value="{{ $viewModel->data->enduser_id }}" readonly>
-          <div class="form-group">
-              <input disabled type="text" value="{{ $viewModel->data->enduser->name }}" class="form-control">
-          </div>
-        @endif
-        <p class="text-red">{{ $errors->first('enduser_id') }}</p>
-
-      </div>
-
-<div class="form-group">
-        <label>Teknisi</label>
-        @if ($fieldEnabled == true)
-          <select name="technician_id" class="form-control">
-                @foreach ($technician as $key => $item)
-
-                  @if ($errors->any())
-                    {{ ($item->id == old('technician_id') ? $selected = 'selected' : $selected = '') }}
-                  @else
-                    {{ ( $item->id == $viewModel->data->technician_id ) ? $selected = 'selected' : $selected = '' }}
-                  @endif
-                  <option {{ $selected }} value="{{ $item->id }}">{{ $item->name }}</option>
-                  
-                @endforeach
-            </select>
-        @else
-          <input type="hidden" name="technician_id" value="{{ $viewModel->data->technician_id }}" readonly>
-          <div class="form-group">
-              <input disabled type="text" value="{{ $viewModel->data->technician->name }}" class="form-control">
-          </div>
-        @endif
-        <p class="text-red">{{ $errors->first('technician_id') }}</p>
-
-      </div>
-
-      <div class="form-group">
-        <label>Jenis Pengaduan</label>
-        @if ($fieldEnabled == true)
-          <select name="activitysubtype_id" class="form-control">
-                @foreach ($activitysubtype as $key => $item)
-
-                  @if ($errors->any())
-                    {{ ($item->id == old('activitysubtype_id') ? $selected = 'selected' : $selected = '') }}
-                  @else
-                    {{ ( $item->id == $viewModel->data->activitysubtype_id ) ? $selected = 'selected' : $selected = '' }}
-                  @endif
-                  <option {{ $selected }} value="{{ $item->id }}">{{ $item->name }}</option>
-                  
-                @endforeach
-            </select>
-        @else
-          <input type="hidden" name="activitysubtype_id" value="{{ $viewModel->data->activitysubtype_id }}" readonly>
-          <div class="form-group">
-              <input disabled type="text" value="{{ $viewModel->data->activitysubtype->name }}" class="form-control">
-          </div>
-        @endif
-        <p class="text-red">{{ $errors->first('activitysubtype_id') }}</p>
-
-      </div>
-
-      <div class="form-group">
-        <label>Kategori</label>
+        <label>Jenis Project</label>
         @if ($fieldEnabled == true)
           <select name="tasktype_id" class="form-control">
                 @foreach ($tasktype as $key => $item)
@@ -152,7 +77,7 @@ margin-left: auto; margin-right:auto;">
       </div>
 
       <div class="form-group">
-        <label>Sub Kategori</label>
+        <label>Project</label>
         @if ($fieldEnabled == true)
           <select name="tasksubtype1_id" class="form-control">
                 @foreach ($tasksubtype1 as $key => $item)
@@ -176,8 +101,8 @@ margin-left: auto; margin-right:auto;">
 
       </div>
 
-      <div class="form-group">
-        <label>item</label>
+      <!-- <div class="form-group">
+        <label>Tahapan Project</label>
         @if ($fieldEnabled == true)
           <select name="tasksubtype2_id" class="form-control">
                 @foreach ($tasksubtype2 as $key => $item)
@@ -199,7 +124,7 @@ margin-left: auto; margin-right:auto;">
         @endif
         <p class="text-red">{{ $errors->first('tasksubtype2_id') }}</p>
 
-      </div>
+      </div> -->
 
 
 
@@ -218,7 +143,6 @@ margin-left: auto; margin-right:auto;">
         <textarea {{ $disabled }} id="description" name="description" class="form-control" rows="3" placeholder="">{{ ( $errors->any() ? old('description') : $viewModel->data->description ) }}</textarea>
         <p class="text-red">{{ $errors->first('description') }}</p>
       </div>
-    </div>
 </div>
 
 

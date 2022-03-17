@@ -34,4 +34,10 @@ class TasktypeRepository extends BaseRepository implements TasktypeRepositoryInt
             'status' => 'required'
         ];
     }
+
+    public function byActivitytype($id)
+    {
+        return $this->model->where('activitytype_id', $id)->get();
+    }
+
 }

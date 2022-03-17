@@ -51,7 +51,7 @@ margin-left: auto; margin-right:auto;">
       @endif      
 
 
-      <div class="form-group">
+      <!-- <div class="form-group">
         <label>Karyawan</label>
         @if ($fieldEnabled == true)
           <select name="enduser_id" class="form-control">
@@ -74,10 +74,10 @@ margin-left: auto; margin-right:auto;">
         @endif
         <p class="text-red">{{ $errors->first('enduser_id') }}</p>
 
-      </div>
+      </div> -->
 
 <div class="form-group">
-        <label>Teknisi</label>
+        <label>Petugas Maintenance</label>
         @if ($fieldEnabled == true)
           <select name="technician_id" class="form-control">
                 @foreach ($technician as $key => $item)
@@ -102,7 +102,7 @@ margin-left: auto; margin-right:auto;">
       </div>
 
       <div class="form-group">
-        <label>Jenis Pengaduan</label>
+        <label>Jenis Maintenance</label>
         @if ($fieldEnabled == true)
           <select name="activitysubtype_id" class="form-control">
                 @foreach ($activitysubtype as $key => $item)
@@ -127,7 +127,7 @@ margin-left: auto; margin-right:auto;">
       </div>
 
       <div class="form-group">
-        <label>Kategori</label>
+        <label>Object Maintenance</label>
         @if ($fieldEnabled == true)
           <select name="tasktype_id" class="form-control">
                 @foreach ($tasktype as $key => $item)
@@ -151,7 +151,7 @@ margin-left: auto; margin-right:auto;">
 
       </div>
 
-      <div class="form-group">
+      <!-- <div class="form-group">
         <label>Sub Kategori</label>
         @if ($fieldEnabled == true)
           <select name="tasksubtype1_id" class="form-control">
@@ -199,7 +199,7 @@ margin-left: auto; margin-right:auto;">
         @endif
         <p class="text-red">{{ $errors->first('tasksubtype2_id') }}</p>
 
-      </div>
+      </div> -->
 
 
 
