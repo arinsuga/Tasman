@@ -12,6 +12,57 @@
       </a>
     </li>
 
+    <!-- Master Data -->
+    <li class="nav-item has-treeview">
+      <a href="#" class="nav-link">
+        <i class="nav-icon fas fa-tag"></i>
+        <p>
+          Master
+          <i class="fas fa-angle-left right"></i>
+        </p>
+      </a>
+
+      <ul class="nav nav-treeview">
+        <li class="nav-item">
+          <a href="{{ route('mastercategory.index') }}" class="nav-link">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Kategori</p>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a href="{{ route('mastersubcategory.index') }}" class="nav-link">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Sub Category</p>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a href="{{ route('masteritem.index') }}" class="nav-link">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Item</p>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a href="{{ route('masterobjectmaintenance.index') }}" class="nav-link">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Object Maintenance</p>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a href="{{ route('masterproject.index') }}" class="nav-link">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Project</p>
+          </a>
+        </li>
+
+      </ul>
+    </li>
+
+
+    <!-- Activity -->
     <li class="nav-item has-treeview">
       <a href="#" class="nav-link">
         <i class="nav-icon fas fa-tag"></i>
@@ -45,7 +96,7 @@
       </ul>
     </li>
 
-    <!-- master data -->
+    <!-- Input data -->
     <li class="nav-item has-treeview">
       <a href="#" class="nav-link">
         <i class="nav-icon fas fa-tag"></i>

@@ -83,6 +83,13 @@ Route::group(['middleware'=>'lang'],function ()
     Route::get('project/{pending}/pending', 'Project\ProjectController@pending')->name('project.pending');
     Route::put('project/{pending}/pending', 'Project\ProjectController@updatePending')->name('project.update.pending');
 
+    //master
+    Route::resource('mastercategory', 'Mastercategory\MastercategoryController');
+    Route::resource('mastersubcategory', 'Mastersubcategory\MastersubcategoryController');
+    Route::resource('masteritem', 'Masteritem\MasteritemController');
+    Route::resource('masterobjectmaintenance', 'Masterobjectmaintenance\MasterobjectmaintenanceController');
+    Route::resource('masterproject', 'Masterproject\MasterprojectController');
+
 
     //employee
     Route::resource('employee', 'Employee\EmployeeController');
