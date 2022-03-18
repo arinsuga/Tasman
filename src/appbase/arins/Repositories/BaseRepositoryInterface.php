@@ -7,6 +7,8 @@ interface BaseRepositoryInterface
     function all();
     function find($id);
     function getId();
+    function getFirst();
+    function getLast();
 
     function getFillable();
     function getInputField();

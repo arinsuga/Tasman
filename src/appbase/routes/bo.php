@@ -90,7 +90,6 @@ Route::group(['middleware'=>'lang'],function ()
     Route::resource('masterobjectmaintenance', 'Masterobjectmaintenance\MasterobjectmaintenanceController');
     Route::resource('masterproject', 'Masterproject\MasterprojectController');
 
-
     //employee
     Route::resource('employee', 'Employee\EmployeeController');
 

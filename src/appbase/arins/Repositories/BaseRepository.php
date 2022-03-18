@@ -19,15 +19,26 @@ abstract class BaseRepository implements BaseRepositoryInterface
         return $this->model->all();
     }
 
-    function find($id)
+    public function find($id)
     {
         return $this->model->find($id);
     }
 
-    function getId()
+    public function getId()
     {
         return $this->model->id;
     }
+
+    public function getFirst()
+    {
+        return $this->model->first();
+    }
+
+    public function getLast()
+    {
+        return $this->model->orderBy('id', 'desc')->first();
+    }
+
 
     public function getFillable()
     {

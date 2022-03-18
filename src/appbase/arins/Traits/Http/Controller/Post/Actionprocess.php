@@ -22,9 +22,10 @@ trait Actionprocess
         $imageTemp = $request->input('imageTemp'); //temporary file uploaded
         
         //Check if inputs need to be transformed by transformField method
-        if (method_exists($this, 'transformField')) {
-            $data = $this->transformField($data);
-        } //end if
+        // if (method_exists($this, 'transformField')) {
+        //     $data = $this->transformField($data);
+        // } //end if
+        $data = $this->transformField($data);
 
 
         //create temporary uploaded image

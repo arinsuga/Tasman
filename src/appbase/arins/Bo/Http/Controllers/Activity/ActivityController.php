@@ -73,6 +73,7 @@ class ActivityController extends BoController
         ];        
     }
 
+    // override method transformfield
     protected function transformField($paDataField) {
         $dataField = $paDataField;
         $dataField['activitytype_id'] = $this->activitytype_id; //Support

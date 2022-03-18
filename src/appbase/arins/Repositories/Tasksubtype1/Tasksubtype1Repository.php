@@ -23,7 +23,6 @@ class Tasksubtype1Repository extends BaseRepository implements Tasksubtype1Repos
         ];
     
         $this->validateInput = [
-            'tasktype_id' => 'required',
             'name' => 'required',
             'description' => 'required',
         ];
