@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 
 use Arins\Bo\Http\Controllers\Master\MasterController;
 use Arins\Http\Controllers\BoController;
-use Arins\Traits\Http\Controller\Base;
 
 
 use Arins\Repositories\Tasktype\TasktypeRepositoryInterface;
