@@ -116,6 +116,46 @@
       </ul>
     </li>
 
+    <!-- Reports -->
+    <li class="nav-item has-treeview">
+      <a href="#" class="nav-link">
+        <i class="nav-icon fas fa-tag"></i>
+        <p>
+          Reports
+          <i class="fas fa-angle-left right"></i>
+        </p>
+      </a>
+
+      <ul class="nav nav-treeview">
+        <li class="nav-item">
+          <a href="{{ route('report.index') }}" class="nav-link">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Rincian</p>
+          </a>
+        </li>
+      </ul>
+    </li>
+
+    <!-- Input data -->
+    <li class="nav-item has-treeview">
+      <a href="#" class="nav-link">
+        <i class="nav-icon fas fa-tag"></i>
+        <p>
+          Input Data
+          <i class="fas fa-angle-left right"></i>
+        </p>
+      </a>
+      <ul class="nav nav-treeview">
+
+        <li class="nav-item">
+          <a href="{{ route('employee.index') }}" class="nav-link">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Karyawan</p>
+          </a>
+        </li>
+      </ul>
+    </li>
+
     <!-- Logout -->
     <li class="nav-item has-treeview menu-open">
       <a href="{{ route('AuthAdmin.logout') }}" class="nav-link"

@@ -93,6 +93,9 @@ Route::group(['middleware'=>'lang'],function ()
     //employee
     Route::resource('employee', 'Employee\EmployeeController');
 
+    //reports
+    Route::resource('report', 'Report\ReportController');
+
     //404 - Not Found
     Route::fallback(function () {
 
