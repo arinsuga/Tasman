@@ -128,9 +128,9 @@
 
       <ul class="nav nav-treeview">
         <li class="nav-item">
-          <a href="{{ route('report.index') }}" class="nav-link">
+          <a href="{{ route('support.report') }}" class="nav-link">
             <i class="far fa-circle nav-icon"></i>
-            <p>Rincian</p>
+            <p>Support</p>
           </a>
         </li>
       </ul>

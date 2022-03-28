@@ -43,4 +43,24 @@ class SupportController extends ActivityController
 
     } //end construct
 
+
+    protected function processReport()
+    {
+        $this->viewModel = Response::viewModel();
+        $this->viewModel->data = $this->data->allOrderByIdDesc();
+    }
+
+    public function report()
+    {
+        //Check if additional data exist
+        if (method_exists($this, 'indexAdditionalData')) {
+            $additionalData = $this->indexAdditionalData();
+        } //end if
+
+        $this->processReport();
+        
+        return $this->responseView('report', false, false, false);
+    }
+
+
 } //end class

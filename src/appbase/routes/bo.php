@@ -45,10 +45,6 @@ Route::group(['middleware'=>'lang'],function ()
     Route::resource('dashboard', 'Dashboard\DashboardController');
     //activity
     Route::resource('activity', 'Activity\ActivityController');
-    //activity report detail
-    Route::get('report/detail', 'Report\ReportController@detail')->name('report.detail');
-    //activity report recap
-    Route::get('report/recap', 'Report\ReportController@recap')->name('report.recap');
 
     //support
     Route::resource('support', 'Support\SupportController');
@@ -60,6 +56,9 @@ Route::group(['middleware'=>'lang'],function ()
 
     Route::get('support/{pending}/pending', 'Support\SupportController@pending')->name('support.pending');
     Route::put('support/{pending}/pending', 'Support\SupportController@updatePending')->name('support.update.pending');
+
+    Route::get('support/report', 'Support\SupportController@report')->name('support.report');
+
 
     //maintenance
     Route::resource('maintenance', 'Maintenance\MaintenanceController');
@@ -92,9 +91,6 @@ Route::group(['middleware'=>'lang'],function ()
 
     //employee
     Route::resource('employee', 'Employee\EmployeeController');
-
-    //reports
-    Route::resource('report', 'Report\ReportController');
 
     //404 - Not Found
     Route::fallback(function () {
