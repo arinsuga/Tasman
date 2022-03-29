@@ -48,6 +48,8 @@ Route::group(['middleware'=>'lang'],function ()
 
     //support
     Route::resource('support', 'Support\SupportController');
+    Route::get('support/{report}/{detail}/report', 'Support\SupportController@reportDetail')->name('support.report.detail');
+
     Route::get('support/{close}/close', 'Support\SupportController@close')->name('support.close');
     Route::put('support/{close}/close', 'Support\SupportController@updateClose')->name('support.update.close');
 
@@ -57,7 +59,6 @@ Route::group(['middleware'=>'lang'],function ()
     Route::get('support/{pending}/pending', 'Support\SupportController@pending')->name('support.pending');
     Route::put('support/{pending}/pending', 'Support\SupportController@updatePending')->name('support.update.pending');
 
-    Route::get('support/report', 'Support\SupportController@report')->name('support.report');
 
 
     //maintenance

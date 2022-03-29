@@ -16,6 +16,8 @@ use Arins\Repositories\Tasksubtype1\Tasksubtype1RepositoryInterface;
 use Arins\Repositories\Tasksubtype2\Tasksubtype2RepositoryInterface;
 use Arins\Repositories\Employee\EmployeeRepositoryInterface;
 
+use Arins\Facades\Response;
+
 class SupportController extends ActivityController
 {
 
@@ -50,7 +52,7 @@ class SupportController extends ActivityController
         $this->viewModel->data = $this->data->allOrderByIdDesc();
     }
 
-    public function report()
+    public function reportDetail()
     {
         //Check if additional data exist
         if (method_exists($this, 'indexAdditionalData')) {
