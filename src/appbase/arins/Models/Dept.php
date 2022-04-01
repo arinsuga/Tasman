@@ -31,4 +31,9 @@ class Dept extends Model
         return $this->hasMany('Arins\Models\Employee');
     }        
     
+    public function activities()
+    {
+        return $this->hasMany('Arins\Models\Activity');
+    }
+
 }

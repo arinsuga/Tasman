@@ -40,6 +40,11 @@ class Activity extends Model
         return $this->belongsTo('Arins\Models\Employee');
     }
 
+    public function enduserdept() {
+        return $this->belongsTo('Arins\Models\Dept');
+    }        
+
+
     public function technician()
     {
         return $this->belongsTo('Arins\Models\Employee');

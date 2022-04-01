@@ -11,6 +11,7 @@
             <th>Request Type</th>
             <th>Technician</th>
             <th>Created By</th>
+            <th>Start Time</th>
             <th>Completed Time</th>
             <th>Time Elapsed</th>
         </tr>
@@ -19,18 +20,19 @@
 
         @foreach ($viewModel->data as $item)
             <tr onclick="window.location.assign('{{ route('support.show', ['support' => $item->id]) }}');">
-                <td>Requester</td>
-                <td>Department</td>
-                <td>Category</td>
-                <td>Subcategory</td>
-                <td>Subject</td>
-                <td>Description</td>
-                <td>Resolution</td>
-                <td>Request Type</td>
-                <td>Technician</td>
+                <td>{{ $item->enduser['name'] }}</td>
+                <td>{{ $item->enduserdept['name'] }}</td>
+                <td>{{ $item->tasktype['name'] }}</td>
+                <td>{{ $item->tasksubtype1['name'] }}</td>
+                <td>{{ $item->subject }}</td>
+                <td>{{ $item->description }}</td>
+                <td>{{ $item->resolution }}</td>
+                <td>{{ $item->activitysubtype['name'] }}</td>
+                <td>{{ $item->technician['name'] }}</td>
                 <td>Created By</td>
-                <td>Completed Time</td>
-                <td>Time Elapsed</td>
+                <td>{{ \Arins\Facades\Formater::datetime($item->startdt) }}</td>
+                <td>{{ \Arins\Facades\Formater::datetime($item->enddt) }}</td>
+                <td>{{ $item->startdt->diffInHours($item->enddt) }}:{{ $item->startdt->diff($item->enddt)->format('%I:%S') }}</td>
             </tr>
         @endforeach
 

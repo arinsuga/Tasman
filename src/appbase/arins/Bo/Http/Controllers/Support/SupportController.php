@@ -61,6 +61,8 @@ class SupportController extends ActivityController
 
         $this->processReport();
         
+        //return dd($this->viewModel->data[0]->enduser->name);
+
         return $this->responseView('report-detail', false, false, false);
     }
 
