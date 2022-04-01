@@ -48,7 +48,7 @@ Route::group(['middleware'=>'lang'],function ()
 
     //support
     Route::resource('support', 'Support\SupportController');
-    Route::get('support/{report}/{detail}/report', 'Support\SupportController@reportDetail')->name('support.report.detail');
+    Route::get('support-report-detail', 'Support\SupportController@reportDetail')->name('support.report.detail');
 
     Route::get('support/{close}/close', 'Support\SupportController@close')->name('support.close');
     Route::put('support/{close}/close', 'Support\SupportController@updateClose')->name('support.update.close');

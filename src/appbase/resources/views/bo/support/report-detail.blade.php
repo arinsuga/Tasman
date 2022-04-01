@@ -1,6 +1,6 @@
 @extends('layouts.appbo')
 
-@section('content_title', 'Support List')
+@section('content_title', 'Report Detail')
 
 @section('toolbar')
 
@@ -27,7 +27,7 @@
 @section('content')
 
         <div style="margin-top: 10px;">
-            @include('bo.support.data-list-items')
+            @include('bo.support.report-detail-list-items')
         </div>
 
 @endsection
