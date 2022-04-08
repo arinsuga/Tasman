@@ -13,6 +13,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
     <link href="{{ asset('lib/flatpickr/flatpickr.css') }}" rel="stylesheet">
+    <link href="{{ asset('plugins/select2/select2.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
     
 
@@ -131,12 +132,13 @@
 
 
     <!-- Scripts -->
-    <script src="{{ asset('js/manifest.js') }}" defer></script>
-    <script src="{{ asset('js/vendor.js') }}" defer></script>
-    <script src="{{ asset('js/admin.js') }}" defer></script>
+    <script src="{{ asset('js/manifest.js') }}"></script>
+    <script src="{{ asset('js/vendor.js') }}"></script>
+    <script src="{{ asset('js/admin.js') }}"></script>
     <script src="{{ asset('lib/flatpickr/flatpickr.js') }}"></script>
     <script src="{{ asset('lib/flatpickr/lang/id.js') }}"></script>
     <script src="{{ asset('lib/ckeditor/ckeditor.js') }}"></script>
+    <script src="{{ asset('plugins/select2/select2.min.js') }}" defer></script>
     <script src="{{ asset('js/main.js') }}" defer></script>
     @yield('js')
 

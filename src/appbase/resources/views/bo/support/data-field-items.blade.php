@@ -54,7 +54,7 @@ margin-left: auto; margin-right:auto;">
       <div class="form-group">
         <label>Karyawan</label>
         @if ($fieldEnabled == true)
-          <select name="enduser_id" class="form-control">
+          <select name="enduser_id" class="form-control select2">
                 @foreach ($enduser as $key => $item)
 
                   @if ($errors->any())
@@ -79,7 +79,7 @@ margin-left: auto; margin-right:auto;">
 <div class="form-group">
         <label>Teknisi</label>
         @if ($fieldEnabled == true)
-          <select name="technician_id" class="form-control">
+          <select name="technician_id" class="form-control select2">
                 @foreach ($technician as $key => $item)
 
                   @if ($errors->any())
@@ -104,7 +104,7 @@ margin-left: auto; margin-right:auto;">
       <div class="form-group">
         <label>Jenis Pengaduan</label>
         @if ($fieldEnabled == true)
-          <select name="activitysubtype_id" class="form-control">
+          <select name="activitysubtype_id" class="form-control select2">
                 @foreach ($activitysubtype as $key => $item)
 
                   @if ($errors->any())
@@ -129,7 +129,7 @@ margin-left: auto; margin-right:auto;">
       <div class="form-group">
         <label>Kategori</label>
         @if ($fieldEnabled == true)
-          <select name="tasktype_id" class="form-control">
+          <select id="tasktype_id" name="tasktype_id" class="form-control select2">
                 @foreach ($tasktype as $key => $item)
 
                   @if ($errors->any())
@@ -154,7 +154,7 @@ margin-left: auto; margin-right:auto;">
       <div class="form-group">
         <label>Sub Kategori</label>
         @if ($fieldEnabled == true)
-          <select name="tasksubtype1_id" class="form-control">
+          <select name="tasksubtype1_id" class="form-control select2">
                 @foreach ($tasksubtype1 as $key => $item)
 
                   @if ($errors->any())
@@ -179,7 +179,7 @@ margin-left: auto; margin-right:auto;">
       <div class="form-group">
         <label>item</label>
         @if ($fieldEnabled == true)
-          <select name="tasksubtype2_id" class="form-control">
+          <select name="tasksubtype2_id" class="form-control select2">
                 @foreach ($tasksubtype2 as $key => $item)
 
                   @if ($errors->any())
