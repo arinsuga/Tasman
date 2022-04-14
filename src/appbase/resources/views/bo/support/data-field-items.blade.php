@@ -170,17 +170,7 @@ margin-left: auto; margin-right:auto;">
         <label>item</label>
         @if ($fieldEnabled == true)
           <select name="tasksubtype2_id" class="form-control select2">
-                @foreach ($tasksubtype2 as $key => $item)
-
-                  @if ($errors->any())
-                    {{ ($item->id == old('tasksubtype2_id') ? $selected = 'selected' : $selected = '') }}
-                  @else
-                    {{ ( $item->id == $viewModel->data->tasksubtype2_id ) ? $selected = 'selected' : $selected = '' }}
-                  @endif
-                  <option {{ $selected }} value="{{ $item->id }}">{{ $item->name }}</option>
-                  
-                @endforeach
-            </select>
+          </select>
         @else
           <input type="hidden" name="tasksubtype2_id" value="{{ $viewModel->data->tasksubtype2_id }}" readonly>
           <div class="form-group">

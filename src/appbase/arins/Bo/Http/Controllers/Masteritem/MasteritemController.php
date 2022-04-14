@@ -39,6 +39,23 @@ class MasteritemController extends MasterController
             'tasksubtype1' => $this->dataTasksubtype1->byActivitytype($this->activitytype_id),
         ];        
 
-    }
+    } //end construction
 
-}
+    public function getJson($taskType_id = null, $taskSubtype1_id = null) {
+
+        //return dd($this->activitytype_id . ' - ' .$taskType_id . ' - ' . $taskSubtype1_id);
+
+        $model = $this->data->byActivitytypeByTasktypeByTasksubtype1($this->activitytype_id, $taskType_id, $taskSubtype1_id);
+        return dd($model);
+
+        $data['results'] = [];
+
+        foreach ($model as $key => $item) {
+            array_push($data['results'],['id' => $key, 'text' => $item->name]);
+        } //end loop
+        //$data['pagination'] = ['more' => true];
+
+        return response()->json($data);
+    } //end method
+
+} //end class

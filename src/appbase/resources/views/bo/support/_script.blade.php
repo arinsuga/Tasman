@@ -11,22 +11,38 @@ $(document).ready(function() {
     var $tasktype_id = $('#tasktype_id');
     var tasktype_id = $tasktype_id.val();
     
+    //tasksubtype1
     var $tasksubtype1_id = $('#tasksubtype1_id');
     var tasksubtype1_id_url = "{{ route('subcategory.json', ['tasktype' => 'inject']) }}";
-    var url = tasksubtype1_id_url.replace("inject", $tasktype_id.val());
-
-    alert($tasktype_id.val());
+    var url1 = tasksubtype1_id_url.replace("inject", $tasktype_id.val());
     $tasksubtype1_id.empty().select2({
         ajax: {
-            url: url,
+            url: url1,
             dataType: 'json'
             // Additional AJAX parameters go here; see the end of this chapter for the full code of this example
         }
     });
+    $tasksubtype1_id.trigger('change.select2');
 
+    //tasksubtype2
+    var $tasksubtype2_id = $('#tasksubtype2_id');
+    var tasksubtype2_id_url = "{{ route('item.json', ['tasktype' => 'inject1', 'tasksubtype1' => 'inject2']) }}";
+    var url2 = tasksubtype2_id_url
+            .replace("inject1", $tasktype_id.val())
+            .replace("inject2", $tasksubtype1_id.val());
+    $tasksubtype2_id.empty().select2({
+        ajax: {
+            url: url2,
+            dataType: 'json'
+            // Additional AJAX parameters go here; see the end of this chapter for the full code of this example
+        }
+    });
+    $tasksubtype2_id.trigger('change.select2');
 
+    //event takstype
     $tasktype_id.on("select2:select", function (e) { 
 
+        //tasksubtype1
         var url = tasksubtype1_id_url.replace("inject",$tasktype_id.val());
         $tasksubtype1_id.empty().select2({
             ajax: {
@@ -36,8 +52,28 @@ $(document).ready(function() {
             }
         });
 
+        //tasksubtype2 set empty
+        $tasksubtype2_id.empty().select2();
+        $tasksubtype2_id.trigger('change.select2');
+
     });
     
+    //event tasksubtype1
+    $tasksubtype1_id.on("select2:select", function (e) { 
+
+        var url = tasksubtype2_id_url
+            .replace("inject1", $tasktype_id.val())
+            .replace("inject2", $tasksubtype1_id.val());
+            console.log(url);
+        $tasksubtype2_id.empty().select2({
+            ajax: {
+                url: url,
+                dataType: 'json'
+                // Additional AJAX parameters go here; see the end of this chapter for the full code of this example
+            }
+        });
+        
+    });
     
 
 });    
