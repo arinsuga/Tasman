@@ -42,4 +42,11 @@ class Tasksubtype1Repository extends BaseRepository implements Tasksubtype1Repos
         return $this->model->where('activitytype_id', $id)->get();
     }
 
+    public function byActivitytypeByTasktype($activitytypeId, $tasktypeId )
+    {
+        return $this->model
+                ->where('activitytype_id', $activitytypeId)
+                ->where('tasktype_id', $tasktypeId)->get();
+    }
+
 }

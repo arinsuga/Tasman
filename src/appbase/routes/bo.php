@@ -85,7 +85,11 @@ Route::group(['middleware'=>'lang'],function ()
 
     //master
     Route::resource('mastercategory', 'Mastercategory\MastercategoryController');
+    
     Route::resource('mastersubcategory', 'Mastersubcategory\MastersubcategoryController');
+    Route::get('subcategory/{tasktype}', 'mastersubcategory\mastersubcategoryController@getJson')->name('subcategory.json');
+    
+
     Route::resource('masteritem', 'Masteritem\MasteritemController');
     Route::resource('masterobjectmaintenance', 'Masterobjectmaintenance\MasterobjectmaintenanceController');
     Route::resource('masterproject', 'Masterproject\MasterprojectController');

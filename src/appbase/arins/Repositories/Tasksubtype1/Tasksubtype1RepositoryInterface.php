@@ -8,4 +8,5 @@ use Arins\Repositories\BaseRepositoryInterface;
 interface Tasksubtype1RepositoryInterface extends BaseRepositoryInterface
 {
     function byActivitytype($id);
+    function byActivitytypeByTasktype($activitytypeId, $tasktypeId );
 }
