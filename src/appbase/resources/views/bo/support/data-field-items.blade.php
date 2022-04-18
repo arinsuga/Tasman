@@ -169,7 +169,7 @@ margin-left: auto; margin-right:auto;">
       <div class="form-group">
         <label>item</label>
         @if ($fieldEnabled == true)
-          <select name="tasksubtype2_id" class="form-control select2">
+          <select id="tasksubtype2_id" name="tasksubtype2_id" class="form-control select2">
           </select>
         @else
           <input type="hidden" name="tasksubtype2_id" value="{{ $viewModel->data->tasksubtype2_id }}" readonly>

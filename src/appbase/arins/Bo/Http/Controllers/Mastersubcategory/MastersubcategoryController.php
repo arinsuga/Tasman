@@ -44,7 +44,7 @@ class MastersubcategoryController extends MasterController
 
         foreach ($model as $key => $item) {
             # code...
-            array_push($data['results'],['id' => $key, 'text' => $item->name]);
+            array_push($data['results'],['id' => $item->id, 'text' => $item->name]);
         } //end loop
         //$data['pagination'] = ['more' => true];
 
