@@ -144,8 +144,15 @@ margin-left: auto; margin-right:auto;">
         @else
           <input type="hidden" name="tasktype_id" value="{{ $viewModel->data->tasktype_id }}" readonly>
           <div class="form-group">
-              <input disabled type="text" value="{{ $viewModel->data->tasktype->name }}" class="form-control">
-          </div>
+
+              @if ($viewModel->data->tasktype_id != null)
+                <input disabled type="text" value="{{ $viewModel->data->tasktype->name }}" class="form-control">
+              @else
+                <input disabled type="text" value="{{ $viewModel->data->tasktype->name }}" class="form-control">
+              @endif
+
+
+        </div>
         @endif
         <p class="text-red">{{ $errors->first('tasktype_id') }}</p>
 
@@ -159,7 +166,11 @@ margin-left: auto; margin-right:auto;">
         @else
           <input type="hidden" name="tasksubtype1_id" value="{{ $viewModel->data->tasksubtype1_id }}" readonly>
           <div class="form-group">
-              <input disabled type="text" value="{{ $viewModel->data->tasksubtype1->name }}" class="form-control">
+              @if ($viewModel->data->tasksubtype1_id != null)
+                <input disabled type="text" value="{{ $viewModel->data->tasksubtype1->name }}" class="form-control">
+              @else
+                <input disabled type="text" class="form-control">
+              @endif
           </div>
         @endif
         <p class="text-red">{{ $errors->first('tasksubtype1_id') }}</p>
@@ -174,7 +185,11 @@ margin-left: auto; margin-right:auto;">
         @else
           <input type="hidden" name="tasksubtype2_id" value="{{ $viewModel->data->tasksubtype2_id }}" readonly>
           <div class="form-group">
-              <input disabled type="text" value="{{ $viewModel->data->tasksubtype2->name }}" class="form-control">
+              @if ($viewModel->data->tasksubtype2 != null)
+                <input disabled type="text" value="{{ $viewModel->data->tasksubtype2->name }}" class="form-control">
+              @else
+                <input disabled type="text" class="form-control">
+              @endif
           </div>
         @endif
         <p class="text-red">{{ $errors->first('tasksubtype2_id') }}</p>
