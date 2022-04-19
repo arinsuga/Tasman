@@ -8,7 +8,7 @@ namespace Arins\Bo\Http\Controllers\Support;
 use Arins\Bo\Http\Controllers\Activity\ActivityController;
 
 use Arins\Repositories\Activity\ActivityRepositoryInterface;
-
+    
 use Arins\Repositories\Activitytype\ActivitytypeRepositoryInterface;
 use Arins\Repositories\Activitysubtype\ActivitysubtypeRepositoryInterface;
 use Arins\Repositories\Tasktype\TasktypeRepositoryInterface;

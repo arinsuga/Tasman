@@ -50,6 +50,9 @@ Route::group(['middleware'=>'lang'],function ()
     Route::resource('support', 'Support\SupportController');
     Route::get('support-report-detail', 'Support\SupportController@reportDetail')->name('support.report.detail');
 
+    Route::get('support/{reopen}/reopen', 'Support\SupportController@reopen')->name('support.reopen');
+    Route::put('support/{reopen}/reopen', 'Support\SupportController@updateReopen')->name('support.update.reopen');
+
     Route::get('support/{close}/close', 'Support\SupportController@close')->name('support.close');
     Route::put('support/{close}/close', 'Support\SupportController@updateClose')->name('support.update.close');
 

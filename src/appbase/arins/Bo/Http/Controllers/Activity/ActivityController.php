@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use Arins\Http\Controllers\BoController;
 use Arins\Traits\Http\Controller\Base;
+use Arins\Bo\Http\Controllers\Activity\Reopen;
 use Arins\Bo\Http\Controllers\Activity\Pending;
 use Arins\Bo\Http\Controllers\Activity\Cancel;
 use Arins\Bo\Http\Controllers\Activity\Close;
@@ -27,7 +28,7 @@ use Arins\Facades\Response;
 
 class ActivityController extends BoController
 {
-    use Base, Close, Pending, Cancel;
+    use Base, Close, Pending, Cancel, Reopen;
 
     protected $dataActivitytype;
     protected $activitytype_id;
