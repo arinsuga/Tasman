@@ -134,6 +134,11 @@ class ActivityController extends BoController
             $request->validate(['resolution' => 'required']);
         } //end if
 
+        if ($activityStatusId != 4)
+        {
+            $data['enddt'] = now();
+        }
+
         if ($this->data->update($record, $data)) {
             return 0; //success
         }
