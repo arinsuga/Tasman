@@ -2,8 +2,11 @@
     <thead>
         <tr>
             <th style="width: 5%;"></th>
-            <th style="width: 20%;">Nama</th>
-            <th style="width: 75%;">Deskripsi</th>
+            <th style="width: 15%;">Activity</th>
+            <th style="width: 15%;">Category</th>
+            <th style="width: 15%;">Sub Category</th>
+            <th style="width: 15%;">Item</th>
+            <th style="width: 35%;">Deskripsi</th>
         </tr>
     </thead>
     <tbody>
@@ -15,9 +18,10 @@
                         <img src="{{ Arins\Facades\Filex::image($item->image) }}" alt="{{ $item->name }}">
                     </div>
                 </td>
-                <td>
-                    <div class="text-center">{{ $item->name }}</div>
-                </td>
+                <td>{{ $item->activitytype->name }}</td>
+                <td>{{ $item->tasktype->name }}</td>
+                <td>{{ $item->tasksubtype1->name }}</td>
+                <td>{{ $item->name }}</td>
                 <td>
                     <div class="truncate-multiline">{!! nl2br(e($item->description)) !!}</div>
                 </td>
