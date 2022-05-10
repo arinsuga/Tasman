@@ -90,7 +90,7 @@ Route::group(['middleware'=>'lang'],function ()
     Route::resource('mastercategory', 'Mastercategory\MastercategoryController');
     
     Route::resource('mastersubcategory', 'Mastersubcategory\MastersubcategoryController');
-    Route::get('subcategory/{tasktype}', 'mastersubcategory\mastersubcategoryController@getJson')->name('subcategory.json');
+    Route::get('subcategory/{tasktype}', 'Mastersubcategory\MastersubcategoryController@getJson')->name('subcategory.json');
 
     Route::resource('masteritem', 'Masteritem\MasteritemController');
     Route::get('item/{tasktype}/{tasksubtype1}', 'Masteritem\MasteritemController@getJson')->name('item.json');
