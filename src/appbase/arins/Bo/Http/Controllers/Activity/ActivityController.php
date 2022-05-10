@@ -20,6 +20,7 @@ use Arins\Repositories\Tasktype\TasktypeRepositoryInterface;
 use Arins\Repositories\Tasksubtype1\Tasksubtype1RepositoryInterface;
 use Arins\Repositories\Tasksubtype2\Tasksubtype2RepositoryInterface;
 use Arins\Repositories\Employee\EmployeeRepositoryInterface;
+use Arins\Repositories\Technician\TechnicianRepositoryInterface;
 
 use Arins\Facades\Response;
 // use Arins\Facades\Filex;
@@ -37,6 +38,7 @@ class ActivityController extends BoController
     protected $dataTasktype;
     protected $dataTasksubtype1;
     protected $dataTasksubtype2;
+    protected $dataTechnician;
     protected $dataEmployee;
 
     public function __construct(ActivityRepositoryInterface $parData,
@@ -45,6 +47,7 @@ class ActivityController extends BoController
                                 TasktypeRepositoryInterface $parTasktype,
                                 Tasksubtype1RepositoryInterface $parTasksubtype1,
                                 Tasksubtype2RepositoryInterface $parTasksubtype2,
+                                TechnicianRepositoryInterface $parTechnician,
                                 EmployeeRepositoryInterface $parEmployee)
     {
         if ($this->sViewName == null)
@@ -61,6 +64,7 @@ class ActivityController extends BoController
         $this->dataTasktype = $parTasktype;
         $this->dataTasksubtype1 = $parTasksubtype1;
         $this->dataTasksubtype2 = $parTasksubtype2;
+        $this->dataTechnician = $parTechnician;
         $this->dataEmployee = $parEmployee;
 
         $this->dataModel = [
@@ -70,7 +74,8 @@ class ActivityController extends BoController
             'tasksubtype1' => $this->dataTasksubtype1->byActivitytype($this->activitytype_id),
             'tasksubtype2' => $this->dataTasksubtype2->byActivitytype($this->activitytype_id),
             'enduser' => $this->dataEmployee->all(),
-            'technician' => $this->dataEmployee->all()
+            'technician' => $this->dataTechnician->all(),
+            'employee' => $this->dataEmployee->all()
         ];        
     }
 

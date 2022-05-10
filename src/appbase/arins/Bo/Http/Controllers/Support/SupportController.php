@@ -15,6 +15,7 @@ use Arins\Repositories\Tasktype\TasktypeRepositoryInterface;
 use Arins\Repositories\Tasksubtype1\Tasksubtype1RepositoryInterface;
 use Arins\Repositories\Tasksubtype2\Tasksubtype2RepositoryInterface;
 use Arins\Repositories\Employee\EmployeeRepositoryInterface;
+use Arins\Repositories\Technician\TechnicianRepositoryInterface;
 
 use Arins\Facades\Response;
 
@@ -27,6 +28,7 @@ class SupportController extends ActivityController
                                 TasktypeRepositoryInterface $parTasktype,
                                 Tasksubtype1RepositoryInterface $parTasksubtype1,
                                 Tasksubtype2RepositoryInterface $parTasksubtype2,
+                                TechnicianRepositoryInterface $parTechnician,
                                 EmployeeRepositoryInterface $parEmployee)
     {
         $this->uploadDirectory = 'support';
@@ -40,6 +42,7 @@ class SupportController extends ActivityController
             $parTasktype,
             $parTasksubtype1,
             $parTasksubtype2,
+            $parTechnician,
             $parEmployee
         );
 

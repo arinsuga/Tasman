@@ -27,6 +27,8 @@ use Arins\Repositories\Job\JobRepository;
 use Arins\Repositories\Dept\DeptRepository;
 use Arins\Repositories\Subdept\SubdeptRepository;
 
+use Arins\Repositories\Technician\TechnicianRepository;
+
 
 //Models
 use App\User;
@@ -274,6 +276,17 @@ class RepositoryServiceProvider extends ServiceProvider
             {
                 $model = new Job();
                 $modelRepository = new JobRepository($model);
+                return $modelRepository;
+            }
+        );
+
+        //User
+        $this->app->bind(
+            'Arins\Repositories\Technician\TechnicianRepositoryInterface',
+            function()
+            {
+                $model = new User();
+                $modelRepository = new TechnicianRepository($model);
                 return $modelRepository;
             }
         );

@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->boolean('bo')->default(false);
+            $table->boolean('technician')->default(false);
             $table->boolean('disabled')->default(false);
 
         });
