@@ -1,6 +1,6 @@
 <?php
 
-namespace Arins\Bo\Http\Controllers\Support;
+namespace Arins\Bo\Http\Controllers\Project;
 
 // use App\Http\Controllers\Controller;
 // use Illuminate\Http\Request;
@@ -8,18 +8,14 @@ namespace Arins\Bo\Http\Controllers\Support;
 use Arins\Bo\Http\Controllers\Activity\ActivityController;
 
 use Arins\Repositories\Activity\ActivityRepositoryInterface;
-    
 use Arins\Repositories\Activitytype\ActivitytypeRepositoryInterface;
 use Arins\Repositories\Activitysubtype\ActivitysubtypeRepositoryInterface;
 use Arins\Repositories\Tasktype\TasktypeRepositoryInterface;
 use Arins\Repositories\Tasksubtype1\Tasksubtype1RepositoryInterface;
 use Arins\Repositories\Tasksubtype2\Tasksubtype2RepositoryInterface;
 use Arins\Repositories\Employee\EmployeeRepositoryInterface;
-use Arins\Repositories\Technician\TechnicianRepositoryInterface;
 
-use Arins\Facades\Response;
-
-class SupportController extends ActivityController
+class ProjectController extends ActivityController
 {
 
     public function __construct(ActivityRepositoryInterface $parData,
@@ -28,12 +24,11 @@ class SupportController extends ActivityController
                                 TasktypeRepositoryInterface $parTasktype,
                                 Tasksubtype1RepositoryInterface $parTasksubtype1,
                                 Tasksubtype2RepositoryInterface $parTasksubtype2,
-                                EmployeeRepositoryInterface $parEmployee,
-                                TechnicianRepositoryInterface $parTechnician)
+                                EmployeeRepositoryInterface $parEmployee)
     {
-        $this->uploadDirectory = 'support';
-        $this->sViewName = 'support';
-        $this->activitytype_id = 1; //support
+        $this->uploadDirectory = 'project';
+        $this->sViewName = 'project';
+        $this->activitytype_id = 3; //project
 
         parent::__construct(
             $parData,
@@ -42,32 +37,9 @@ class SupportController extends ActivityController
             $parTasktype,
             $parTasksubtype1,
             $parTasksubtype2,
-            $parEmployee,
-            $parTechnician
+            $parEmployee
         );
 
     } //end construct
-
-
-    protected function processReport()
-    {
-        $this->viewModel = Response::viewModel();
-        $this->viewModel->data = $this->data->allOrderByIdDesc();
-    }
-
-    public function reportDetail()
-    {
-        //Check if additional data exist
-        if (method_exists($this, 'indexAdditionalData')) {
-            $additionalData = $this->indexAdditionalData();
-        } //end if
-
-        $this->processReport();
-        
-        //return dd($this->viewModel->data[0]->enduser->name);
-
-        return $this->responseView('report-detail', false, false, false);
-    }
-
 
 } //end class
