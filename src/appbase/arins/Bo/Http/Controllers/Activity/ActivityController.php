@@ -47,8 +47,8 @@ class ActivityController extends BoController
                                 TasktypeRepositoryInterface $parTasktype,
                                 Tasksubtype1RepositoryInterface $parTasksubtype1,
                                 Tasksubtype2RepositoryInterface $parTasksubtype2,
-                                TechnicianRepositoryInterface $parTechnician,
-                                EmployeeRepositoryInterface $parEmployee)
+                                EmployeeRepositoryInterface $parEmployee,
+                                TechnicianRepositoryInterface $parTechnician=null)
     {
         if ($this->sViewName == null)
         {
@@ -64,8 +64,8 @@ class ActivityController extends BoController
         $this->dataTasktype = $parTasktype;
         $this->dataTasksubtype1 = $parTasksubtype1;
         $this->dataTasksubtype2 = $parTasksubtype2;
-        $this->dataTechnician = $parTechnician;
         $this->dataEmployee = $parEmployee;
+        $this->dataTechnician = $parTechnician;
 
         $this->dataModel = [
             'activitytype' => $this->dataActivitytype->all(),
@@ -74,10 +74,14 @@ class ActivityController extends BoController
             'tasksubtype1' => $this->dataTasksubtype1->byActivitytype($this->activitytype_id),
             'tasksubtype2' => $this->dataTasksubtype2->byActivitytype($this->activitytype_id),
             'enduser' => $this->dataEmployee->all(),
-            'technician' => $this->dataTechnician->all(),
             'employee' => $this->dataEmployee->all()
-        ];        
-    }
+        ];
+
+        if ($this->dataTechnician != null) {
+            $this->dataModel['technician'] = $this->dataTechnician->all();
+        } //end if
+
+    } //end construction
 
     // override method transformfield
     protected function transformField($paDataField) {

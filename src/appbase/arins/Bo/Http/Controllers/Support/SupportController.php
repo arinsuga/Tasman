@@ -28,8 +28,8 @@ class SupportController extends ActivityController
                                 TasktypeRepositoryInterface $parTasktype,
                                 Tasksubtype1RepositoryInterface $parTasksubtype1,
                                 Tasksubtype2RepositoryInterface $parTasksubtype2,
-                                TechnicianRepositoryInterface $parTechnician,
-                                EmployeeRepositoryInterface $parEmployee)
+                                EmployeeRepositoryInterface $parEmployee,
+                                TechnicianRepositoryInterface $parTechnician)
     {
         $this->uploadDirectory = 'support';
         $this->sViewName = 'support';

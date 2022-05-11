@@ -17,6 +17,15 @@
     </a>
 </li> -->
 
+@if ($viewModel->data->activitystatus_id == 3)
+    <!-- button close -->
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('project.reopen', ['project' => $viewModel->data->id]) }}">
+            <span style="font-weight: bold;">Reopen</span>
+        </a>
+    </li>
+@endif
+
 @if ($viewModel->data->activitystatus_id == 1)
 <!-- button close -->
 <li class="nav-item">

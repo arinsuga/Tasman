@@ -101,33 +101,6 @@ margin-left: auto; margin-right:auto;">
 
       </div>
 
-      <!-- <div class="form-group">
-        <label>Tahapan Project</label>
-        @if ($fieldEnabled == true)
-          <select name="tasksubtype2_id" class="form-control">
-                @foreach ($tasksubtype2 as $key => $item)
-
-                  @if ($errors->any())
-                    {{ ($item->id == old('tasksubtype2_id') ? $selected = 'selected' : $selected = '') }}
-                  @else
-                    {{ ( $item->id == $viewModel->data->tasksubtype2_id ) ? $selected = 'selected' : $selected = '' }}
-                  @endif
-                  <option {{ $selected }} value="{{ $item->id }}">{{ $item->name }}</option>
-                  
-                @endforeach
-            </select>
-        @else
-          <input type="hidden" name="tasksubtype2_id" value="{{ $viewModel->data->tasksubtype2_id }}" readonly>
-          <div class="form-group">
-              <input disabled type="text" value="{{ $viewModel->data->tasksubtype2->name }}" class="form-control">
-          </div>
-        @endif
-        <p class="text-red">{{ $errors->first('tasksubtype2_id') }}</p>
-
-      </div> -->
-
-
-
       <hr>
 
       <!-- text input -->

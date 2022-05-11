@@ -77,6 +77,9 @@ Route::group(['middleware'=>'lang'],function ()
 
     //project
     Route::resource('project', 'Project\ProjectController');
+    Route::get('project/{reopen}/reopen', 'Project\ProjectController@reopen')->name('project.reopen');
+    Route::put('project/{reopen}/reopen', 'Project\ProjectController@updateReopen')->name('project.update.reopen');
+
     Route::get('project/{close}/close', 'Project\ProjectController@close')->name('project.close');
     Route::put('project/{close}/close', 'Project\ProjectController@updateClose')->name('project.update.close');
 
