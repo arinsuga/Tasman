@@ -50,32 +50,6 @@ margin-left: auto; margin-right:auto;">
           <hr>      
       @endif      
 
-
-      <!-- <div class="form-group">
-        <label>Karyawan</label>
-        @if ($fieldEnabled == true)
-          <select name="enduser_id" class="form-control">
-                @foreach ($enduser as $key => $item)
-
-                  @if ($errors->any())
-                    {{ ($item->id == old('enduser_id') ? $selected = 'selected' : $selected = '') }}
-                  @else
-                    {{ ( $item->id == $viewModel->data->enduser_id ) ? $selected = 'selected' : $selected = '' }}
-                  @endif
-                  <option {{ $selected }} value="{{ $item->id }}">{{ $item->name }}</option>
-                  
-                @endforeach
-            </select>
-        @else
-          <input type="hidden" name="enduser_id" value="{{ $viewModel->data->enduser_id }}" readonly>
-          <div class="form-group">
-              <input disabled type="text" value="{{ $viewModel->data->enduser->name }}" class="form-control">
-          </div>
-        @endif
-        <p class="text-red">{{ $errors->first('enduser_id') }}</p>
-
-      </div> -->
-
 <div class="form-group">
         <label>Petugas Maintenance</label>
         @if ($fieldEnabled == true)
@@ -150,58 +124,6 @@ margin-left: auto; margin-right:auto;">
         <p class="text-red">{{ $errors->first('tasktype_id') }}</p>
 
       </div>
-
-      <!-- <div class="form-group">
-        <label>Sub Kategori</label>
-        @if ($fieldEnabled == true)
-          <select name="tasksubtype1_id" class="form-control">
-                @foreach ($tasksubtype1 as $key => $item)
-
-                  @if ($errors->any())
-                    {{ ($item->id == old('tasksubtype1_id') ? $selected = 'selected' : $selected = '') }}
-                  @else
-                    {{ ( $item->id == $viewModel->data->tasksubtype1_id ) ? $selected = 'selected' : $selected = '' }}
-                  @endif
-                  <option {{ $selected }} value="{{ $item->id }}">{{ $item->name }}</option>
-                  
-                @endforeach
-            </select>
-        @else
-          <input type="hidden" name="tasksubtype1_id" value="{{ $viewModel->data->tasksubtype1_id }}" readonly>
-          <div class="form-group">
-              <input disabled type="text" value="{{ $viewModel->data->tasksubtype1->name }}" class="form-control">
-          </div>
-        @endif
-        <p class="text-red">{{ $errors->first('tasksubtype1_id') }}</p>
-
-      </div>
-
-      <div class="form-group">
-        <label>item</label>
-        @if ($fieldEnabled == true)
-          <select name="tasksubtype2_id" class="form-control">
-                @foreach ($tasksubtype2 as $key => $item)
-
-                  @if ($errors->any())
-                    {{ ($item->id == old('tasksubtype2_id') ? $selected = 'selected' : $selected = '') }}
-                  @else
-                    {{ ( $item->id == $viewModel->data->tasksubtype2_id ) ? $selected = 'selected' : $selected = '' }}
-                  @endif
-                  <option {{ $selected }} value="{{ $item->id }}">{{ $item->name }}</option>
-                  
-                @endforeach
-            </select>
-        @else
-          <input type="hidden" name="tasksubtype2_id" value="{{ $viewModel->data->tasksubtype2_id }}" readonly>
-          <div class="form-group">
-              <input disabled type="text" value="{{ $viewModel->data->tasksubtype2->name }}" class="form-control">
-          </div>
-        @endif
-        <p class="text-red">{{ $errors->first('tasksubtype2_id') }}</p>
-
-      </div> -->
-
-
 
       <hr>
 

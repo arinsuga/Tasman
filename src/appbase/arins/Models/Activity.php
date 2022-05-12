@@ -47,7 +47,7 @@ class Activity extends Model
 
     public function technician()
     {
-        return $this->belongsTo('Arins\Models\Employee');
+        return $this->belongsTo('App\User');
     }
 
     public function activitytype()

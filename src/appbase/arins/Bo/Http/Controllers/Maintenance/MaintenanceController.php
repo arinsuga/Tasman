@@ -14,6 +14,7 @@ use Arins\Repositories\Tasktype\TasktypeRepositoryInterface;
 use Arins\Repositories\Tasksubtype1\Tasksubtype1RepositoryInterface;
 use Arins\Repositories\Tasksubtype2\Tasksubtype2RepositoryInterface;
 use Arins\Repositories\Employee\EmployeeRepositoryInterface;
+use Arins\Repositories\Technician\TechnicianRepositoryInterface;
 
 class MaintenanceController extends ActivityController
 {
@@ -24,7 +25,8 @@ class MaintenanceController extends ActivityController
                                 TasktypeRepositoryInterface $parTasktype,
                                 Tasksubtype1RepositoryInterface $parTasksubtype1,
                                 Tasksubtype2RepositoryInterface $parTasksubtype2,
-                                EmployeeRepositoryInterface $parEmployee)
+                                EmployeeRepositoryInterface $parEmployee,
+                                TechnicianRepositoryInterface $parTechnician)
     {
         $this->uploadDirectory = 'maintenance';
         $this->sViewName = 'maintenance';
@@ -37,7 +39,8 @@ class MaintenanceController extends ActivityController
             $parTasktype,
             $parTasksubtype1,
             $parTasksubtype2,
-            $parEmployee
+            $parEmployee,
+            $parTechnician
         );
 
     } //end construct

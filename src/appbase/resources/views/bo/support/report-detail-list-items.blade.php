@@ -1,4 +1,4 @@
-<table id="filter" style="width: 100%;" class="table table-hover-pointer table-head-fixed text-nowrap">
+<table id="filter" style="width: 100%;" class="table table-head-fixed text-nowrap">
     <thead>
         <tr>
             <th>Requester</th>
@@ -19,7 +19,7 @@
     <tbody>
 
         @foreach ($viewModel->data as $item)
-            <tr onclick="window.location.assign('{{ route('support.show', ['support' => $item->id]) }}');">
+            <tr>
                 <td>{{ $item->enduser['name'] }}</td>
                 <td>{{ $item->enduserdept['name'] }}</td>
                 <td>{{ $item->tasktype['name'] }}</td>

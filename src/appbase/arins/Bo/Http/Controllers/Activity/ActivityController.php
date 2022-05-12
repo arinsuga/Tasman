@@ -77,6 +77,8 @@ class ActivityController extends BoController
             'employee' => $this->dataEmployee->all()
         ];
 
+
+
         if ($this->dataTechnician != null) {
             $this->dataModel['technician'] = $this->dataTechnician->all();
         } //end if

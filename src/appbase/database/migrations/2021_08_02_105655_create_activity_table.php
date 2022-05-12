@@ -33,12 +33,15 @@ class CreateActivityTable extends Migration
             $table->string('image')->nullable();
             $table->dateTime('startdt')->nullable();
             $table->dateTime('enddt')->nullable();
+            $table->dateTime('targetdt')->nullable();
 
             $table->bigInteger('enduser_id')->nullable();
             $table->bigInteger('enduserdept_id')->nullable();
             $table->bigInteger('technician_id')->nullable();
 
             $table->timestamps();
+            $table->string('created_by')->nullable();
+            $table->string('updated_by')->nullable();
         });
     }
 
