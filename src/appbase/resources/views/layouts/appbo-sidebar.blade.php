@@ -83,14 +83,14 @@
         <li class="nav-item">
           <a href="{{ route('maintenance.index') }}" class="nav-link">
             <i class="far fa-circle nav-icon"></i>
-            <p>Maintenance</p>
+            <p>Maintenance / Daily Activity</p>
           </a>
         </li>
 
         <li class="nav-item">
           <a href="{{ route('project.index') }}" class="nav-link">
             <i class="far fa-circle nav-icon"></i>
-            <p>Project</p>
+            <p>Project / Action Plan</p>
           </a>
         </li>
       </ul>

@@ -60,6 +60,20 @@ class ActivityRepository extends BaseRepository implements ActivityRepositoryInt
         }
     }
 
+    public function byActivitytypeOrderByIdDesc($id, $take=null)
+    {
+        if ($take == null) {
+            return $this->model::where('activitytype_id', $id)
+            ->orderBy('startdt', 'desc')
+            ->orderBy('id', 'desc')
+            ->get();
+        } else {
+            return $this->model::where('activitytype_id', $id)
+            ->take($take)
+            ->get();
+        }
+    }
+
     //override parent method
     public function allOrderByDateAndIdDesc()
     {

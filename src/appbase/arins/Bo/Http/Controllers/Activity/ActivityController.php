@@ -167,9 +167,21 @@ class ActivityController extends BoController
         {
             $this->viewModel->data = $this->data->allOrderByDateAndIdDesc();
         } else {
-            $this->viewModel->data = $this->data->byActivitytype($this->activitytype_id);
+            $this->viewModel->data = $this->data->byActivitytypeOrderByIdDesc($this->activitytype_id);
         }
     }
 
+    protected function processReport()
+    {
+
+        $this->viewModel = Response::viewModel();
+        if ($this->activitytype_id == null)
+        {
+            $this->viewModel->data = $this->data->all();
+        } else {
+            $this->viewModel->data = $this->data->byActivitytype($this->activitytype_id);
+        }
+
+    }
 
 }

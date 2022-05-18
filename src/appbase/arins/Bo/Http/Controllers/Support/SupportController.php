@@ -49,11 +49,12 @@ class SupportController extends ActivityController
     } //end construct
 
 
-    protected function processReport()
-    {
-        $this->viewModel = Response::viewModel();
-        $this->viewModel->data = $this->data->allOrderByIdDesc();
-    }
+    // protected function processReport()
+    // {
+    //     $this->viewModel = Response::viewModel();
+    //     //$this->viewModel->data = $this->data->allOrderByIdDesc();
+    //     $this->viewModel->data = $this->data->byActivitytype($this->activitytype_id);
+    // }
 
     public function reportDetail()
     {
@@ -64,8 +65,6 @@ class SupportController extends ActivityController
 
         $this->processReport();
         
-        //return dd($this->viewModel->data[0]->enduser->name);
-
         return $this->responseView('report-detail', false, false, false);
     }
 

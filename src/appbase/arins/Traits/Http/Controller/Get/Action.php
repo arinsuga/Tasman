@@ -2,6 +2,11 @@
 
 namespace Arins\Traits\Http\Controller\Get;
 
+use Arins\Facades\Response;
+use Arins\Facades\Filex;
+use Arins\Facades\Formater;
+use Arins\Facades\ConvertDate;
+
 trait Action
 {
     use Actionprocess, Actionresponse;
@@ -15,7 +20,7 @@ trait Action
         } //end if
 
         $this->processIndex();
-        
+
         return $this->runResponseMethod('index', null, null);
     }
 

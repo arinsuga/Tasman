@@ -2,9 +2,10 @@
     <thead>
         <tr>
             <th style="width: 5%;"></th>
-            <th style="width: 15%;">NIK</th>
-            <th style="width: 10%;">Nama</th>
-            <th style="width: 50%;">Jabatan</th>
+            <th style="width: 5%;">NIK</th>
+            <th style="width: 50%;">Nama</th>
+            <th style="width: 20%;">Departemen</th>
+            <th style="width: 20%;">Jabatan</th>
         </tr>
     </thead>
     <tbody>
@@ -18,7 +19,8 @@
                 </td>
                 <td>{{ $item->nik }}</td>
                 <td>{{ $item->name }}</td>
-                <td></td>
+                <td>{{ $item->subdept->name }}</td>
+                <td>{{ $item->job->name }}</td>
             </tr>
         @endforeach
 
