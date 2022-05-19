@@ -25,6 +25,7 @@ class Activity extends Model
         'enddt',
         'enduser_id',
         'enduserdept_id',
+        'endusersubdept_id',
         'technician_id'
     ];
 

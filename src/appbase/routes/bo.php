@@ -66,6 +66,8 @@ Route::group(['middleware'=>'lang'],function ()
 
     //maintenance
     Route::resource('maintenance', 'Maintenance\MaintenanceController');
+    Route::get('maintenance-report-detail', 'Maintenance\MaintenanceController@reportDetail')->name('maintenance.report.detail');
+
     Route::get('maintenance/{close}/close', 'Maintenance\MaintenanceController@close')->name('maintenance.close');
     Route::put('maintenance/{close}/close', 'Maintenance\MaintenanceController@updateClose')->name('maintenance.update.close');
 
@@ -77,6 +79,8 @@ Route::group(['middleware'=>'lang'],function ()
 
     //project
     Route::resource('project', 'Project\ProjectController');
+    Route::get('project-report-detail', 'Project\ProjectController@reportDetail')->name('project.report.detail');
+
     Route::get('project/{reopen}/reopen', 'Project\ProjectController@reopen')->name('project.reopen');
     Route::put('project/{reopen}/reopen', 'Project\ProjectController@updateReopen')->name('project.update.reopen');
 

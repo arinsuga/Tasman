@@ -37,6 +37,7 @@ class CreateActivityTable extends Migration
 
             $table->bigInteger('enduser_id')->nullable();
             $table->bigInteger('enduserdept_id')->nullable();
+            $table->bigInteger('endusersubdept_id')->nullable();
             $table->bigInteger('technician_id')->nullable();
 
             $table->timestamps();

@@ -5,12 +5,6 @@
 @section('toolbar')
 
 <li class="nav-item">
-    <a class="nav-link" href="{{ route('support.create') }}">
-        <i class="fas fa-lg fa-plus"></i>
-    </a>
-</li>
-
-<li class="nav-item">
     <a class="nav-link" data-widget="control-sidebar" href="#" >
         <i class="fas fa-lg fa-filter"></i>
     </a>

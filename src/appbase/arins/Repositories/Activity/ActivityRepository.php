@@ -27,6 +27,7 @@ class ActivityRepository extends BaseRepository implements ActivityRepositoryInt
             'enddt' => null,
             'enduser_id' => null,
             'enduserdept_id' => null,
+            'endusersubdept_id' => null,
             'technician_id' => null
         ];
 
@@ -60,13 +61,15 @@ class ActivityRepository extends BaseRepository implements ActivityRepositoryInt
         }
     }
 
-    public function byActivitytypeOrderByIdDesc($id, $take=null)
+    public function byActivitytypeOrderByIdAndStartdtDesc($id, $take=null)
     {
         if ($take == null) {
+
             return $this->model::where('activitytype_id', $id)
             ->orderBy('startdt', 'desc')
             ->orderBy('id', 'desc')
             ->get();
+
         } else {
             return $this->model::where('activitytype_id', $id)
             ->take($take)

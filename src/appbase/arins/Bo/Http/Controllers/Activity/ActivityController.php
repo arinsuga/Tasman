@@ -23,9 +23,6 @@ use Arins\Repositories\Employee\EmployeeRepositoryInterface;
 use Arins\Repositories\Technician\TechnicianRepositoryInterface;
 
 use Arins\Facades\Response;
-// use Arins\Facades\Filex;
-// use Arins\Facades\Formater;
-// use Arins\Facades\ConvertDate;
 
 class ActivityController extends BoController
 {
@@ -95,16 +92,24 @@ class ActivityController extends BoController
         if (isset($dataField['enduser_id']))
         {
             $employee = $this->dataEmployee->find($dataField['enduser_id']);
-        } //end if
 
-        // enduserdept_id'
-        if (isset($dataField['enduserdept_id']))
-        {
             if ($employee != null)
             {
                 $dataField['enduserdept_id'] = $employee->dept_id;
+                $dataField['endusersubdept_id'] = $employee->subdept_id;
             } //end if
+
         } //end if
+
+        // // enduserdept_id'
+        // if (isset($dataField['enduserdept_id']))
+        // {
+        //     if ($employee != null)
+        //     {
+        //         $dataField['enduserdept_id'] = $employee->dept_id;
+        //     } //end if
+        // } //end if
+
         $dataField['startdt'] = now();
 
         return $dataField;
@@ -167,7 +172,7 @@ class ActivityController extends BoController
         {
             $this->viewModel->data = $this->data->allOrderByDateAndIdDesc();
         } else {
-            $this->viewModel->data = $this->data->byActivitytypeOrderByIdDesc($this->activitytype_id);
+            $this->viewModel->data = $this->data->byActivitytypeOrderByIdAndStartdtDesc($this->activitytype_id);
         }
     }
 
@@ -179,9 +184,20 @@ class ActivityController extends BoController
         {
             $this->viewModel->data = $this->data->all();
         } else {
-            $this->viewModel->data = $this->data->byActivitytype($this->activitytype_id);
+            $this->viewModel->data = $this->data->byActivitytypeOrderByIdAndStartdtDesc($this->activitytype_id);
         }
+    }
 
+    public function reportDetail()
+    {
+        //Check if additional data exist
+        if (method_exists($this, 'indexAdditionalData')) {
+            $additionalData = $this->indexAdditionalData();
+        } //end if
+
+        $this->processReport();
+        
+        return $this->responseView('report-detail', false, false, false);
     }
 
 }

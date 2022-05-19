@@ -109,7 +109,7 @@ class Employee extends Model
         return $this->belongsTo('Arins\Models\Dept');
     }        
     
-    public function Subdept() {
+    public function subdept() {
         return $this->belongsTo('Arins\Models\Subdept');
     }        
 

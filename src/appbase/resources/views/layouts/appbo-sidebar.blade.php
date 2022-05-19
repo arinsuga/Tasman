@@ -134,6 +134,25 @@
           </a>
         </li>
       </ul>
+
+      <ul class="nav nav-treeview">
+        <li class="nav-item">
+          <a href="{{ route('maintenance.report.detail', ['report' => 'report', 'detail' => 'detail']) }}" class="nav-link">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Maintenance / Daily Activity</p>
+          </a>
+        </li>
+      </ul>
+
+      <ul class="nav nav-treeview">
+        <li class="nav-item">
+          <a href="{{ route('project.report.detail', ['report' => 'report', 'detail' => 'detail']) }}" class="nav-link">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Project / Action Plan</p>
+          </a>
+        </li>
+      </ul>
+      
     </li>
 
     <!-- Logout -->
