@@ -20,7 +20,21 @@
     <div class="mt-2 row">
         <div class="col-sm-12">
             <div class="form-group">
-            <input type="text" id="filter3" name="filter3" class="form-control float-right" placeholder="Deskripsi" style="margin-left: 5px;">
+            <input type="text" id="filter3" name="filter3" class="form-control float-right" placeholder="Category" style="margin-left: 5px;">
+            </div>
+        </div>
+    </div>
+    <div class="mt-2 row">
+        <div class="col-sm-12">
+            <div class="form-group">
+            <input type="text" id="filter4" name="filter4" class="form-control float-right" placeholder="Subject" style="margin-left: 5px;">
+            </div>
+        </div>
+    </div>
+    <div class="mt-2 row">
+        <div class="col-sm-12">
+            <div class="form-group">
+            <input type="text" id="filter5" name="filter5" class="form-control float-right" placeholder="Deskripsi" style="margin-left: 5px;">
             </div>
         </div>
     </div>

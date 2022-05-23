@@ -10,7 +10,7 @@ margin-left: auto; margin-right:auto;">
         <input type="hidden" id="imageTemp" name="imageTemp" value="{{ session('imageTemp') }}" placeholder="imageTemp">
 
         @if ($fieldEnabled == true)
-          <label>Image</label>
+          <label>Screenshoot</label>
           <div class="box full-width-sm">
               @if (session('imageTemp'))
                 <img id="imageViewer" src="{{ Arins\Facades\Filex::image(session('imageTemp')) }}" alt="">
@@ -32,7 +32,7 @@ margin-left: auto; margin-right:auto;">
           </div>
           <input onchange="previewImage('upload', 'imageViewer', 'toggleRemoveImage');" style="display:none;" type="file" id="upload" name="upload" class="form-control" accept="image/*">
         @else
-          <label>Image</label>
+          <label>Screenshoot</label>
           <div class="box full-width-sm">
               <img src="{{ Arins\Facades\Filex::image($viewModel->data->image) }}" alt="">
           </div>
@@ -52,7 +52,7 @@ margin-left: auto; margin-right:auto;">
 
 
       <div class="form-group">
-        <label>Karyawan</label>
+        <label>Requester</label>
         @if ($fieldEnabled == true)
           <select name="enduser_id" class="form-control select2">
                 @foreach ($enduser as $key => $item)

@@ -14,7 +14,7 @@
 
 @section('control_sidebar')
     <div class="control-sidebar-content">
-        @include('bo.maintenance.data-list-filters')
+        @include('bo.maintenance.report-detail-list-filters')
     </div>
 @endsection
 

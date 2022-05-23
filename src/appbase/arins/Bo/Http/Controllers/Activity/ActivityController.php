@@ -101,16 +101,8 @@ class ActivityController extends BoController
 
         } //end if
 
-        // // enduserdept_id'
-        // if (isset($dataField['enduserdept_id']))
-        // {
-        //     if ($employee != null)
-        //     {
-        //         $dataField['enduserdept_id'] = $employee->dept_id;
-        //     } //end if
-        // } //end if
-
         $dataField['startdt'] = now();
+
 
         return $dataField;
     }
