@@ -2,9 +2,12 @@
     <thead>
         <tr>
             <th style="width: 5%;"></th>
-            <th style="width: 10%;">Mulai</th>
-            <th style="width: 10%;">Selesai</th>
-            <th style="width: 75%;">Deskripsi</th>
+            <th style="width: 5%;">Mulai</th>
+            <th style="width: 5%;">Selesai</th>
+            <th style="width: 10%;">Jenis Project</th>
+            <th style="width: 10%;">Project</th>
+            <th style="width: 15%;">Subject</th>
+            <th style="width: 50%;">Deskripsi</th>
         </tr>
     </thead>
     <tbody>
@@ -21,6 +24,15 @@
                 </td>
                 <td>
                     <div class="text-center">{{ \Arins\Facades\Formater::datetime($item->enddt) }}</div>
+                </td>
+                <td>
+                    <div>{{ $item->tasktype->name }}</div>
+                </td>
+                <td>
+                    <div>{{ $item->tasksubtype1->name }}</div>
+                </td>
+                <td>
+                    <div>{{ $item->subject }}</div>
                 </td>
                 <td>
                     <div class="truncate-multiline">{!! nl2br(e($item->description)) !!}</div>
