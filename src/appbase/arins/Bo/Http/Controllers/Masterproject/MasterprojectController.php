@@ -37,6 +37,21 @@ class MasterprojectController extends MasterController
 
     }
 
+    public function getJson($taskType_id = null) {
+
+        $model = $this->data->byActivitytypeByTasktype($this->activitytype_id, $taskType_id);
+        $data['results'] = [];
+
+        foreach ($model as $key => $item) {
+            # code...
+            array_push($data['results'],['id' => $item->id, 'text' => $item->name]);
+        } //end loop
+        //$data['pagination'] = ['more' => true];
+
+        return response()->json($data);
+    } //end method
+
+
     //override method
     protected function processIndex()
     {

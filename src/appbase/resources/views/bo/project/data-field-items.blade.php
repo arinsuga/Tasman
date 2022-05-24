@@ -54,7 +54,7 @@ margin-left: auto; margin-right:auto;">
       <div class="form-group">
         <label>Jenis Project</label>
         @if ($fieldEnabled == true)
-          <select name="tasktype_id" class="form-control">
+          <select id="tasktype_id" name="tasktype_id" class="form-control select2">
                 @foreach ($tasktype as $key => $item)
 
                   @if ($errors->any())
@@ -79,18 +79,8 @@ margin-left: auto; margin-right:auto;">
       <div class="form-group">
         <label>Project</label>
         @if ($fieldEnabled == true)
-          <select name="tasksubtype1_id" class="form-control">
-                @foreach ($tasksubtype1 as $key => $item)
-
-                  @if ($errors->any())
-                    {{ ($item->id == old('tasksubtype1_id') ? $selected = 'selected' : $selected = '') }}
-                  @else
-                    {{ ( $item->id == $viewModel->data->tasksubtype1_id ) ? $selected = 'selected' : $selected = '' }}
-                  @endif
-                  <option {{ $selected }} value="{{ $item->id }}">{{ $item->name }}</option>
-                  
-                @endforeach
-            </select>
+          <select id="tasksubtype1_id" name="tasksubtype1_id" class="form-control select2">
+          </select>
         @else
           <input type="hidden" name="tasksubtype1_id" value="{{ $viewModel->data->tasksubtype1_id }}" readonly>
           <div class="form-group">

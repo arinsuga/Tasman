@@ -103,7 +103,9 @@ Route::group(['middleware'=>'lang'],function ()
     Route::get('item/{tasktype}/{tasksubtype1}', 'Masteritem\MasteritemController@getJson')->name('item.json');
 
     Route::resource('masterobjectmaintenance', 'Masterobjectmaintenance\MasterobjectmaintenanceController');
+
     Route::resource('masterproject', 'Masterproject\MasterprojectController');
+    Route::get('project-json/{tasktype}', 'Masterproject\MasterprojectController@getJson')->name('projectjson.json');
 
     //employee
     Route::resource('employee', 'Employee\EmployeeController');
