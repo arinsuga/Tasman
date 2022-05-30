@@ -18,7 +18,7 @@ trait Close
 
         $this->processEdit($id);
 
-        return $this->responseView('close', false, true, true);
+        return $this->responseView('close', false, false, true);
     }
 
     /** post */

@@ -43,7 +43,7 @@ margin-left: auto; margin-right:auto;">
           <!-- textarea -->
           <div class="form-group">
             <label>Resolusi</label>
-            <textarea {{ $disabled }} id="resolution" name="resolution" class="form-control" rows="3" placeholder="">{{ ( $errors->any() ? old('resolution') : $viewModel->data->resolution ) }}</textarea>
+            <textarea id="resolution" name="resolution" class="form-control" rows="3" placeholder="">{{ ( $errors->any() ? old('resolution') : $viewModel->data->resolution ) }}</textarea>
             <p class="text-red">{{ $errors->first('resolution') }}</p>
           </div>
 

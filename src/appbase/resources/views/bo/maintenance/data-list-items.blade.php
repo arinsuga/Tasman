@@ -2,11 +2,12 @@
     <thead>
         <tr>
             <th style="width: 5%;"></th>
+            <th style="width: 5%;">Status</th>
             <th style="width: 5%;">Mulai</th>
             <th style="width: 5%;">Selesai</th>
             <th style="width: 10%;">Object Maintenance</th>
             <th style="width: 15%;">Subject</th>
-            <th style="width: 60%;">Deskripsi</th>
+            <th style="width: 55%;">Deskripsi</th>
         </tr>
     </thead>
     <tbody>
@@ -18,6 +19,7 @@
                         <img src="{{ Arins\Facades\Filex::image($item->image) }}" alt="{{ $item->name }}">
                     </div>
                 </td>
+                <td>{{ $item->activitystatus->name }}</td>
                 <td>
                     <div class="text-center">{{ \Arins\Facades\Formater::datetime($item->startdt) }}</div>
                 </td>

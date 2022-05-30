@@ -18,7 +18,7 @@
 </li> -->
 
 @if ($viewModel->data->activitystatus_id == 3)
-    <!-- button close -->
+    <!-- button Reopen -->
     <li class="nav-item">
         <a class="nav-link" href="{{ route('support.reopen', ['support' => $viewModel->data->id]) }}">
             <span style="font-weight: bold;">Reopen</span>
@@ -29,9 +29,16 @@
 @if ($viewModel->data->activitystatus_id == 1)
 <!-- button close -->
 <li class="nav-item">
-    <a class="nav-link" href="{{ route('support.close', ['support' => $viewModel->data->id]) }}">
+
+    <!-- <a class="nav-link" href="{{ route('support.close', ['support' => $viewModel->data->id]) }}">
         <span style="font-weight: bold;">Close</span>
-    </a>
+    </a> -->
+
+    <a  onclick="event.preventDefault();"
+        data-toggle="modal" data-target="#modal-close"
+        class="nav-link" href="#"
+    ><span style="font-weight: bold;">Close</span></a>
+
 </li>
 <!-- button pending -->
 <li class="nav-item">
@@ -98,6 +105,7 @@
     <script>
         
         var modalClose = $("#modalClose");
+        var modalCloseResolution = $("#modalCloseResolution");
 
         function deleteActivity() {
 
@@ -107,8 +115,17 @@
 
         } //end method
 
+        function closeActivity() {
+
+            modalCloseResolution.click();
+            event.preventDefault();
+            document.getElementById('frmDataClose').submit();
+
+        } //end method
+
     </script>
 
 @endsection
 
 @include('bo.support.modal-delete')    
+@include('bo.support.modal-close')    
