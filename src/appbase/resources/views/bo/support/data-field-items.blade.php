@@ -82,11 +82,19 @@ margin-left: auto; margin-right:auto;">
           <select name="technician_id" class="form-control select2">
                 @foreach ($technician as $key => $item)
 
-                  @if ($errors->any())
-                    {{ ($item->id == old('technician_id') ? $selected = 'selected' : $selected = '') }}
+                  @if ($new == true)
+                      {{ ( $item->id == Auth::user()->id ) ? $selected = 'selected' : $selected = '' }}
                   @else
-                    {{ ( $item->id == $viewModel->data->technician_id ) ? $selected = 'selected' : $selected = '' }}
+
+                      @if ($errors->any())
+                        {{ ($item->id == old('technician_id') ? $selected = 'selected' : $selected = '') }}
+                      @else
+                        {{ ( $item->id == $viewModel->data->technician_id ) ? $selected = 'selected' : $selected = '' }}
+                      @endif
+
                   @endif
+
+
                   <option {{ $selected }} value="{{ $item->id }}">{{ $item->name }}</option>
                   
                 @endforeach
