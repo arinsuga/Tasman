@@ -48,55 +48,5 @@ class SupportController extends ActivityController
 
     } //end construct
 
-    /** get */
-    public function indexToday()
-    {
-        $this->viewModel = Response::viewModel();
-        $this->viewModel->data = $this->data->byActivitytypeTodayOrderByIdAndStartdtDesc($this->activitytype_id);
-
-        $this->aResponseData = ['viewModel' => $this->viewModel];
-
-        foreach ($this->dataModel as $key => $value) {
-
-            $this->aResponseData[$key] = $value;
-
-        } //end loop
-
-        return view($this->sViewRoot.'.index-today', $this->aResponseData);
-    }
-
-    /** get */
-    public function indexOpen()
-    {
-        $this->viewModel = Response::viewModel();
-        $this->viewModel->data = $this->data->byActivitytypeStatusOpenOrderByIdAndStartdtDesc($this->activitytype_id);
-
-        $this->aResponseData = ['viewModel' => $this->viewModel];
-
-        foreach ($this->dataModel as $key => $value) {
-
-            $this->aResponseData[$key] = $value;
-
-        } //end loop
-
-        return view($this->sViewRoot.'.index-open', $this->aResponseData);
-    }
-
-    /** get */
-    public function indexCustom()
-    {
-        $this->viewModel = Response::viewModel();
-        $this->viewModel->data = $this->data->allOrderByIdDesc();
-
-        $this->aResponseData = ['viewModel' => $this->viewModel];
-
-        foreach ($this->dataModel as $key => $value) {
-
-            $this->aResponseData[$key] = $value;
-
-        } //end loop
-
-        return view($this->sViewRoot.'.index-custom', $this->aResponseData);
-    }
 
 } //end class
