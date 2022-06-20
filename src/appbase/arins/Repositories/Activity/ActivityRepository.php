@@ -4,6 +4,7 @@ namespace Arins\Repositories\Activity;
 
 use Arins\Repositories\BaseRepository;
 use Arins\Repositories\Activitytype\ActivitytypeRepositoryInterface;
+use Carbon\Carbon;
 
 class ActivityRepository extends BaseRepository implements ActivityRepositoryInterface
 {
@@ -66,6 +67,41 @@ class ActivityRepository extends BaseRepository implements ActivityRepositoryInt
         if ($take == null) {
 
             return $this->model::where('activitytype_id', $id)
+            ->orderBy('startdt', 'desc')
+            ->orderBy('id', 'desc')
+            ->get();
+
+        } else {
+            return $this->model::where('activitytype_id', $id)
+            ->take($take)
+            ->get();
+        }
+    }
+
+    public function byActivitytypeStatusOpenOrderByIdAndStartdtDesc($id, $take=null)
+    {
+        if ($take == null) {
+
+            return $this->model::where('activitytype_id', $id)
+            ->where('activitystatus_id', 1)
+            ->orderBy('startdt', 'desc')
+            ->orderBy('id', 'desc')
+            ->get();
+
+        } else {
+            return $this->model::where('activitytype_id', $id)
+            ->where('activitystatus_id', 1)
+            ->take($take)
+            ->get();
+        }
+    }
+
+    public function byActivitytypeTodayOrderByIdAndStartdtDesc($id, $take=null)
+    {
+        if ($take == null) {
+
+            return $this->model::where('activitytype_id', $id)
+            ->whereDate('created_at', Carbon::today())
             ->orderBy('startdt', 'desc')
             ->orderBy('id', 'desc')
             ->get();

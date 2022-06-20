@@ -8,5 +8,8 @@ use Arins\Repositories\BaseRepositoryInterface;
 interface ActivityRepositoryInterface extends BaseRepositoryInterface
 {
     function byActivitytype($id, $take=null);
+    function byActivitytypeOrderByIdAndStartdtDesc($id, $take=null);
+    function byActivitytypeStatusOpenOrderByIdAndStartdtDesc($id, $take=null);
+    function byActivitytypeTodayOrderByIdAndStartdtDesc($id, $take=null);
     // function countActivityByActivityType();
 }

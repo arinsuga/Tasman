@@ -49,6 +49,9 @@ Route::group(['middleware'=>'lang'],function ()
     //support
     Route::resource('support', 'Support\SupportController');
     Route::get('support-report-detail', 'Support\SupportController@reportDetail')->name('support.report.detail');
+    Route::get('index-today', 'Support\SupportController@indexToday')->name('support.index.today');
+    Route::get('index-open', 'Support\SupportController@indexOpen')->name('support.index.open');
+    Route::get('index-custom', 'Support\SupportController@indexCustom')->name('support.index.custom');
 
     Route::get('support/{reopen}/reopen', 'Support\SupportController@reopen')->name('support.reopen');
     Route::put('support/{reopen}/reopen', 'Support\SupportController@updateReopen')->name('support.update.reopen');
