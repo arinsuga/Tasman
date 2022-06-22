@@ -49,9 +49,9 @@ Route::group(['middleware'=>'lang'],function ()
     //support
     Route::resource('support', 'Support\SupportController');
     Route::get('support-report-detail', 'Support\SupportController@reportDetail')->name('support.report.detail');
-    Route::get('index-today', 'Support\SupportController@indexToday')->name('support.index.today');
-    Route::get('index-open', 'Support\SupportController@indexOpen')->name('support.index.open');
-    Route::get('index-custom', 'Support\SupportController@indexCustom')->name('support.index.custom');
+    Route::get('support-index-today', 'Support\SupportController@indexToday')->name('support.index.today');
+    Route::get('support-index-open', 'Support\SupportController@indexOpen')->name('support.index.open');
+    Route::get('support-index-custom', 'Support\SupportController@indexCustom')->name('support.index.custom');
 
     Route::get('support/{reopen}/reopen', 'Support\SupportController@reopen')->name('support.reopen');
     Route::put('support/{reopen}/reopen', 'Support\SupportController@updateReopen')->name('support.update.reopen');
@@ -70,6 +70,9 @@ Route::group(['middleware'=>'lang'],function ()
     //maintenance
     Route::resource('maintenance', 'Maintenance\MaintenanceController');
     Route::get('maintenance-report-detail', 'Maintenance\MaintenanceController@reportDetail')->name('maintenance.report.detail');
+    Route::get('maintenance-index-today', 'Maintenance\MaintenanceController@indexToday')->name('maintenance.index.today');
+    Route::get('maintenance-index-open', 'Maintenance\MaintenanceController@indexOpen')->name('maintenance.index.open');
+    Route::get('maintenance-index-custom', 'Maintenance\MaintenanceController@indexCustom')->name('maintenance.index.custom');
 
     Route::get('maintenance/{close}/close', 'Maintenance\MaintenanceController@close')->name('maintenance.close');
     Route::put('maintenance/{close}/close', 'Maintenance\MaintenanceController@updateClose')->name('maintenance.update.close');
@@ -83,6 +86,9 @@ Route::group(['middleware'=>'lang'],function ()
     //project
     Route::resource('project', 'Project\ProjectController');
     Route::get('project-report-detail', 'Project\ProjectController@reportDetail')->name('project.report.detail');
+    Route::get('project-index-today', 'Project\ProjectController@indexToday')->name('project.index.today');
+    Route::get('project-index-open', 'Project\ProjectController@indexOpen')->name('project.index.open');
+    Route::get('project-index-custom', 'Project\ProjectController@indexCustom')->name('project.index.custom');
 
     Route::get('project/{reopen}/reopen', 'Project\ProjectController@reopen')->name('project.reopen');
     Route::put('project/{reopen}/reopen', 'Project\ProjectController@updateReopen')->name('project.update.reopen');

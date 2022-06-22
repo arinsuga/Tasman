@@ -36,7 +36,7 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
+                <li class="nav-item" style="border-bottom: 5px solid red;">
                     <a class="nav-link" href="{{ route('maintenance.index.open') }}" style="font-weight: bold;">
                         Open
                     </a>
@@ -48,7 +48,7 @@
                     </a>
                 </li>
 
-                <li class="nav-item" style="border-bottom: 5px solid red;">
+                <li class="nav-item">
                     <a class="nav-link" href="{{ route('maintenance.index') }}" style="font-weight: bold;">
                         All
                     </a>

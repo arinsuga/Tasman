@@ -229,10 +229,19 @@ class ActivityController extends BoController
     /** get */
     public function indexCustom()
     {
-        $this->viewModel = Response::viewModel();
-        $this->viewModel->data = $this->data->allOrderByIdDesc();
+        // $this->viewModel = Response::viewModel();
+        // $this->viewModel->data = $this->data->allOrderByIdDesc();
 
-        $this->aResponseData = ['viewModel' => $this->viewModel];
+        $this->viewModel = Response::viewModel();
+        $this->viewModel->data = json_decode(json_encode($this->data->getInputField()));
+        $this->viewModel->data->date = now();
+
+
+        $this->aResponseData = [
+            'viewModel' => $this->viewModel,
+            'new' => true,
+            'fieldEnabled' => true,
+        ];
 
         foreach ($this->dataModel as $key => $value) {
 

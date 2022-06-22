@@ -66,9 +66,21 @@
 
         </nav>
 
+        <!-- Form Custom Search -->
+        <div>
+
+            <form role="form" id="frmData" method="POST" action="{{ route('support.store') }}" enctype="multipart/form-data">
+                @csrf
+
+                <div style="display: flex; justify-content=center;">
+                    @include('bo.support.index-custom-fields')
+                </div>
+            </form>
+
+        </div>        
 
         <div>
-            @include('bo.support.data-list-items')
+            <!-- Code Result  -->
         </div>
 
 @endsection
@@ -76,5 +88,7 @@
 @section('js')
 
     <script src="{{ asset('js/CustomForIndex.js') }}" defer></script>
+    @include('bo.support._script')
 
 @endsection
+
