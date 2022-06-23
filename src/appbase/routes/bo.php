@@ -65,8 +65,6 @@ Route::group(['middleware'=>'lang'],function ()
     Route::get('support/{pending}/pending', 'Support\SupportController@pending')->name('support.pending');
     Route::put('support/{pending}/pending', 'Support\SupportController@updatePending')->name('support.update.pending');
 
-
-
     //maintenance
     Route::resource('maintenance', 'Maintenance\MaintenanceController');
     Route::get('maintenance-report-detail', 'Maintenance\MaintenanceController@reportDetail')->name('maintenance.report.detail');

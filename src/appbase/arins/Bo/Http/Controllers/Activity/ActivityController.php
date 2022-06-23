@@ -229,13 +229,10 @@ class ActivityController extends BoController
     /** get */
     public function indexCustom()
     {
-        // $this->viewModel = Response::viewModel();
-        // $this->viewModel->data = $this->data->allOrderByIdDesc();
 
         $this->viewModel = Response::viewModel();
         $this->viewModel->data = json_decode(json_encode($this->data->getInputField()));
         $this->viewModel->data->date = now();
-
 
         $this->aResponseData = [
             'viewModel' => $this->viewModel,
@@ -252,5 +249,27 @@ class ActivityController extends BoController
         return view($this->sViewRoot.'.index-custom', $this->aResponseData);
     }
 
+    /** get */
+    public function indexCustomPost(Request $request)
+    {
+
+        $this->viewModel = Response::viewModel();
+        $this->viewModel->data = json_decode(json_encode($this->data->getInputField()));
+        $this->viewModel->data->date = now();
+
+        $this->aResponseData = [
+            'viewModel' => $this->viewModel,
+            'new' => true,
+            'fieldEnabled' => true,
+        ];
+
+        foreach ($this->dataModel as $key => $value) {
+
+            $this->aResponseData[$key] = $value;
+
+        } //end loop
+
+        return view($this->sViewRoot.'.index-custom', $this->aResponseData);
+    }
 
 }

@@ -6,6 +6,7 @@ margin-left: auto; margin-right:auto;">
         <div class="form-group">
             <label>Requester</label>
             <select name="enduser_id" class="form-control select2">
+                <option selected value=""></option>
                 @foreach ($enduser as $key => $item)
 
                 @if ($errors->any())
