@@ -9,6 +9,7 @@ use Arins\Bo\Http\Controllers\Activity\ActivityController;
 
 use Arins\Repositories\Activity\ActivityRepositoryInterface;
     
+use Arins\Repositories\Activitystatus\ActivitystatusRepositoryInterface;
 use Arins\Repositories\Activitytype\ActivitytypeRepositoryInterface;
 use Arins\Repositories\Activitysubtype\ActivitysubtypeRepositoryInterface;
 use Arins\Repositories\Tasktype\TasktypeRepositoryInterface;
@@ -23,6 +24,7 @@ class SupportController extends ActivityController
 {
 
     public function __construct(ActivityRepositoryInterface $parData,
+                                ActivitystatusRepositoryInterface $parActivitystatus,
                                 ActivitytypeRepositoryInterface $parActivitytype,
                                 ActivitysubtypeRepositoryInterface $parActivitysubtype,
                                 TasktypeRepositoryInterface $parTasktype,
@@ -37,6 +39,7 @@ class SupportController extends ActivityController
 
         parent::__construct(
             $parData,
+            $parActivitystatus,
             $parActivitytype,
             $parActivitysubtype,
             $parTasktype,

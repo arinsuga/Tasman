@@ -52,6 +52,7 @@ Route::group(['middleware'=>'lang'],function ()
     Route::get('support-index-today', 'Support\SupportController@indexToday')->name('support.index.today');
     Route::get('support-index-open', 'Support\SupportController@indexOpen')->name('support.index.open');
     Route::get('support-index-custom', 'Support\SupportController@indexCustom')->name('support.index.custom');
+    Route::post('support-index-custom-post', 'Support\SupportController@indexCustomPost')->name('support.index.custom.post');
 
     Route::get('support/{reopen}/reopen', 'Support\SupportController@reopen')->name('support.reopen');
     Route::put('support/{reopen}/reopen', 'Support\SupportController@updateReopen')->name('support.update.reopen');

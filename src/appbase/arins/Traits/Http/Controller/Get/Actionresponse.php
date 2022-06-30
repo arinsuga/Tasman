@@ -8,11 +8,13 @@ trait Actionresponse
     {
         $this->aResponseData = ['viewModel' => $this->viewModel];
 
-        foreach ($this->dataModel as $key => $value) {
+        $this->insertDataModelToResponseData();
 
-            $this->aResponseData[$key] = $value;
+        // foreach ($this->dataModel as $key => $value) {
 
-        } //end loop
+        //     $this->aResponseData[$key] = $value;
+
+        // } //end loop
 
         return view($this->sViewRoot.'.index', $this->aResponseData);
     }
@@ -21,11 +23,13 @@ trait Actionresponse
     {
         $this->aResponseData = ['viewModel' => $this->viewModel];
 
-        foreach ($this->dataModel as $key => $value) {
+        $this->insertDataModelToResponseData();
 
-            $this->aResponseData[$key] = $value;
+        // foreach ($this->dataModel as $key => $value) {
 
-        } //end loop
+        //     $this->aResponseData[$key] = $value;
+
+        // } //end loop
 
         return json_encode($this->aResponseData);
     }
@@ -38,11 +42,13 @@ trait Actionresponse
             'fieldEnabled' => false
         ];
 
-        foreach ($this->dataModel as $key => $value) {
+        $this->insertDataModelToResponseData();
 
-            $this->aResponseData[$key] = $value;
+        // foreach ($this->dataModel as $key => $value) {
 
-        } //end loop
+        //     $this->aResponseData[$key] = $value;
+
+        // } //end loop
 
         return view($this->sViewRoot.'.show', $this->aResponseData);
     }
@@ -55,11 +61,13 @@ trait Actionresponse
             'fieldEnabled' => false
         ];
 
-        foreach ($this->dataModel as $key => $value) {
+        $this->insertDataModelToResponseData();
 
-            $this->aResponseData[$key] = $value;
+        // foreach ($this->dataModel as $key => $value) {
 
-        } //end loop
+        //     $this->aResponseData[$key] = $value;
+
+        // } //end loop
 
         return json_encode($this->aResponseData);
     }
@@ -72,11 +80,13 @@ trait Actionresponse
             'fieldEnabled' => true,
         ];
 
-        foreach ($this->dataModel as $key => $value) {
+        $this->insertDataModelToResponseData();
 
-            $this->aResponseData[$key] = $value;
+        // foreach ($this->dataModel as $key => $value) {
 
-        } //end loop
+        //     $this->aResponseData[$key] = $value;
+
+        // } //end loop
 
         return view($this->sViewRoot.'.create', $this->aResponseData);
     }
@@ -90,11 +100,13 @@ trait Actionresponse
             'dataModel' => $this->dataModel
         ];
 
-        foreach ($this->dataModel as $key => $value) {
+        $this->insertDataModelToResponseData();
 
-            $this->aResponseData[$key] = $value;
+        // foreach ($this->dataModel as $key => $value) {
 
-        } //end loop
+        //     $this->aResponseData[$key] = $value;
+
+        // } //end loop
 
         return json_encode($this->aResponseData);
     }
@@ -108,11 +120,13 @@ trait Actionresponse
             'dataModel' => $this->dataModel
         ];
 
-        foreach ($this->dataModel as $key => $value) {
+        $this->insertDataModelToResponseData();
 
-            $this->aResponseData[$key] = $value;
+        // foreach ($this->dataModel as $key => $value) {
 
-        } //end loop
+        //     $this->aResponseData[$key] = $value;
+
+        // } //end loop
 
         return view($this->sViewRoot.'.edit', $this->aResponseData);
     }
@@ -126,11 +140,13 @@ trait Actionresponse
             'dataModel' => $this->dataModel
         ];
 
-        foreach ($this->dataModel as $key => $value) {
+        $this->insertDataModelToResponseData();
 
-            $this->aResponseData[$key] = $value;
+        // foreach ($this->dataModel as $key => $value) {
 
-        } //end loop
+        //     $this->aResponseData[$key] = $value;
+
+        // } //end loop
 
         return json_encode($this->aResponseData);
     }

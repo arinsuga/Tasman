@@ -14,6 +14,7 @@ use Arins\Bo\Http\Controllers\Activity\Close;
 
 use Arins\Repositories\Activity\ActivityRepositoryInterface;
 
+use Arins\Repositories\Activitystatus\ActivitystatusRepositoryInterface;
 use Arins\Repositories\Activitytype\ActivitytypeRepositoryInterface;
 use Arins\Repositories\Activitysubtype\ActivitysubtypeRepositoryInterface;
 use Arins\Repositories\Tasktype\TasktypeRepositoryInterface;
@@ -29,6 +30,7 @@ class ActivityController extends BoController
     use Base, Close, Pending, Cancel, Reopen;
 
     protected $dataActivitytype;
+    protected $dataActivitystatus;
     protected $activitytype_id;
     protected $activitystatus_open;
     protected $dataActivitysubtype;
@@ -39,6 +41,7 @@ class ActivityController extends BoController
     protected $dataEmployee;
 
     public function __construct(ActivityRepositoryInterface $parData,
+                                ActivitystatusRepositoryInterface $parActivitystatus,
                                 ActivitytypeRepositoryInterface $parActivitytype,
                                 ActivitysubtypeRepositoryInterface $parActivitysubtype,
                                 TasktypeRepositoryInterface $parTasktype,
@@ -56,6 +59,7 @@ class ActivityController extends BoController
 
         $this->activitystatus_open = 1; //open
         $this->data = $parData;
+        $this->dataActivitystatus = $parActivitystatus;
         $this->dataActivitytype = $parActivitytype;
         $this->dataActivitysubtype = $parActivitysubtype;
         $this->dataTasktype = $parTasktype;
@@ -65,6 +69,7 @@ class ActivityController extends BoController
         $this->dataTechnician = $parTechnician;
 
         $this->dataModel = [
+            'activitystatus' => $this->dataActivitystatus->all(),
             'activitytype' => $this->dataActivitytype->all(),
             'activitysubtype' => $this->dataActivitysubtype->byActivitytype($this->activitytype_id),
             'tasktype' => $this->dataTasktype->byActivitytype($this->activitytype_id),
@@ -226,8 +231,8 @@ class ActivityController extends BoController
         return view($this->sViewRoot.'.index-open', $this->aResponseData);
     }
 
-    /** get */
-    public function indexCustom()
+    //Process
+    protected function indexCustomProcess()
     {
 
         $this->viewModel = Response::viewModel();
@@ -239,36 +244,22 @@ class ActivityController extends BoController
             'new' => true,
             'fieldEnabled' => true,
         ];
+        $this->insertDataModelToResponseData();
 
-        foreach ($this->dataModel as $key => $value) {
+    }
 
-            $this->aResponseData[$key] = $value;
-
-        } //end loop
-
+    /** get */
+    public function indexCustom()
+    {
+        $this->indexCustomProcess();
         return view($this->sViewRoot.'.index-custom', $this->aResponseData);
     }
 
     /** get */
     public function indexCustomPost(Request $request)
     {
-
-        $this->viewModel = Response::viewModel();
-        $this->viewModel->data = json_decode(json_encode($this->data->getInputField()));
-        $this->viewModel->data->date = now();
-
-        $this->aResponseData = [
-            'viewModel' => $this->viewModel,
-            'new' => true,
-            'fieldEnabled' => true,
-        ];
-
-        foreach ($this->dataModel as $key => $value) {
-
-            $this->aResponseData[$key] = $value;
-
-        } //end loop
-
+        return dd($request->input());
+        $this->indexCustomProcess();
         return view($this->sViewRoot.'.index-custom', $this->aResponseData);
     }
 

@@ -76,6 +76,17 @@ class BoController extends Controller
         ];
     }
 
+    protected function insertDataModelToResponseData() {
+
+        foreach ($this->dataModel as $key => $value) {
+
+            $this->aResponseData[$key] = $value;
+
+        } //end loop
+        
+
+    }
+
     protected function runResponseMethod($methodName, $responseType = null, $id = null)
     {        
         if ($responseType === null)

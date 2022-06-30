@@ -64,7 +64,7 @@
         <!-- Form Custom Search -->
         <div>
 
-            <form role="form" id="frmData" method="POST" action="{{ route('support.store') }}" enctype="multipart/form-data">
+            <form role="form" id="frmData" method="POST" action="{{ route('support.index.custom.post') }}" enctype="multipart/form-data">
                 @csrf
 
                 <div style="display: flex; justify-content=center;">
@@ -80,6 +80,5 @@
 
     <script src="{{ asset('js/CustomForIndex.js') }}" defer></script>
     @include('bo.support._script')
-
 @endsection
 
