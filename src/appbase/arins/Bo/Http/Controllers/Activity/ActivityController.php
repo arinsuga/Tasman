@@ -231,35 +231,45 @@ class ActivityController extends BoController
         return view($this->sViewRoot.'.index-open', $this->aResponseData);
     }
 
-    //Process
-    protected function indexCustomProcess()
+    //Response
+    protected function indexCustomResponse()
     {
-
-        $this->viewModel = Response::viewModel();
-        $this->viewModel->data = json_decode(json_encode($this->data->getInputField()));
-        $this->viewModel->data->date = now();
-
         $this->aResponseData = [
             'viewModel' => $this->viewModel,
             'new' => true,
             'fieldEnabled' => true,
         ];
         $this->insertDataModelToResponseData();
-
     }
 
     /** get */
     public function indexCustom()
     {
-        $this->indexCustomProcess();
+        $this->viewModel = Response::viewModel();
+        $this->viewModel->data = json_decode(json_encode($this->data->getInputField()));
+        $this->viewModel->data->date = now();
+
+        $this->indexCustomResponse();
+
+        //return dd($this->aResponseData['activitystatus'][0]->id);
         return view($this->sViewRoot.'.index-custom', $this->aResponseData);
     }
 
     /** get */
     public function indexCustomPost(Request $request)
     {
-        return dd($request->input());
-        $this->indexCustomProcess();
+        $statdt = $request->input('startdt');
+        $enddt = $request->input('enddt');
+
+        $this->viewModel = Response::viewModel();
+
+        $data = $this->data->getInputField();
+        $data['datalist'] = $this->data->byActivitytypeCustom($this->activitytype_id, $request);
+        $this->viewModel->data = json_decode(json_encode($data));
+
+        $this->indexCustomResponse();
+
+        return dd($this->viewModel->data->datalist[1]->subject);
         return view($this->sViewRoot.'.index-custom', $this->aResponseData);
     }
 

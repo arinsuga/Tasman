@@ -51,6 +51,22 @@ class ActivityRepository extends BaseRepository implements ActivityRepositoryInt
 
     }
 
+    function byActivitytypeCustom($id, $request, $take=null) 
+    {
+        $result = $this->model::where('activitytype_id', $id);
+        
+
+
+
+        if ($take == null) {
+            $result = $result->get();
+        } else {
+            $result = $result->take($take)->get();
+        }
+
+        return $result;
+    }
+    
     public function byActivitytype($id, $take=null)
     {
         if ($take == null) {
