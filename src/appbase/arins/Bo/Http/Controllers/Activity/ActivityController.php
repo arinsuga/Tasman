@@ -251,7 +251,6 @@ class ActivityController extends BoController
 
         $this->indexCustomResponse();
 
-        //return dd($this->aResponseData['activitystatus'][0]->id);
         return view($this->sViewRoot.'.index-custom', $this->aResponseData);
     }
 
@@ -262,14 +261,13 @@ class ActivityController extends BoController
         $enddt = $request->input('enddt');
 
         $this->viewModel = Response::viewModel();
-
         $data = $this->data->getInputField();
-        $data['datalist'] = $this->data->byActivitytypeCustom($this->activitytype_id, $request);
+        $data['datalist'] = null;
         $this->viewModel->data = json_decode(json_encode($data));
-
+        $this->viewModel->data->datalist = $this->data->byActivitytypeCustom($this->activitytype_id, $request);
+        
         $this->indexCustomResponse();
 
-        return dd($this->viewModel->data->datalist[1]->subject);
         return view($this->sViewRoot.'.index-custom', $this->aResponseData);
     }
 

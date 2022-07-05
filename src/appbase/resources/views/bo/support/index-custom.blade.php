@@ -74,6 +74,13 @@
 
         </div>        
 
+        @if (isset($viewModel->data->datalist))
+            <div>
+                @include('bo.support.index-custom-datalist')
+            </div>
+        @endif
+
+
 @endsection
 
 @section('js')
