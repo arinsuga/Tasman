@@ -11,6 +11,6 @@ interface ActivityRepositoryInterface extends BaseRepositoryInterface
     function byActivitytypeOrderByIdAndStartdtDesc($id, $take=null);
     function byActivitytypeStatusOpenOrderByIdAndStartdtDesc($id, $take=null);
     function byActivitytypeTodayOrderByIdAndStartdtDesc($id, $take=null);
-    function byActivitytypeCustom($id, $customFilter, $take=null);
+    function byActivitytypeCustom($id, $filter, $take=null);
     // function countActivityByActivityType();
 }

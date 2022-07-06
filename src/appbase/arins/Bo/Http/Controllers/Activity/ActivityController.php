@@ -24,6 +24,7 @@ use Arins\Repositories\Employee\EmployeeRepositoryInterface;
 use Arins\Repositories\Technician\TechnicianRepositoryInterface;
 
 use Arins\Facades\Response;
+use Arins\Facades\ConvertDate;
 
 class ActivityController extends BoController
 {
@@ -257,14 +258,36 @@ class ActivityController extends BoController
     /** get */
     public function indexCustomPost(Request $request)
     {
-        $statdt = $request->input('startdt');
-        $enddt = $request->input('enddt');
+
+        $filter = json_decode(json_encode([
+            'startdt' => ConvertDate::strDatetimeToDate($request->input('startdt')),
+            'enddt' => ConvertDate::strDatetimeToDate($request->input('enddt')),
+            'activitystatus_id' => $request->input('activitystatus_id'),
+            'enduser_id' => $request->input('enduser_id'),
+            'technician_id' => $request->input('technician_id'),
+            'activitysubtype_id' => $request->input('activitysubtype_id'),
+            'tasktype_id' => $request->input('tasktype_id'),
+            'tasksubtype1_id' => $request->input('tasksubtype1_id'),
+            'tasksubtype2_id' => $request->input('tasksubtype2_id'),
+        ]));
+
+        // if (isset($filter->startdt)) {
+        //     return dd([
+        //         'result' => 'Masuk...',
+        //         '$filter' => $filter,
+        //     ]);
+        // }
+
+        // return dd([
+        //     'result' => 'Lewat...',
+        //     '$filter' => $filter,
+        // ]);
 
         $this->viewModel = Response::viewModel();
         $data = $this->data->getInputField();
         $data['datalist'] = null;
         $this->viewModel->data = json_decode(json_encode($data));
-        $this->viewModel->data->datalist = $this->data->byActivitytypeCustom($this->activitytype_id, $request);
+        $this->viewModel->data->datalist = $this->data->byActivitytypeCustom($this->activitytype_id, $filter);
         
         $this->indexCustomResponse();
 

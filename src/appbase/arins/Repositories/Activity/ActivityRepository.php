@@ -51,11 +51,53 @@ class ActivityRepository extends BaseRepository implements ActivityRepositoryInt
 
     }
 
-    function byActivitytypeCustom($id, $request, $take=null) 
+    function byActivitytypeCustom($id, $filter, $take=null)
     {
         $result = $this->model::where('activitytype_id', $id);
-        
 
+        //start date
+        if (isset($filter->startdt)) {
+            $result = $result->where('startdt', '>=', $filter->startdt);
+        }
+
+        //end date
+        if (
+            isset($filter->startdt) &&
+            isset($filter->enddt)
+        ) {
+            $result = $result->where('startdt', '>=', $filter->startdt);
+            $result = $result->where('enddt', '<=', $filter->enddt);
+        }
+
+
+        //activitystatus_id
+        if (isset($filter->activitystatus_id)) {
+            $result = $result->where('activitystatus_id', $filter->activitystatus_id);
+        }
+        //enduser_id
+        if (isset($filter->enduser_id)) {
+            $result = $result->where('enduser_id', $filter->enduser_id);
+        }
+        //technician_id
+        if (isset($filter->technician_id)) {
+            $result = $result->where('technician_id', $filter->technician_id);
+        }
+        //activitysubtype_id
+        if (isset($filter->activitysubtype_id)) {
+            $result = $result->where('activitysubtype_id', $filter->activitysubtype_id);
+        }
+        //tasktype_id
+        if (isset($filter->tasktype_id)) {
+            $result = $result->where('tasktype_id', $filter->tasktype_id);
+        }
+        //tasksubtype1_id
+        if (isset($filter->tasksubtype1_id)) {
+            $result = $result->where('tasksubtype1_id', $filter->tasksubtype1_id);
+        }
+        //tasksubtype2_id
+        if (isset($filter->tasksubtype2_id)) {
+            $result = $result->where('tasksubtype2_id', $filter->tasksubtype2_id);
+        }
 
 
         if ($take == null) {
