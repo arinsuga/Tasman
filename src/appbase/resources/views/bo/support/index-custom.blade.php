@@ -61,6 +61,7 @@
 
         </nav>
 
+        @if (!isset($viewModel->data->datalist))
         <!-- Form Custom Search -->
         <div>
 
@@ -73,6 +74,7 @@
             </form>
 
         </div>        
+        @endif
 
         @if (isset($viewModel->data->datalist))
             <div style="margin-top: 10px;">
