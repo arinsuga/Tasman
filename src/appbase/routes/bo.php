@@ -72,6 +72,7 @@ Route::group(['middleware'=>'lang'],function ()
     Route::get('maintenance-index-today', 'Maintenance\MaintenanceController@indexToday')->name('maintenance.index.today');
     Route::get('maintenance-index-open', 'Maintenance\MaintenanceController@indexOpen')->name('maintenance.index.open');
     Route::get('maintenance-index-custom', 'Maintenance\MaintenanceController@indexCustom')->name('maintenance.index.custom');
+    Route::post('maintenance-index-custom-post', 'Maintenance\MaintenanceController@indexCustomPost')->name('maintenance.index.custom.post');
 
     Route::get('maintenance/{close}/close', 'Maintenance\MaintenanceController@close')->name('maintenance.close');
     Route::put('maintenance/{close}/close', 'Maintenance\MaintenanceController@updateClose')->name('maintenance.update.close');
@@ -88,6 +89,7 @@ Route::group(['middleware'=>'lang'],function ()
     Route::get('project-index-today', 'Project\ProjectController@indexToday')->name('project.index.today');
     Route::get('project-index-open', 'Project\ProjectController@indexOpen')->name('project.index.open');
     Route::get('project-index-custom', 'Project\ProjectController@indexCustom')->name('project.index.custom');
+    Route::post('project-index-custom-post', 'Project\ProjectController@indexCustomPost')->name('project.index.custom.post');
 
     Route::get('project/{reopen}/reopen', 'Project\ProjectController@reopen')->name('project.reopen');
     Route::put('project/{reopen}/reopen', 'Project\ProjectController@updateReopen')->name('project.update.reopen');

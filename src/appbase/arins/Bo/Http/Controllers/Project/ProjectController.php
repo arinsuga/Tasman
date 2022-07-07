@@ -8,6 +8,7 @@ namespace Arins\Bo\Http\Controllers\Project;
 use Arins\Bo\Http\Controllers\Activity\ActivityController;
 
 use Arins\Repositories\Activity\ActivityRepositoryInterface;
+use Arins\Repositories\Activitystatus\ActivitystatusRepositoryInterface;
 use Arins\Repositories\Activitytype\ActivitytypeRepositoryInterface;
 use Arins\Repositories\Activitysubtype\ActivitysubtypeRepositoryInterface;
 use Arins\Repositories\Tasktype\TasktypeRepositoryInterface;
@@ -19,6 +20,7 @@ class ProjectController extends ActivityController
 {
 
     public function __construct(ActivityRepositoryInterface $parData,
+                                ActivitystatusRepositoryInterface $parActivitystatus,
                                 ActivitytypeRepositoryInterface $parActivitytype,
                                 ActivitysubtypeRepositoryInterface $parActivitysubtype,
                                 TasktypeRepositoryInterface $parTasktype,
@@ -32,6 +34,7 @@ class ProjectController extends ActivityController
 
         parent::__construct(
             $parData,
+            $parActivitystatus,
             $parActivitytype,
             $parActivitysubtype,
             $parTasktype,

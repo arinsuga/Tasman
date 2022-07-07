@@ -271,18 +271,6 @@ class ActivityController extends BoController
             'tasksubtype2_id' => $request->input('tasksubtype2_id'),
         ]));
 
-        // if (isset($filter->startdt)) {
-        //     return dd([
-        //         'result' => 'Masuk...',
-        //         '$filter' => $filter,
-        //     ]);
-        // }
-
-        // return dd([
-        //     'result' => 'Lewat...',
-        //     '$filter' => $filter,
-        // ]);
-
         $this->viewModel = Response::viewModel();
         $data = $this->data->getInputField();
         $data['datalist'] = null;

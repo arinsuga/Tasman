@@ -75,7 +75,7 @@
         </div>        
 
         @if (isset($viewModel->data->datalist))
-            <div>
+            <div style="margin-top: 10px;">
                 @include('bo.support.index-custom-datalist')
             </div>
         @endif

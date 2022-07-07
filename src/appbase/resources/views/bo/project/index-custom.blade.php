@@ -5,14 +5,9 @@
 @section('toolbar')
 
 <li class="nav-item">
-    <a class="nav-link" href="{{ route('project.create') }}">
-        <i class="fas fa-lg fa-plus"></i>
-    </a>
-</li>
-
-<li class="nav-item">
-    <a class="nav-link" data-widget="control-sidebar" href="#" >
-        <i class="fas fa-lg fa-filter"></i>
+    <a onclick="event.preventDefault(); document.getElementById('frmData').submit();"
+       class="nav-link" href="#">
+        <i class="fas fa-lg fa-search"></i>
     </a>
 </li>
 
@@ -58,14 +53,30 @@
 
         </nav>
 
-        <div style="margin-top: 10px;">
-            @include('bo.project.data-list-items')
-        </div>
+        <!-- Form Custom Search -->
+        <div>
+
+            <form role="form" id="frmData" method="POST" action="{{ route('project.index.custom.post') }}" enctype="multipart/form-data">
+                @csrf
+
+                <div style="display: flex; justify-content=center;">
+                    @include('bo.project.index-custom-fields')
+                </div>
+            </form>
+
+        </div>        
+
+        @if (isset($viewModel->data->datalist))
+            <div style="margin-top: 10px;">
+                @include('bo.project.index-custom-datalist')
+            </div>
+        @endif
 
 @endsection
 
 @section('js')
 
     <script src="{{ asset('js/CustomForIndex.js') }}" defer></script>
+    @include('bo.project._script')
 
 @endsection
