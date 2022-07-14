@@ -48,11 +48,15 @@ Route::group(['middleware'=>'lang'],function ()
 
     //support
     Route::resource('support', 'Support\SupportController');
-    Route::get('support-report-detail', 'Support\SupportController@reportDetail')->name('support.report.detail');
     Route::get('support-index-today', 'Support\SupportController@indexToday')->name('support.index.today');
     Route::get('support-index-open', 'Support\SupportController@indexOpen')->name('support.index.open');
+
     Route::get('support-index-custom', 'Support\SupportController@indexCustom')->name('support.index.custom');
     Route::post('support-index-custom-post', 'Support\SupportController@indexCustomPost')->name('support.index.custom.post');
+
+    Route::get('support-report-detail', 'Support\SupportController@reportDetail')->name('support.report.detail');
+    Route::get('support-report-detail-custom', 'Support\SupportController@reportDetailCustom')->name('support.report.detail.custom');
+    Route::get('support-report-detail-custom-post', 'Support\SupportController@reportDetailCustom')->name('support.report.detail.custom.post');
 
     Route::get('support/{reopen}/reopen', 'Support\SupportController@reopen')->name('support.reopen');
     Route::put('support/{reopen}/reopen', 'Support\SupportController@updateReopen')->name('support.update.reopen');

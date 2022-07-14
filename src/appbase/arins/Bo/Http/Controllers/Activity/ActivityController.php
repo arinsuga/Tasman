@@ -198,6 +198,17 @@ class ActivityController extends BoController
         return $this->responseView('report-detail', false, false, false);
     }
 
+    public function reportDetailCustom()
+    {
+        $this->viewModel = Response::viewModel();
+        $this->viewModel->data = json_decode(json_encode($this->data->getInputField()));
+        $this->viewModel->data->date = now();
+
+        $this->CustomResponse();
+
+        return view($this->sViewRoot.'.report-detail-custom', $this->aResponseData);
+    }
+
     /** get */
     public function indexToday()
     {
@@ -233,7 +244,7 @@ class ActivityController extends BoController
     }
 
     //Response
-    protected function indexCustomResponse()
+    protected function CustomResponse()
     {
         $this->aResponseData = [
             'viewModel' => $this->viewModel,
@@ -250,7 +261,7 @@ class ActivityController extends BoController
         $this->viewModel->data = json_decode(json_encode($this->data->getInputField()));
         $this->viewModel->data->date = now();
 
-        $this->indexCustomResponse();
+        $this->CustomResponse();
 
         return view($this->sViewRoot.'.index-custom', $this->aResponseData);
     }
@@ -277,9 +288,26 @@ class ActivityController extends BoController
         $this->viewModel->data = json_decode(json_encode($data));
         $this->viewModel->data->datalist = $this->data->byActivitytypeCustom($this->activitytype_id, $filter);
         
-        $this->indexCustomResponse();
+        $this->CustomResponse();
 
         return view($this->sViewRoot.'.index-custom', $this->aResponseData);
+    }
+
+
+    protected function filters($request) {
+        $filter = json_decode(json_encode([
+            'startdt' => ConvertDate::strDatetimeToDate($request->input('startdt')),
+            'enddt' => ConvertDate::strDatetimeToDate($request->input('enddt')),
+            'activitystatus_id' => $request->input('activitystatus_id'),
+            'enduser_id' => $request->input('enduser_id'),
+            'technician_id' => $request->input('technician_id'),
+            'activitysubtype_id' => $request->input('activitysubtype_id'),
+            'tasktype_id' => $request->input('tasktype_id'),
+            'tasksubtype1_id' => $request->input('tasksubtype1_id'),
+            'tasksubtype2_id' => $request->input('tasksubtype2_id'),
+        ]));
+
+        return $filter;
     }
 
 }
