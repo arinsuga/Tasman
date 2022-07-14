@@ -75,5 +75,6 @@
 @section('js')
 
     <script src="{{ asset('js/CustomForIndex.js') }}" defer></script>
+    @include('bo.support._script')
 
 @endsection

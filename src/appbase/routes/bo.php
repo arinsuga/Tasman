@@ -56,7 +56,7 @@ Route::group(['middleware'=>'lang'],function ()
 
     Route::get('support-report-detail', 'Support\SupportController@reportDetail')->name('support.report.detail');
     Route::get('support-report-detail-custom', 'Support\SupportController@reportDetailCustom')->name('support.report.detail.custom');
-    Route::get('support-report-detail-custom-post', 'Support\SupportController@reportDetailCustom')->name('support.report.detail.custom.post');
+    Route::post('support-report-detail-custom-post', 'Support\SupportController@reportDetailCustomPost')->name('support.report.detail.custom.post');
 
     Route::get('support/{reopen}/reopen', 'Support\SupportController@reopen')->name('support.reopen');
     Route::put('support/{reopen}/reopen', 'Support\SupportController@updateReopen')->name('support.update.reopen');

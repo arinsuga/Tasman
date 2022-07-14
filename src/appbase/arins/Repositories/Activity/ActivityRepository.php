@@ -55,11 +55,6 @@ class ActivityRepository extends BaseRepository implements ActivityRepositoryInt
     {
         $result = $this->model::where('activitytype_id', $id);
 
-        //start date
-        if (isset($filter->startdt)) {
-            $result = $result->where('startdt', '>=', $filter->startdt);
-        }
-
         //end date
         if (
             isset($filter->startdt) &&
@@ -69,6 +64,10 @@ class ActivityRepository extends BaseRepository implements ActivityRepositoryInt
             $result = $result->where('enddt', '<=', $filter->enddt);
         }
 
+        //start date
+        if (isset($filter->startdt)) {
+            $result = $result->where('startdt', '>=', $filter->startdt);
+        }
 
         //activitystatus_id
         if (isset($filter->activitystatus_id)) {
