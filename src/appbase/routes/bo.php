@@ -50,7 +50,6 @@ Route::group(['middleware'=>'lang'],function ()
     Route::resource('support', 'Support\SupportController');
     Route::get('support-index-today', 'Support\SupportController@indexToday')->name('support.index.today');
     Route::get('support-index-open', 'Support\SupportController@indexOpen')->name('support.index.open');
-
     Route::get('support-index-custom', 'Support\SupportController@indexCustom')->name('support.index.custom');
     Route::post('support-index-custom-post', 'Support\SupportController@indexCustomPost')->name('support.index.custom.post');
 
@@ -72,11 +71,14 @@ Route::group(['middleware'=>'lang'],function ()
 
     //maintenance
     Route::resource('maintenance', 'Maintenance\MaintenanceController');
-    Route::get('maintenance-report-detail', 'Maintenance\MaintenanceController@reportDetail')->name('maintenance.report.detail');
     Route::get('maintenance-index-today', 'Maintenance\MaintenanceController@indexToday')->name('maintenance.index.today');
     Route::get('maintenance-index-open', 'Maintenance\MaintenanceController@indexOpen')->name('maintenance.index.open');
     Route::get('maintenance-index-custom', 'Maintenance\MaintenanceController@indexCustom')->name('maintenance.index.custom');
     Route::post('maintenance-index-custom-post', 'Maintenance\MaintenanceController@indexCustomPost')->name('maintenance.index.custom.post');
+
+    Route::get('maintenance-report-detail', 'Maintenance\MaintenanceController@reportDetail')->name('maintenance.report.detail');
+    Route::get('maintenance-report-detail-custom', 'Maintenance\MaintenanceController@reportDetailCustom')->name('maintenance.report.detail.custom');
+    Route::post('maintenance-report-detail-custom-post', 'Maintenance\MaintenanceController@reportDetailCustomPost')->name('maintenance.report.detail.custom.post');
 
     Route::get('maintenance/{close}/close', 'Maintenance\MaintenanceController@close')->name('maintenance.close');
     Route::put('maintenance/{close}/close', 'Maintenance\MaintenanceController@updateClose')->name('maintenance.update.close');
@@ -89,11 +91,14 @@ Route::group(['middleware'=>'lang'],function ()
 
     //project
     Route::resource('project', 'Project\ProjectController');
-    Route::get('project-report-detail', 'Project\ProjectController@reportDetail')->name('project.report.detail');
     Route::get('project-index-today', 'Project\ProjectController@indexToday')->name('project.index.today');
     Route::get('project-index-open', 'Project\ProjectController@indexOpen')->name('project.index.open');
     Route::get('project-index-custom', 'Project\ProjectController@indexCustom')->name('project.index.custom');
     Route::post('project-index-custom-post', 'Project\ProjectController@indexCustomPost')->name('project.index.custom.post');
+
+    Route::get('project-report-detail', 'Project\ProjectController@reportDetail')->name('project.report.detail');
+    Route::get('project-report-detail-custom', 'Project\ProjectController@reportDetailCustom')->name('project.report.detail.custom');
+    Route::post('project-report-detail-custom-post', 'Project\ProjectController@reportDetailCustomPost')->name('project.report.detail.custom.post');
 
     Route::get('project/{reopen}/reopen', 'Project\ProjectController@reopen')->name('project.reopen');
     Route::put('project/{reopen}/reopen', 'Project\ProjectController@updateReopen')->name('project.update.reopen');

@@ -20,6 +20,26 @@
 
 @section('content')
 
+        <nav class="navbar navbar-expand ">
+
+            <ul class="navbar-nav">
+
+                <li class="nav-item" style="border-bottom: 5px solid red;">
+                    <a class="nav-link" href="{{ route('project.report.detail') }}" style="font-weight: bold;">
+                        All
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('project.report.detail.custom') }}" style="font-weight: bold;">
+                        Custom
+                    </a>
+                </li>
+
+            </ul>
+
+        </nav>
+
         <div style="margin-top: 10px;">
             @include('bo.project.report-detail-list-items')
         </div>

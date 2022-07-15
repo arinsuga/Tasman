@@ -20,6 +20,26 @@
 
 @section('content')
 
+        <nav class="navbar navbar-expand ">
+
+            <ul class="navbar-nav">
+
+                <li class="nav-item" style="border-bottom: 5px solid red;">
+                    <a class="nav-link" href="{{ route('maintenance.report.detail') }}" style="font-weight: bold;">
+                        All
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('maintenance.report.detail.custom') }}" style="font-weight: bold;">
+                        Custom
+                    </a>
+                </li>
+
+            </ul>
+
+        </nav>
+
         <div style="margin-top: 10px;">
             @include('bo.maintenance.report-detail-list-items')
         </div>
