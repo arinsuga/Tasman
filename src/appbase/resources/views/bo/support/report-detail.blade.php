@@ -38,6 +38,16 @@
 
             </ul>
 
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <button onclick="HtmlTOExcel('xlsx')" type="button" class="btn btn-block btn-success btn-flat">Export to Excel</button>
+                </li>
+                <li class="nav-item">
+                    <button onclick="exportPDF('filter')" type="button" class="btn btn-block btn-danger btn-flat">Export to PDF</button>
+                </li>
+            </ul>
+
+
         </nav>
 
 
@@ -50,5 +60,6 @@
 @section('js')
 
     <script src="{{ asset('js/CustomForIndex.js') }}" defer></script>
+    @include('bo.support._script')
 
 @endsection

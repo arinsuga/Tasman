@@ -1,6 +1,5 @@
 <table id="filter" style="width: 100%;" class="table table-head-fixed text-nowrap">
     <thead>
-        <tr>
             <th>Requester</th>
             <th>Department</th>
             <th>Category</th>
@@ -14,7 +13,6 @@
             <th>Start Time</th>
             <th>Completed Time</th>
             <th>Time Elapsed</th>
-        </tr>
     </thead>
     <tbody>
 

@@ -33,7 +33,8 @@ mix.js('resources/js/admin.js', 'public/js')
       'resources/js/main.js'
    ], 'public/js/main.js')
    .scripts([
-      'resources/plugins/TableFilter/TableFilter.js'
+      'resources/plugins/TableFilter/TableFilter.js',
+      'resources/plugins/xlsx/xlsx.min.js'
    ], 'public/js/CustomForIndex.js');
 
 //WEBSITE 1 ==> Do not use ( laravel mix problem )
