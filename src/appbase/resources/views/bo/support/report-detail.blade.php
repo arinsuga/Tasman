@@ -43,7 +43,7 @@
                     <button onclick="HtmlTOExcel('xlsx')" type="button" class="btn btn-block btn-success btn-flat">Export to Excel</button>
                 </li>
                 <li class="nav-item">
-                    <button onclick="exportPDF('filter')" type="button" class="btn btn-block btn-danger btn-flat">Export to PDF</button>
+                    <button id="exportPDF" type="button" class="btn btn-block btn-danger btn-flat">Export to PDF</button>
                 </li>
             </ul>
 

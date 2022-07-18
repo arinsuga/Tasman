@@ -22,37 +22,6 @@ var specialElementHandlers = {
     }
 };
 
-function exportPDF(id) {
-    var doc = new jsPDF('l', 'pt', 'a4');
-    //A4 - 595x842 pts
-    //https://www.gnu.org/software/gv/manual/html_node/Paper-Keywords-and-paper-size-in-points.html
-
-
-    //Html source 
-    var source = document.getElementById(id);
-console.log(source);
-    var margins = {
-        top: 10,
-        bottom: 10,
-        left: 10,
-        width: 595
-    };
-
-    doc.fromHTML(
-        source, // HTML string or DOM elem ref.
-        margins.left,
-        margins.top, {
-            'width': margins.width,
-            'elementHandlers': specialElementHandlers
-        },
-
-        function (dispose) {
-            // dispose: object with X, Y of the last line add to the PDF 
-            //          this allow the insertion of new lines after html
-            doc.save('Test.pdf');
-        }, margins);
-}
-
 $(document).ready(function() {
 
     $('.select2').select2();
@@ -105,6 +74,22 @@ $(document).ready(function() {
         
     }); //end event
     
+
+    $("#exportPDF").click(function() {
+        window.jsPDF = window.jspdf.jsPDF;
+        window.html2canvas = html2canvas;
+        const doc = new jsPDF('l');
+
+        var source = document.getElementById('filter');
+        doc.html(source, {
+            callback: function (doc) {
+                doc.save("report-detail-support.pdf");
+            }
+        });
+
+
+    })
+
 
 });    
     

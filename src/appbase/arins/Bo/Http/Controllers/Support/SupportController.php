@@ -52,4 +52,54 @@ class SupportController extends ActivityController
     } //end construct
 
 
+    /** close */
+    public function changeActivitysubtype($id)
+    {
+        //Check if additional data exist
+        if (method_exists($this, 'editAdditionalData')) {
+            $additionalData = $this->editAdditionalData($id);
+        } //end if
+
+        $this->processEdit($id);
+
+        return $this->responseView('close', false, false, true);
+    }
+
+    /** post */
+    public function updateChangeActivitysubtype(Request $request, $id)
+    {
+        $processResult = $this->updateResult($request, $id, 2);
+        return $this->runResponseMethod('update', $processResult, $id);
+    }
+
+    protected function updateActivitysubtype(Request $request, $id, $activityStatusId = null)
+    {
+        //get data from database
+        $record = $this->data->find($id);
+        $record->activitystatus_id = $activityStatusId;
+
+        //get input value by fillable fields
+        $data = $request->only($this->data->getFillable()); //get field input
+
+        //validate input value (validate resolution)
+        if ($activityStatusId == 2)
+        {
+            $record->resolution = $request->input('resolution');
+            $request->validate(['resolution' => 'required']);
+        } //end if
+
+        if ($activityStatusId != 4)
+        {
+            $data['enddt'] = now();
+        }
+
+        if ($this->data->update($record, $data)) {
+            return 0; //success
+        }
+
+        /** jika tetap terjadi kesalahan maka ada kesalahan pada system */
+        //step 2: Kembali ke halaman input
+        return 2; //fail of exception
+    }
+
 } //end class

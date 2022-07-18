@@ -139,9 +139,10 @@
     <script src="{{ asset('lib/flatpickr/lang/id.js') }}"></script>
     <script src="{{ asset('lib/ckeditor/ckeditor.js') }}"></script>
     <script src="{{ asset('plugins/select2/select2.min.js') }}" defer></script>
-    <!-- <script src="{{ asset('plugins/xlsx/xlsx.min.js') }}" defer></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.3/jspdf.min.js" defer></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
         
     <script src="{{ asset('js/main.js') }}" defer></script>
     @yield('js')
