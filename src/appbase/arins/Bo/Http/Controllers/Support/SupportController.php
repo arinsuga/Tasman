@@ -3,7 +3,7 @@
 namespace Arins\Bo\Http\Controllers\Support;
 
 // use App\Http\Controllers\Controller;
-// use Illuminate\Http\Request;
+use Illuminate\Http\Request;
 
 use Arins\Bo\Http\Controllers\Activity\ActivityController;
 
@@ -51,8 +51,27 @@ class SupportController extends ActivityController
 
     } //end construct
 
+    /** override for change activitytype */
+    protected function responseView($viewName, $new = false, $fieldEnabled = false, $changeActivitysubtype = false)
+    {
+        $this->aResponseData = [
+            'viewModel' => $this->viewModel,
+            'new' => $new,
+            'fieldEnabled' => $fieldEnabled,
+            'changeActivitysubtype' => $changeActivitysubtype,
+            'dataModel' => $this->dataModel
+        ];
 
-    /** close */
+        foreach ($this->dataModel as $key => $value) {
+
+            $this->aResponseData[$key] = $value;
+
+        } //end loop
+
+        return view($this->sViewRoot . '.' . $viewName, $this->aResponseData);
+    }
+
+    /** Activitysubtype */
     public function changeActivitysubtype($id)
     {
         //Check if additional data exist
@@ -62,36 +81,32 @@ class SupportController extends ActivityController
 
         $this->processEdit($id);
 
-        return $this->responseView('close', false, false, true);
+        return $this->responseView('change-activitysubtype', false, false, true);
     }
 
     /** post */
     public function updateChangeActivitysubtype(Request $request, $id)
     {
-        $processResult = $this->updateResult($request, $id, 2);
+
+        //$processResult = $this->processUpdate($request, $id);
+
+        $processResult = $this->updateActivitysubtype($request, $id);
         return $this->runResponseMethod('update', $processResult, $id);
     }
 
-    protected function updateActivitysubtype(Request $request, $id, $activityStatusId = null)
+    /** override */
+    protected function updateActivitysubtype(Request $request, $id)
     {
         //get data from database
         $record = $this->data->find($id);
-        $record->activitystatus_id = $activityStatusId;
 
         //get input value by fillable fields
         $data = $request->only($this->data->getFillable()); //get field input
 
         //validate input value (validate resolution)
-        if ($activityStatusId == 2)
-        {
-            $record->resolution = $request->input('resolution');
-            $request->validate(['resolution' => 'required']);
-        } //end if
+        $record->activitysubtype_id = $request->input('activitysubtype_id');
+        $request->validate(['activitysubtype_id' => 'required']);
 
-        if ($activityStatusId != 4)
-        {
-            $data['enddt'] = now();
-        }
 
         if ($this->data->update($record, $data)) {
             return 0; //success

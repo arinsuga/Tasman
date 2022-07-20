@@ -123,12 +123,29 @@ margin-left: auto; margin-right:auto;">
                   <option {{ $selected }} value="{{ $item->id }}">{{ $item->name }}</option>
                   
                 @endforeach
-            </select>
+          </select>
         @else
-          <input type="hidden" name="activitysubtype_id" value="{{ $viewModel->data->activitysubtype_id }}" readonly>
-          <div class="form-group">
-              <input disabled type="text" value="{{ $viewModel->data->activitysubtype->name }}" class="form-control">
-          </div>
+          @if (isset($changeActivitysubtype) && $changeActivitysubtype === true)
+
+            <select name="activitysubtype_id" class="form-control select2">
+                  @foreach ($activitysubtype as $key => $item)
+
+                    @if ($errors->any())
+                      {{ ($item->id == old('activitysubtype_id') ? $selected = 'selected' : $selected = '') }}
+                    @else
+                      {{ ( $item->id == $viewModel->data->activitysubtype_id ) ? $selected = 'selected' : $selected = '' }}
+                    @endif
+                    <option {{ $selected }} value="{{ $item->id }}">{{ $item->name }}</option>
+                    
+                  @endforeach
+            </select>
+
+          @else
+            <input type="hidden" name="activitysubtype_id" value="{{ $viewModel->data->activitysubtype_id }}" readonly>
+            <div class="form-group">
+                <input disabled type="text" value="{{ $viewModel->data->activitysubtype->name }}" class="form-control">
+            </div>
+          @endif
         @endif
         <p class="text-red">{{ $errors->first('activitysubtype_id') }}</p>
 

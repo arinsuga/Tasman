@@ -61,6 +61,12 @@
 </li>
 @endif
 
+<!-- button change Activitysubtype -->
+<li class="nav-item">
+    <a class="nav-link" href="{{ route('support.change.activitysubtype', ['changeActivitysubtype' => $viewModel->data->id]) }}">
+        <span style="font-weight: bold;">Revisi Jenis Pengaduan</span>
+    </a>
+</li>
 
 <!-- button delete -->
 <li class="nav-item">

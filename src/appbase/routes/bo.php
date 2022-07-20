@@ -53,6 +53,9 @@ Route::group(['middleware'=>'lang'],function ()
     Route::get('support-index-custom', 'Support\SupportController@indexCustom')->name('support.index.custom');
     Route::post('support-index-custom-post', 'Support\SupportController@indexCustomPost')->name('support.index.custom.post');
 
+    Route::get('support/{changeActivitysubtype}/change-activitysubtype', 'Support\SupportController@changeActivitysubtype')->name('support.change.activitysubtype');
+    Route::put('support/{changeActivitysubtype}/change-activitysubtype', 'Support\SupportController@updateChangeActivitysubtype')->name('support.update.change.activitysubtype');
+
     Route::get('support-report-detail', 'Support\SupportController@reportDetail')->name('support.report.detail');
     Route::get('support-report-detail-custom', 'Support\SupportController@reportDetailCustom')->name('support.report.detail.custom');
     Route::post('support-report-detail-custom-post', 'Support\SupportController@reportDetailCustomPost')->name('support.report.detail.custom.post');
