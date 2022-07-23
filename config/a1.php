@@ -26,7 +26,7 @@ return [
     'company' => [
         'version' => '1.0',
         'name' => 'Tasksheet',
-        'website' => 'https://Tasksheet.com/',
+        'website' => 'https://Tasman.arinsuga.com/',
         'address' => [
             'street1' => 'Gedung tinggi lt 9 kav 12',
             'street2' => 'Jl. Gatot Raya Gatot Kaca',
